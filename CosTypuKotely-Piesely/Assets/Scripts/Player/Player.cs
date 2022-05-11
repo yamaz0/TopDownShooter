@@ -3,28 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-[System.Serializable]
-public class Movement
-{
-    [SerializeField]
-    private Rigidbody2D rb;
-    [SerializeField]
-    private float speed;
-    public Vector2 Direction { get; set; }
-    public float Speed { get => speed; set => speed = value; }
-
-    public void SetDirection(Vector2 dir)
-    {
-        Direction = dir;
-    }
-
-    public void Move()
-    {
-        rb.velocity = Direction.normalized * Speed * Time.deltaTime;
-    }
-}
-
 public class Player : Singleton<Player>
 {
     [SerializeField]
@@ -35,11 +13,15 @@ public class Player : Singleton<Player>
 
     [SerializeField]
     private Movement movement;
-
+    [SerializeField]
+    private PlayerRotation playerRotation;
+    [SerializeField]
+    private PlayerShoot playerShoot;
 
     public Float Hp { get => hp; set => hp = value; }
     public PlayerInput Input { get => input; }
     public Movement Movement { get => movement; set => movement = value; }
+
 
     public void Init(float healthPoints = 100)
     {
@@ -51,6 +33,17 @@ public class Player : Singleton<Player>
         Movement.Move();
     }
 
+    private void Update()
+    {
+        playerRotation.Rotate(transform);
+    }
+
+    public void Fire(InputAction.CallbackContext callbackContext)
+    {
+        playerShoot.Shoot(playerRotation.GetShootDirection(transform).normalized);
+
+
+    }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
