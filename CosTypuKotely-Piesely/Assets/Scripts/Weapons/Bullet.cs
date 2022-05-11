@@ -9,4 +9,11 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = direction * 50f;
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

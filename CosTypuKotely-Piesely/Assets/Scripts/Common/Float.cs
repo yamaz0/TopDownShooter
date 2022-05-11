@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Float
 {
     [SerializeField]
@@ -9,7 +10,7 @@ public class Float
 
     public float Value { get => value; private set => this.value = value; }
 
-    event System.Action<float> OnValueChanged = delegate { };
+    public event System.Action<float> OnValueChanged = delegate { };
 
     public void AddValue(float value)
     {

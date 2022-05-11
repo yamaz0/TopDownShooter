@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : Singleton<Player>
 {
     [SerializeField]
-    private Float hp;
+    private Float hp = new Float();
 
     [SerializeField]
     private PlayerInput input;
@@ -23,7 +23,12 @@ public class Player : Singleton<Player>
     public Movement Movement { get => movement; set => movement = value; }
 
 
-    public void Init(float healthPoints = 100)
+    protected override void Initialize()
+    {
+        Init();
+    }
+
+    private void Init(float healthPoints = 100)
     {
         Hp.SetValue(healthPoints);
     }
