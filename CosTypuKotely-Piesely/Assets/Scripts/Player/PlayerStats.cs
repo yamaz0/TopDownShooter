@@ -19,4 +19,17 @@ public class PlayerStats
     public Float Armor { get => armor; set => armor = value; }
     public Float Speed { get => speed; set => speed = value; }
     public Float Gold { get => gold; set => gold = value; }
+
+    public Float GetStat(string statName)
+    {
+        return statName switch
+        {
+            "Hp" => Hp,
+            "MaxHp" => MaxHp,
+            "Armor" => Armor,
+            "Speed" => Speed,
+            "Gold" => Gold,
+            _ => null
+        };
+    }
 }

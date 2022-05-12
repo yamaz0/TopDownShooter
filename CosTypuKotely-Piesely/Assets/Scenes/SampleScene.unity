@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ffc7cefedc1a34c8e504441be0c278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statName: Gold
   text: {fileID: 441352448}
 --- !u!1 &209584025
 GameObject:
@@ -5692,6 +5693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
+  spriteRenderer: {fileID: 1249430443}
 --- !u!1 &1388563964
 GameObject:
   m_ObjectHideFlags: 0
