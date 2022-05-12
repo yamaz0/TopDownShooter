@@ -56,7 +56,8 @@ public class Player : Singleton<Player>
 
     public void Fire(InputAction.CallbackContext callbackContext)
     {
-        playerShoot.Shoot(playerRotation.GetShootDirection(transform));
+        if (callbackContext.performed)
+            playerShoot.Shoot(playerRotation.GetShootDirection(transform));
     }
 
     public void Move(InputAction.CallbackContext callbackContext)
