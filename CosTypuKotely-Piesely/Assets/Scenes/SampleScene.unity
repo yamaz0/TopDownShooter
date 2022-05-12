@@ -5694,6 +5694,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
   spriteRenderer: {fileID: 1249430443}
+  trailRenderer: {fileID: 5691474567878280820, guid: ac73999808410a04dbed2a717a187010, type: 3}
+  filtr:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &1388563964
 GameObject:
   m_ObjectHideFlags: 0
