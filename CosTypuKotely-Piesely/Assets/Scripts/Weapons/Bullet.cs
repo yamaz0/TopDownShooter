@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     public void Init(Vector2 direction)
     {
         rb.velocity = direction.normalized * speed;
+        Destroy(gameObject,2);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -16,15 +16,18 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Vector2 direction = Player.Instance.transform.position - transform.position;
-
         rb.velocity = direction.normalized * 300 * Time.deltaTime;
     }
 
     public void TakeDamage(float damage)
     {
         hp -= damage;
+
         if (hp <= 0)
+        {
+            Player.Instance.PlayerStats.Gold.AddValue(gold);
             Destroy(gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -32,7 +35,6 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
             Player.Instance.PlayerStats.Hp.AddValue(-dmg);
-            Player.Instance.PlayerStats.Gold.AddValue(gold);
         }
     }
 }
