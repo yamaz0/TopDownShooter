@@ -10,15 +10,25 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        Player.Instance.Hp.OnValueChanged += SetHP;
+        SetMaxHp(Player.Instance.PlayerStats.Hp.Value);
+        SetHp(Player.Instance.PlayerStats.MaxHp.Value);
+
+        Player.Instance.PlayerStats.Hp.OnValueChanged += SetHp;
+        Player.Instance.PlayerStats.MaxHp.OnValueChanged += SetMaxHp;
     }
 
     private void OnDisable()
     {
-        Player.Instance.Hp.OnValueChanged -= SetHP;
+        Player.Instance.PlayerStats.Hp.OnValueChanged -= SetHp;
+        Player.Instance.PlayerStats.MaxHp.OnValueChanged -= SetMaxHp;
     }
 
-    public void SetHP(float value)
+    public void SetMaxHp(float value)
+    {
+        slider.maxValue = value;
+    }
+
+    public void SetHp(float value)
     {
         slider.value = value;
     }

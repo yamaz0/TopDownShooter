@@ -155,8 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6b3527361f1de49bba01927caded2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp:
-    value: 0
   input: {fileID: 209584028}
   movement:
     rb: {fileID: 209584030}
@@ -166,6 +164,17 @@ MonoBehaviour:
     mainCamera: {fileID: 519420031}
   playerShoot:
     weapon: {fileID: 1285939593}
+  playerStats:
+    hp:
+      value: 50
+    maxHp:
+      value: 100
+    armor:
+      value: 0
+    speed:
+      value: 500
+    gold:
+      value: 0
 --- !u!4 &209584027
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1648417105040539625, guid: e021bcb5f56a04648bfbe4aef9098b86, type: 3}
-  range: 12
+  range: 17
 --- !u!4 &792994075
 Transform:
   m_ObjectHideFlags: 0

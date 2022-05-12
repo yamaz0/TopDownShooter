@@ -20,7 +20,7 @@ public class Spawn : MonoBehaviour
 
     public IEnumerator SpawnEnemy()
     {
-        Debug.Log("start");
+        // Debug.Log("start");
         Vector3 randomPoint = Random.insideUnitCircle.normalized * range;
         Vector3 spawnPoint = CachedPlayerTransform.position + randomPoint;
         int randomEnemyId = Random.Range(0, enemies.Count);
@@ -30,6 +30,6 @@ public class Spawn : MonoBehaviour
 
         yield return WaitForSecond;
         StartCoroutine(SpawnEnemy());
-        Debug.Log("end");
+        // Debug.Log("end");
     }
 }

@@ -5,6 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
+    private float hp;
+    [SerializeField]
+    private float dmg;
+    [SerializeField]
+    private float gold;
+    [SerializeField]
     private Rigidbody2D rb;
 
     private void Update()
@@ -13,11 +19,20 @@ public class Enemy : MonoBehaviour
 
         rb.velocity = direction.normalized * 300 * Time.deltaTime;
     }
+
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+            Destroy(gameObject);
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            Player.Instance.Hp.AddValue(-1);
+            Player.Instance.PlayerStats.Hp.AddValue(-dmg);
+            Player.Instance.PlayerStats.Gold.AddValue(gold);
         }
     }
 }

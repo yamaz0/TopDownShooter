@@ -3,10 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Singleton<Player>
+
+[System.Serializable]
+public class PlayerStats
 {
     [SerializeField]
-    private Float hp = new Float();
+    private Float hp = new Float(50);
+    [SerializeField]
+    private Float maxHp = new Float(100);
+    [SerializeField]
+    private Float armor = new Float(0);
+    [SerializeField]
+    private Float speed = new Float(500);
+    [SerializeField]
+    private Float gold = new Float(0);
+
+    public Float Hp { get => hp; set => hp = value; }
+    public Float MaxHp { get => maxHp; set => maxHp = value; }
+    public Float Armor { get => armor; set => armor = value; }
+    public Float Speed { get => speed; set => speed = value; }
+    public Float Gold { get => gold; set => gold = value; }
+}
+
+public class Player : Singleton<Player>
+{
 
     [SerializeField]
     private PlayerInput input;
@@ -17,21 +37,12 @@ public class Player : Singleton<Player>
     private PlayerRotation playerRotation;
     [SerializeField]
     private PlayerShoot playerShoot;
+    [SerializeField]
+    private PlayerStats playerStats;
 
-    public Float Hp { get => hp; set => hp = value; }
     public PlayerInput Input { get => input; }
     public Movement Movement { get => movement; set => movement = value; }
-
-
-    protected override void Initialize()
-    {
-        Init();
-    }
-
-    private void Init(float healthPoints = 100)
-    {
-        Hp.SetValue(healthPoints);
-    }
+    public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
 
     private void FixedUpdate()
     {
@@ -45,9 +56,7 @@ public class Player : Singleton<Player>
 
     public void Fire(InputAction.CallbackContext callbackContext)
     {
-        playerShoot.Shoot(playerRotation.GetShootDirection(transform).normalized);
-
-
+        playerShoot.Shoot(playerRotation.GetShootDirection(transform));
     }
 
     public void Move(InputAction.CallbackContext callbackContext)

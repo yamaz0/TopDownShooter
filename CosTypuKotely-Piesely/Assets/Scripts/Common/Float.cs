@@ -12,6 +12,11 @@ public class Float
 
     public event System.Action<float> OnValueChanged = delegate { };
 
+    public Float(float initValue)
+    {
+        Value = initValue;
+    }
+
     public void AddValue(float value)
     {
         SetValue(Value + value);
