@@ -23,6 +23,11 @@ public class Player : Singleton<Player>
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public PlayerShoot PlayerShoot { get => playerShoot; set => playerShoot = value; }
 
+    private void Start()
+    {
+        PlayerShoot.Init();
+    }
+
     private void FixedUpdate()
     {
         Movement.Move();
@@ -42,5 +47,15 @@ public class Player : Singleton<Player>
     public void Move(InputAction.CallbackContext callbackContext)
     {
         Movement.SetDirection(callbackContext.ReadValue<Vector2>());
+    }
+
+    public void ChangeWeapon(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+
+            float v = callbackContext.ReadValue<float>();
+            PlayerShoot.ChangeWeapon((int)v - 1);
+        }
     }
 }
