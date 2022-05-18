@@ -7880,7 +7880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1285939593}
+      - m_Target: {fileID: 62279501}
         m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
         m_MethodName: UpgradeWeapon
         m_Mode: 1

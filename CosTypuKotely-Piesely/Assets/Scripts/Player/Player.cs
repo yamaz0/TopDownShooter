@@ -41,7 +41,22 @@ public class Player : Singleton<Player>
     public void Fire(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
+        {
+            isPressFire = true;
+            StartCoroutine(Shoot());
+        }
+        if (callbackContext.canceled)
+            isPressFire = false;
+    }
+    bool isPressFire = false;
+    private IEnumerator Shoot()
+    {
+        if (isPressFire)
+        {
             PlayerShoot.Shoot(PlayerRotation.GetShootDirection(transform));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(Shoot());
+        }
     }
 
     public void Move(InputAction.CallbackContext callbackContext)

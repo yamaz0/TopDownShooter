@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3722b31ad8913804690c83505b875a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 3
   trailRenderer: {fileID: 5691474567878280820}
   filtr:
     useTriggers: 0
@@ -80,7 +80,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce0d932209338174dadfb1c0dccf611f, type: 2}
+  - {fileID: 2100000, guid: 2e6efc4da1bc78943939a682ded77700, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
