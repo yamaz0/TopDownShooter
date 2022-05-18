@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7893238372448576483}
   - component: {fileID: 5691474567878280820}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: Trail 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3722b31ad8913804690c83505b875a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 4
   trailRenderer: {fileID: 5691474567878280820}
   filtr:
     useTriggers: 0
@@ -131,7 +131,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7735849, g: 0.12041653, b: 0.12041653, a: 1}
+      key0: {r: 0.77254903, g: 0.76042295, b: 0.121568605, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
