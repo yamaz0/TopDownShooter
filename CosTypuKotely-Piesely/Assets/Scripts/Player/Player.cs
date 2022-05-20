@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player : Singleton<Player>
 {
+    private const float TO_PERCENTAGE = 0.01f;
     [SerializeField]
     private PlayerInput input;
 
@@ -22,6 +23,9 @@ public class Player : Singleton<Player>
     public Movement Movement { get => movement; set => movement = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public PlayerShoot PlayerShoot { get => playerShoot; set => playerShoot = value; }
+
+    Coroutine Coroutine { get; set; }
+    bool IsPressFire { get; set; } = false;
 
     private void Start()
     {
@@ -42,20 +46,27 @@ public class Player : Singleton<Player>
     {
         if (callbackContext.performed)
         {
-            isPressFire = true;
-            StartCoroutine(Shoot());
+            IsPressFire = true;
+            Coroutine = StartCoroutine(Shoot());
         }
-        if (callbackContext.canceled)
-            isPressFire = false;
+        else if (callbackContext.canceled)
+        {
+            IsPressFire = false;
+            if (Coroutine != null)
+                StopCoroutine(Coroutine);
+        }
     }
-    bool isPressFire = false;
+
     private IEnumerator Shoot()
     {
-        if (isPressFire)
+        while (IsPressFire)
         {
             PlayerShoot.Shoot(PlayerRotation.GetShootDirection(transform));
-            yield return new WaitForSeconds(0.1f);
-            StartCoroutine(Shoot());
+
+            float bonusFactor = PlayerStats.FireRateBonus.Value * TO_PERCENTAGE;
+            float calculatedFireRate = PlayerShoot.CurrentWeapon.FireRate * bonusFactor;
+
+            yield return new WaitForSeconds(60f / calculatedFireRate);
         }
     }
 
