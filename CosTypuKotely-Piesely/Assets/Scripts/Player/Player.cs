@@ -24,8 +24,6 @@ public class Player : Singleton<Player>
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public PlayerShoot PlayerShoot { get => playerShoot; set => playerShoot = value; }
 
-    Coroutine Coroutine { get; set; }
-    bool IsPressFire { get; set; } = false;
 
     private void Start()
     {
@@ -46,29 +44,26 @@ public class Player : Singleton<Player>
     {
         if (callbackContext.performed)
         {
-            IsPressFire = true;
-            Coroutine = StartCoroutine(Shoot());
+            PlayerShoot.Shoot();
         }
         else if (callbackContext.canceled)
         {
-            IsPressFire = false;
-            if (Coroutine != null)
-                StopCoroutine(Coroutine);
+            PlayerShoot.StopShoot();
         }
     }
 
-    private IEnumerator Shoot()
-    {
-        while (IsPressFire)
-        {
-            PlayerShoot.Shoot(PlayerRotation.GetShootDirection(transform));
+    // private void Shoot()
+    // {
+    //     while (IsPressFire)
+    //     {
+    //         PlayerShoot.Shoot(PlayerRotation.GetShootDirection(transform));
 
-            float bonusFactor = PlayerStats.FireRateBonus.Value * TO_PERCENTAGE;
-            float calculatedFireRate = PlayerShoot.CurrentWeapon.FireRate * bonusFactor;
+    //         float bonusFactor = PlayerStats.FireRateBonus.Value * TO_PERCENTAGE;
+    //         float calculatedFireRate = PlayerShoot.CurrentWeapon.FireRate * bonusFactor;
 
-            yield return new WaitForSeconds(60f / calculatedFireRate);
-        }
-    }
+    //         yield return new WaitForSeconds(60f / calculatedFireRate);
+    //     }
+    // }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {

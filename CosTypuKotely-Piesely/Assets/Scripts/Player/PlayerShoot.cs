@@ -8,6 +8,7 @@ public class PlayerShoot
     private List<Weapon> weapon = new List<Weapon>();
     public Weapon CurrentWeapon { get; set; }
 
+
     public void Init()
     {
         CurrentWeapon = weapon[0];
@@ -24,8 +25,13 @@ public class PlayerShoot
         }
     }
 
-    public void Shoot(Vector2 direction)
+    public void Shoot()
     {
-        CurrentWeapon.Shoot(direction);
+        CurrentWeapon.Shoot();
+    }
+
+    public void StopShoot()
+    {
+        CurrentWeapon.StopShoot();
     }
 }

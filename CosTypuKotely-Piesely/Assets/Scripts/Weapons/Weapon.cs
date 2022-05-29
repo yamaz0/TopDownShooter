@@ -1,26 +1,55 @@
-using System.Collections.Generic;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    private List<Bullet> bullets;
+    private Bullets bullets;
     [SerializeField]
     private float fireRate;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    public Bullets Bullets { get => bullets; set => bullets = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
-    public int CurrentWeaponLevel { get; private set; } = 0;
+
+    Coroutine Coroutine { get; set; }
+    bool IsPressFire { get; set; } = false;
+
+    private void Start()
+    {
+        Bullets.Init();
+    }
 
     public void UpgradeWeapon()
     {
-        CurrentWeaponLevel++;
+        Bullets.SetNextBullet();
     }
 
-    public void Shoot(Vector2 direction)
+    IEnumerator ShootingCorutine()
     {
-        Bullet createdBullet = Instantiate(bullets[CurrentWeaponLevel], transform.position, Quaternion.identity);//todo pooling
-        createdBullet.Init(direction);
+        while (IsPressFire == true)
+        {
+            Vector3 mouseWorldPosition = Utils.MouseScreenToWorldPoint();
+            Vector3 direction = mouseWorldPosition - transform.position;
+
+            Bullet createdBullet = Instantiate(Bullets.CurrentBullet, transform.position, Quaternion.identity);//todo pooling
+            createdBullet.Init(direction);
+
+            yield return new WaitForSeconds(60f / fireRate);
+        }
+    }
+
+    public void Shoot()
+    {
+        IsPressFire = true;
+        Coroutine = StartCoroutine(ShootingCorutine());
+    }
+
+    public void StopShoot()
+    {
+        IsPressFire = false;
+        StopCoroutine(Coroutine);
     }
 }
