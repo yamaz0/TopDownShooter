@@ -20,8 +20,9 @@ public class WeaponUpgrade : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text costText;
 
-    private void OnEnable()
+    public void Init(Weapon cweapon)
     {
+        weapon = cweapon;
         UpdateWeaponUpgradeUI();
     }
 
@@ -31,6 +32,27 @@ public class WeaponUpgrade : MonoBehaviour
         Bullet nextBullet = weapon.Bullets.GetNextBullet();
         int currentWeaponLevel = weapon.Bullets.CurrentWeaponLevel;
         bool isNextBulletExist = nextBullet != null;
+
+
+
+
+
+        if (weapon.IsUnlocked == false)
+        {
+            fireRateText.SetText(weapon.FireRate.ToString());
+            costText.SetText((currentWeaponLevel * 100 + 100).ToString());
+
+            levelWeaponText.SetText("0");
+            damageText.SetText("0");
+
+            nextDamageText.SetText(currentBullet.Damage.ToString());
+            nextLevelWeaponText.SetText("1");
+            return;
+        }
+
+
+
+
 
         fireRateText.SetText(weapon.FireRate.ToString());
         costText.SetText((currentWeaponLevel * 100 + 100).ToString());

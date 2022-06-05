@@ -17,7 +17,7 @@ public class PlayerShoot
 
     public void ChangeWeapon(int index)
     {
-        if (CurrentWeapon != weapon[index])
+        if (weapon[index].IsUnlocked == true && CurrentWeapon != weapon[index])
         {
             CurrentWeapon.gameObject.SetActive(false);
             CurrentWeapon = weapon[index];
