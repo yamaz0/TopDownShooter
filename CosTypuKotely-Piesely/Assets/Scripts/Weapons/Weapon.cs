@@ -25,12 +25,14 @@ public class Weapon : MonoBehaviour
     public int CurrentMagazineSize { get; private set; }
 
     public bool IsReloading;
-
+    public event System.Action<int> OnMagazineSizeChanged = delegate { };
+    public event System.Action<int> OnMagazineMaxSizeChanged = delegate { };
     private void OnEnable()
     {
         if (IsReloading == true)
         {
             //przeladowanie od nowa
+            StartCoroutine(ReloadCorutine());
         }
     }
 
@@ -42,6 +44,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         Bullets.Init();
+        CurrentMagazineSize = MagazineSize;
     }
 
     public void UpgradeWeapon()
@@ -77,6 +80,8 @@ public class Weapon : MonoBehaviour
         Bullet createdBullet = Instantiate(Bullets.CurrentBullet, transform.position, Quaternion.identity);//todo pooling
         createdBullet.Init(direction);
         CurrentMagazineSize--;
+        OnMagazineSizeChanged(CurrentMagazineSize);
+
         if (CurrentMagazineSize <= 0)
         {
             IsReloading = true;

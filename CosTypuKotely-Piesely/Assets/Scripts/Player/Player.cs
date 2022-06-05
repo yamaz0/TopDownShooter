@@ -25,7 +25,7 @@ public class Player : Singleton<Player>
     public PlayerShoot PlayerShoot { get => playerShoot; set => playerShoot = value; }
 
 
-    private void Start()
+    protected override void Initialize()
     {
         PlayerShoot.Init();
     }

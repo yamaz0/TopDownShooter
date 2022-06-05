@@ -8,10 +8,12 @@ public class PlayerShoot
     private List<Weapon> weapon = new List<Weapon>();
     public Weapon CurrentWeapon { get; set; }
 
+    public event System.Action<Weapon> OnWeaponChanged = delegate { };
 
     public void Init()
     {
         CurrentWeapon = weapon[0];
+        CurrentWeapon.IsUnlocked = true;
         CurrentWeapon.gameObject.SetActive(true);
     }
 
@@ -22,6 +24,7 @@ public class PlayerShoot
             CurrentWeapon.gameObject.SetActive(false);
             CurrentWeapon = weapon[index];
             CurrentWeapon.gameObject.SetActive(true);
+            OnWeaponChanged(CurrentWeapon);
         }
     }
 
