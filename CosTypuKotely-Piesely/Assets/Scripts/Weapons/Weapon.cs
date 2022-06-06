@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Init()
     {
         Bullets.Init();
         Magazine.Init();
@@ -40,6 +40,7 @@ public class Weapon : MonoBehaviour
 
     public void UpgradeWeapon()
     {
+        if (IsUnlocked == false) IsUnlocked = true;
         Bullets.SetNextBullet();
     }
 

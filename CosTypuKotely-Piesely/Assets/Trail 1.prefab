@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3722b31ad8913804690c83505b875a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 6
   trailRenderer: {fileID: 5691474567878280820}
   filtr:
     useTriggers: 0
