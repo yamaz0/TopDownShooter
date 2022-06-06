@@ -11,8 +11,8 @@ public class AmmoUI : MonoBehaviour
     {
         CacheCurrentWeapon = Player.Instance.PlayerShoot.CurrentWeapon;
         SetWeaponUI(CacheCurrentWeapon);
-        SetCurrentAmmo(CacheCurrentWeapon.CurrentMagazineSize);
-        SetMaxAmmo(CacheCurrentWeapon.MagazineSize);
+        SetCurrentAmmo(CacheCurrentWeapon.Magazine.CurrentMagazineSize);
+        SetMaxAmmo(CacheCurrentWeapon.Magazine.MagazineMaxSize);
 
         Player.Instance.PlayerShoot.OnWeaponChanged += SetWeaponUI;
         AttachAmmoEvents();
@@ -20,8 +20,8 @@ public class AmmoUI : MonoBehaviour
 
     private void AttachAmmoEvents()
     {
-        CacheCurrentWeapon.OnMagazineSizeChanged += SetCurrentAmmo;
-        CacheCurrentWeapon.OnMagazineMaxSizeChanged += SetMaxAmmo;
+        CacheCurrentWeapon.Magazine.OnMagazineSizeChanged += SetCurrentAmmo;
+        CacheCurrentWeapon.Magazine.OnMagazineMaxSizeChanged += SetMaxAmmo;
     }
 
     private void OnDisable()
@@ -32,8 +32,8 @@ public class AmmoUI : MonoBehaviour
 
     private void DetachAmmoEvents()
     {
-        CacheCurrentWeapon.OnMagazineSizeChanged -= SetCurrentAmmo;
-        CacheCurrentWeapon.OnMagazineMaxSizeChanged -= SetMaxAmmo;
+        CacheCurrentWeapon.Magazine.OnMagazineSizeChanged -= SetCurrentAmmo;
+        CacheCurrentWeapon.Magazine.OnMagazineMaxSizeChanged -= SetMaxAmmo;
     }
 
     public void SetWeaponUI(Weapon weapon)
@@ -42,8 +42,8 @@ public class AmmoUI : MonoBehaviour
 
         CacheCurrentWeapon = weapon;
 
-        currentAmmoText.SetText(CacheCurrentWeapon.CurrentMagazineSize.ToString());
-        maxAmmoText.SetText(CacheCurrentWeapon.MagazineSize.ToString());
+        currentAmmoText.SetText(CacheCurrentWeapon.Magazine.CurrentMagazineSize.ToString());
+        maxAmmoText.SetText(CacheCurrentWeapon.Magazine.MagazineMaxSize.ToString());
 
         AttachAmmoEvents();
     }

@@ -7,9 +7,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Bullets bullets;
     [SerializeField]
-    private float fireRate;
+    private Magazine magazine;
     [SerializeField]
-    private int magazineSize;
+    private float fireRate;
     [SerializeField]
     private bool isUnlocked;
     [SerializeField]
@@ -17,34 +17,25 @@ public class Weapon : MonoBehaviour
 
     public Bullets Bullets { get => bullets; set => bullets = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
+    public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
 
     Coroutine Coroutine { get; set; }
-    bool IsPressFire { get; set; } = false;
-    public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
-    public int MagazineSize { get => magazineSize; set => magazineSize = value; }
-    public int CurrentMagazineSize { get; private set; }
+    bool IsPressFire { get; set; }
+    public Magazine Magazine { get => magazine; set => magazine = value; }
 
-    public bool IsReloading;
-    public event System.Action<int> OnMagazineSizeChanged = delegate { };
-    public event System.Action<int> OnMagazineMaxSizeChanged = delegate { };
     private void OnEnable()
     {
-        if (IsReloading == true)
+        if (Magazine.IsReloading == true)
         {
             //przeladowanie od nowa
-            StartCoroutine(ReloadCorutine());
+            StartCoroutine(Magazine.ReloadCorutine());
         }
-    }
-
-    private void OnDisable()
-    {
-        //jesli przeladowuje to przerwij a przy zmianie broni bedzie od nowa przeladowywac
     }
 
     private void Start()
     {
         Bullets.Init();
-        CurrentMagazineSize = MagazineSize;
+        Magazine.Init();
     }
 
     public void UpgradeWeapon()
@@ -52,40 +43,31 @@ public class Weapon : MonoBehaviour
         Bullets.SetNextBullet();
     }
 
-    IEnumerator ReloadCorutine()
-    {
-        yield return new WaitForSeconds(2);
-        IsReloading = false;
-        CurrentMagazineSize = MagazineSize;
-    }
-
     IEnumerator ShootingCorutine()
     {
         while (IsPressFire == true)
         {
-            if (IsReloading == false)//do przerobienia
+            if (Magazine.IsReloading == false)//do przerobienia
             {
-                Shooting();
+                Vector3 mouseWorldPosition = Utils.MouseScreenToWorldPoint();
+                Vector3 direction = mouseWorldPosition - transform.position;
+
+                Bullets.Fire(direction, transform);
+                SubtractMagazineAmmo();
             }
 
             yield return new WaitForSeconds(60f / fireRate);//do optymalizacji
         }
     }
 
-    private void Shooting()
+    private void SubtractMagazineAmmo()
     {
-        Vector3 mouseWorldPosition = Utils.MouseScreenToWorldPoint();
-        Vector3 direction = mouseWorldPosition - transform.position;
+        Magazine.AddAmmo(-1);
+        bool isReloading = Magazine.CheckMagazine();
 
-        Bullet createdBullet = Instantiate(Bullets.CurrentBullet, transform.position, Quaternion.identity);//todo pooling
-        createdBullet.Init(direction);
-        CurrentMagazineSize--;
-        OnMagazineSizeChanged(CurrentMagazineSize);
-
-        if (CurrentMagazineSize <= 0)
+        if (isReloading == true)
         {
-            IsReloading = true;
-            StartCoroutine(ReloadCorutine());
+            StartCoroutine(Magazine.ReloadCorutine());
         }
     }
 

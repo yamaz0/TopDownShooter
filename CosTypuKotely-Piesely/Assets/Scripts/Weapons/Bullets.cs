@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 [System.Serializable]
 public class Bullets
 {
@@ -24,5 +23,11 @@ public class Bullets
     {
         CurrentWeaponLevel++;
         CurrentBullet = bullets[CurrentWeaponLevel];
+    }
+
+    public void Fire(Vector3 direction, Transform transform)
+    {
+        Bullet createdBullet = GameObject.Instantiate(CurrentBullet, transform.position, Quaternion.identity);//todo pooling
+        createdBullet.Init(direction);
     }
 }

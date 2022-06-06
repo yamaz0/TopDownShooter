@@ -293,11 +293,12 @@ MonoBehaviour:
     - {fileID: -7893238372448576483, guid: ac73999808410a04dbed2a717a187010, type: 3}
     - {fileID: -7893238372448576483, guid: d23b4b070c079c8488872b61015ed5d2, type: 3}
     - {fileID: -7893238372448576483, guid: 9313a0a6eca2b3b47b22dec2fe19752c, type: 3}
+  magazine:
+    magazineSize: 10
+    IsReloading: 0
   fireRate: 400
-  magazineSize: 10
-  isUnlocked: 0
+  isUnlocked: 1
   spriteRenderer: {fileID: 1030281882}
-  IsReloading: 0
 --- !u!4 &62279502
 Transform:
   m_ObjectHideFlags: 0
@@ -12150,11 +12151,12 @@ MonoBehaviour:
     - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
     - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
     - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
+  magazine:
+    magazineSize: 3
+    IsReloading: 0
   fireRate: 300
-  magazineSize: 3
   isUnlocked: 1
   spriteRenderer: {fileID: 1249430443}
-  IsReloading: 0
 --- !u!1 &1367281852
 GameObject:
   m_ObjectHideFlags: 0
@@ -14027,11 +14029,12 @@ MonoBehaviour:
     - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
     - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
     - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
+  magazine:
+    magazineSize: 10
+    IsReloading: 0
   fireRate: 300
-  magazineSize: 10
-  isUnlocked: 0
+  isUnlocked: 1
   spriteRenderer: {fileID: 462083990}
-  IsReloading: 0
 --- !u!4 &1892619957
 Transform:
   m_ObjectHideFlags: 0
