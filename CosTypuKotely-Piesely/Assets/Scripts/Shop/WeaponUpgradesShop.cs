@@ -4,30 +4,43 @@ using UnityEngine;
 public class WeaponUpgradesShop : MonoBehaviour
 {
     [SerializeField]
-    private WeaponUpgrade template;
+    private WeaponUpgrade upgradeTemplate;
+    [SerializeField]
+    private WeaponBuy unlockTemplate;
     [SerializeField]
     private Transform content;
     [SerializeField]
-    private List<WeaponUpgrade> upgrades;
+    private List<WeaponShop> weaponsUi;
     [SerializeField]
     private List<Weapon> weapons;
 
     public void Refresh()
     {
-        for (int i = upgrades.Count - 1; i >= 0; i--)
+        for (int i = weaponsUi.Count - 1; i >= 0; i--)
         {
-            Destroy(upgrades[i]);
+            Destroy(weaponsUi[i].gameObject);
         }
 
-        upgrades.Clear();
+        weaponsUi.Clear();
 
         for (int i = 0; i < weapons.Count; i++)
         {
-            WeaponUpgrade newWeaponUpgradeUI = Instantiate(template, content);
-            newWeaponUpgradeUI.gameObject.SetActive(true);
-            newWeaponUpgradeUI.Init(weapons[i]);
+            WeaponShop template;
 
-            upgrades.Add(newWeaponUpgradeUI);
+            if (weapons[i].IsUnlocked == true)
+            {
+                template = upgradeTemplate;
+            }
+            else
+            {
+                template = unlockTemplate;
+            }
+
+            WeaponShop newWeaponUI = Instantiate(template, content);
+            newWeaponUI.gameObject.SetActive(true);
+            newWeaponUI.Init(weapons[i]);
+
+            weaponsUi.Add(newWeaponUI);
         }
     }
 }

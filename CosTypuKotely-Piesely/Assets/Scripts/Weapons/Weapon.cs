@@ -40,8 +40,12 @@ public class Weapon : MonoBehaviour
 
     public void UpgradeWeapon()
     {
-        if (IsUnlocked == false) IsUnlocked = true;
         Bullets.SetNextBullet();
+    }
+
+    public void UnlockWeapon()
+    {
+        IsUnlocked = true;
     }
 
     IEnumerator ShootingCorutine()

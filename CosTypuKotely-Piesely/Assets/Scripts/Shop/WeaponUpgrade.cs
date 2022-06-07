@@ -1,78 +1,37 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-public class WeaponUpgrade : MonoBehaviour
+public class WeaponUpgrade : WeaponShop
 {
-    [SerializeField]
-    private Weapon weapon;
-    [SerializeField]
-    private Button button;
-    [SerializeField]
-    private TMPro.TMP_Text levelWeaponText;
-    [SerializeField]
-    private TMPro.TMP_Text nextLevelWeaponText;
-    [SerializeField]
-    private TMPro.TMP_Text nextDamageText;
-    [SerializeField]
-    private TMPro.TMP_Text damageText;
-    [SerializeField]
-    private TMPro.TMP_Text fireRateText;
-    [SerializeField]
-    private TMPro.TMP_Text costText;
-
-    public void Init(Weapon cweapon)
+    public override void OnButtonClick()
     {
-        weapon = cweapon;
-        UpdateWeaponUpgradeUI();
+        Weapon.UpgradeWeapon();
+        UpdateWeaponUI();
     }
 
-    public void UpdateWeaponUpgradeUI()
+    public override void UpdateWeaponUI()
     {
-        Bullet currentBullet = weapon.Bullets.CurrentBullet;
-        Bullet nextBullet = weapon.Bullets.GetNextBullet();
-        int currentWeaponLevel = weapon.Bullets.CurrentWeaponLevel;
+        Bullet currentBullet = Weapon.Bullets.CurrentBullet;
+        Bullet nextBullet = Weapon.Bullets.GetNextBullet();
+        int currentWeaponLevel = Weapon.Bullets.CurrentWeaponLevel;
         bool isNextBulletExist = nextBullet != null;
 
+        FireRateText.SetText(Weapon.FireRate.ToString());
+        CostText.SetText((currentWeaponLevel * 100 + 100).ToString());
 
+        DamageText.SetText(currentBullet.Damage.ToString());
 
-
-
-        if (weapon.IsUnlocked == false)
-        {
-            fireRateText.SetText(weapon.FireRate.ToString());
-            costText.SetText((currentWeaponLevel * 100 + 100).ToString());
-
-            levelWeaponText.SetText("0");
-            damageText.SetText("0");
-
-            nextDamageText.SetText(currentBullet.Damage.ToString());
-            nextLevelWeaponText.SetText("1");
-            return;
-        }
-
-
-
-
-
-        fireRateText.SetText(weapon.FireRate.ToString());
-        costText.SetText((currentWeaponLevel * 100 + 100).ToString());
-
-        damageText.SetText(currentBullet.Damage.ToString());
-
-        levelWeaponText.SetText(currentWeaponLevel.ToString());
+        LevelWeaponText.SetText(currentWeaponLevel.ToString());
 
         if (isNextBulletExist == true)
         {
-            nextDamageText.SetText(nextBullet.Damage.ToString());
-            nextLevelWeaponText.SetText((currentWeaponLevel + 1).ToString());
+            NextDamageText.SetText(nextBullet.Damage.ToString());
+            NextLevelWeaponText.SetText((currentWeaponLevel + 1).ToString());
+        }
+        else
+        {
+            NextDamageText.SetText("MAX");
+            NextLevelWeaponText.SetText("MAX");
+            Image.color = new UnityEngine.Color(0.2391734f,254717f,2390976f);
         }
 
-        button.gameObject.SetActive(isNextBulletExist);
-    }
-
-    public void OnButtonClick()
-    {
-        weapon.UpgradeWeapon();
-        UpdateWeaponUpgradeUI();
+        Button.gameObject.SetActive(isNextBulletExist);
     }
 }
