@@ -4100,9 +4100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8267d0bf85f4664796618bb4674f460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1648417105040539625, guid: e021bcb5f56a04648bfbe4aef9098b86, type: 3}
-  range: 17
+  wave:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: InfinityWave, ns: , asm: Assembly-CSharp}
+      data:
+        enemies:
+        - {fileID: 1648417105040539625, guid: e021bcb5f56a04648bfbe4aef9098b86, type: 3}
+        range: 17
 --- !u!4 &792994075
 Transform:
   m_ObjectHideFlags: 0
