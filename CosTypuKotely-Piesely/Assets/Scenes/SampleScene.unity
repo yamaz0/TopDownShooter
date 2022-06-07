@@ -290,9 +290,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullets:
     bullets:
-    - {fileID: -7893238372448576483, guid: ac73999808410a04dbed2a717a187010, type: 3}
-    - {fileID: -7893238372448576483, guid: d23b4b070c079c8488872b61015ed5d2, type: 3}
-    - {fileID: -7893238372448576483, guid: 9313a0a6eca2b3b47b22dec2fe19752c, type: 3}
+    - {fileID: -7893238372448576483, guid: aece1bac99d16fd4db6ad75336a8f382, type: 3}
+    - {fileID: -7893238372448576483, guid: 7816cacc632594b4fb5bcc5f509129f1, type: 3}
+    - {fileID: -7893238372448576483, guid: 1abcfa8ffb492bf46a379b959a2c1079, type: 3}
   magazine:
     magazineSize: 10
     IsReloading: 0
