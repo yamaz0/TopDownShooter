@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class ProjectileBullet : Bullet
 {
@@ -6,10 +8,11 @@ public class ProjectileBullet : Bullet
     private Rigidbody2D rb;
     [SerializeField]
     private float speed = 15f;
+    Coroutine coroutine;
     public override void Init(Vector2 direction)
     {
         rb.velocity = direction.normalized * speed;
-        Destroy(gameObject, 2);
+        coroutine = StartCoroutine(DestroyCouritune());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,7 +20,8 @@ public class ProjectileBullet : Bullet
         if (other.tag == "Enemy")
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
-            Destroy(gameObject);
+            StopCoroutine(coroutine);
+            gameObject.SetActive(false);
         }
     }
 }

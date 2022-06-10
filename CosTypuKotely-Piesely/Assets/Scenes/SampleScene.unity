@@ -293,6 +293,7 @@ MonoBehaviour:
     - {fileID: -7893238372448576483, guid: aece1bac99d16fd4db6ad75336a8f382, type: 3}
     - {fileID: -7893238372448576483, guid: 7816cacc632594b4fb5bcc5f509129f1, type: 3}
     - {fileID: -7893238372448576483, guid: 1abcfa8ffb492bf46a379b959a2c1079, type: 3}
+    amountToPool: 100
   magazine:
     magazineSize: 10
     IsReloading: 0
@@ -10027,6 +10028,7 @@ MonoBehaviour:
     - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
     - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
     - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
+    amountToPool: 33
   magazine:
     magazineSize: 3
     IsReloading: 0
@@ -11985,6 +11987,7 @@ MonoBehaviour:
     - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
     - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
     - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
+    amountToPool: 100
   magazine:
     magazineSize: 10
     IsReloading: 0
