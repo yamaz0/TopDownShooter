@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[System.Serializable]
-public class PlayerRotation
+static public class Rotation
 {
-
-    public void Rotate(Transform playerTransform)
+    static public void Rotate(Transform transform)
     {
         Vector3 worldMousePosition = Utils.MouseScreenToWorldPoint();
+        float angle = AngleBetweenTwoPoints(worldMousePosition, transform.position);
 
-        // Vector2 direction = worldMousePosition - new Vector2(playerTransform.position.x, playerTransform.position.y);
-        float angle = AngleBetweenTwoPoints(worldMousePosition, playerTransform.position);
-        playerTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-    public float AngleBetweenTwoPoints(Vector2 a, Vector2 b)
+    static public void QuaternionSlerp(Transform objectTransform, Transform targetTransform, float time)
+    {
+        Vector3 direction = targetTransform.position - objectTransform.position;
+        var targetRotation = Quaternion.LookRotation(direction);
+
+        objectTransform.rotation = Quaternion.Slerp(objectTransform.rotation, targetRotation, time);
+    }
+
+    static public float AngleBetweenTwoPoints(Vector2 a, Vector2 b)
     {
         return Mathf.Atan2(b.y - a.y, b.x - a.x) * Mathf.Rad2Deg;
     }

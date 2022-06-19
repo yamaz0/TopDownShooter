@@ -3,19 +3,24 @@ using UnityEngine;
 public enum StructureType { Baricade, Tower };
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class StructureBase<T> : MonoBehaviour where T: StructureInfo
+public class StructureBase : MonoBehaviour
 {
     [SerializeField]
     private float healthPoints;
     [SerializeField]
     private bool isDamaged;
+    [SerializeField]
+    private StructureType type;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private BoxCollider2D boxcollider;
 
-    public T Info { get; private set; }
+    public StructureInfo Info { get; private set; }
     public bool IsDamaged { get => isDamaged; set => isDamaged = value; }
     public float HealthPoints { get => healthPoints; set => healthPoints = value; }
+    public StructureType Type { get => type; set => type = value; }
 
     public void AddHp(float value)
     {
@@ -25,8 +30,11 @@ public class StructureBase<T> : MonoBehaviour where T: StructureInfo
 
     public void Build(StructureInfo info)
     {
-        Info = (T)info;
+        Info = info;
+        gameObject.SetActive(true);
+        spriteRenderer.sprite = Info.UndamagedIcon;
         SetUndamaged();
+        // boxcollider.size = Info.UndamagedIcon.rect.size / Info.UndamagedIcon.pixelsPerUnit;
     }
 
     public void Demolish()

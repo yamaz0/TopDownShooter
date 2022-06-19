@@ -1,35 +1,56 @@
+using System.Collections;
 using UnityEngine;
 
-public class TowerStructure : StructureBase<TowerInfo>
+public class TowerStructure : StructureBase
 {
-
-    public GameObject Enemy { get; private set; }
-    public float CacheTime = 0;
+    public Enemy Enemy { get; private set; }
+    WaitForSeconds rotateWaitTime = new WaitForSeconds(.1f);
+    public float CacheTime { get; private set; }
 
     private void FixedUpdate()
     {
-        Rotate();
+        // Rotate();
         TryShoot();
     }
 
     public void Rotate()
     {
-        if (Enemy != null)
+        if (Enemy == null)
         {
-            // transform.LookAt(Enemy.Transform.Position);
+            return;
         }
+
+        Rotation.QuaternionSlerp(transform, Enemy.transform, 0.1f);
     }
 
     public void TryShoot()
     {
+        //Search Enemy
+        SearchEnemy();
+
         if (Enemy == null)
         {
-            //Search Enemy
+            return;
         }
 
-        if (CacheTime + Info.FireRate > Time.unscaledTime)
+        if (CacheTime + ((TowerInfo)Info).FireRate > Time.unscaledTime)
         {
             //Shoot
+            Enemy.TakeDamage(((TowerInfo)Info).Dmg);
+        }
+    }
+
+    private void SearchEnemy()
+    {
+        Collider2D hitinfo = Physics2D.OverlapCircle(transform.position, ((TowerInfo)Info).Range);
+        Enemy = hitinfo?.gameObject.GetComponent<Enemy>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (IsDamaged == false && other.gameObject.tag.Equals("Enemy"))
+        {
+            AddHp(-1);
         }
     }
 }

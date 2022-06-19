@@ -1,4 +1,4 @@
-public class BaricadeStructure : StructureBase<BarricadeInfo>
+public class BaricadeStructure : StructureBase
 {
     public void Rotate()
     {
