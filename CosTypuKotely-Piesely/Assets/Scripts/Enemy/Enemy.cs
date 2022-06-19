@@ -13,19 +13,30 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
 
+    public float Hp { get => hp; set => hp = value; }
+    public float Dmg { get => dmg; set => dmg = value; }
+    public float Gold { get => gold; set => gold = value; }
+
     private void Update()
     {
         Vector2 direction = Player.Instance.transform.position - transform.position;
         rb.velocity = direction.normalized * 300 * Time.deltaTime;
     }
 
+    public void Init(int strenghtMultiplier)
+    {
+        Hp *= strenghtMultiplier;
+        Dmg *= strenghtMultiplier;
+        Gold *= strenghtMultiplier;
+    }
+
     public void TakeDamage(float damage)
     {
-        hp -= damage;
+        Hp -= damage;
 
-        if (hp <= 0)
+        if (Hp <= 0)
         {
-            Player.Instance.PlayerStats.Gold.AddValue(gold);
+            Player.Instance.PlayerStats.Gold.AddValue(Gold);
             Destroy(gameObject);
         }
     }
@@ -34,7 +45,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Player.Instance.PlayerStats.Hp.AddValue(-dmg);
+            Player.Instance.PlayerStats.Hp.AddValue(-Dmg);
         }
     }
 }
