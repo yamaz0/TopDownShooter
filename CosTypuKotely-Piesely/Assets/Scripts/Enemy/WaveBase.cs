@@ -15,7 +15,7 @@ public abstract class WaveBase
     public float Range { get => range; set => range = value; }
     public List<Enemy> Enemies { get => enemies; set => enemies = value; }
     public abstract IEnumerator InitializeWave();
-    public Float EnemyCount { get; private set; }
+    public int EnemyCount { get; set; }
     public abstract void AddEnemy();
     public event System.Action<float> OnEnemyCountChanged = delegate { };
 }

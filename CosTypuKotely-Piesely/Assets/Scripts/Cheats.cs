@@ -57,7 +57,7 @@ public class Cheats : MonoBehaviour
     [MenuItem("Cheats/test")]
     static void PrintRandomAtributesValues()
     {
-        GameManager.Instance.ChangeWaveState();
+        WaveManager.Instance.StartWave();
     }
 
     [MenuItem("Cheats/TimeCouting")]

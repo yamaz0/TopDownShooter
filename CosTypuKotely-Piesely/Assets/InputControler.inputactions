@@ -2,7 +2,7 @@
     "name": "InputControler",
     "maps": [
         {
-            "name": "Player",
+            "name": "Game",
             "id": "44d1836f-1292-4a98-a879-86efaaea3313",
             "actions": [
                 {
@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Shop",
-                    "type": "Button",
-                    "id": "1f192f12-0c8c-4d4f-ae55-64ac349f5b44",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -35,10 +26,33 @@
                     "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "----InGame",
+            "id": "bafc6314-bd8e-4b8f-a543-770c42055f08",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Shop",
+            "id": "c5c0af4c-6b64-430b-8697-0a629cf8b9a6",
+            "actions": [
+                {
+                    "name": "Shop",
+                    "type": "Button",
+                    "id": "fb620232-90cf-4c83-b073-a9b712a87180",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "775a5b64-e4c6-47e3-9a05-dae8f0ca6eaf",
+                    "id": "b7d53982-e3e9-47ec-a314-e217eb6c6ffb",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
@@ -48,12 +62,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "----InGame",
-            "id": "bafc6314-bd8e-4b8f-a543-770c42055f08",
-            "actions": [],
-            "bindings": []
         },
         {
             "name": "CharacterControl",
@@ -253,13 +261,22 @@
             "bindings": []
         },
         {
-            "name": "PlayerState",
+            "name": "States",
             "id": "0a73548e-a665-42e9-96d5-a859a24494f1",
             "actions": [
                 {
                     "name": "ChangeMode",
                     "type": "Button",
                     "id": "8e8a2fc6-c8c3-4a16-887a-54adbce0b8f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartWave",
+                    "type": "Button",
+                    "id": "e80d69af-001e-493d-97c5-16d1e37f4e0d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -277,107 +294,15 @@
                     "action": "ChangeMode",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Building",
-            "id": "c06e4205-4a07-435b-a218-80b5fc0cc53b",
-            "actions": [
-                {
-                    "name": "ChangeStructure",
-                    "type": "Value",
-                    "id": "12fa4911-2fcf-46a2-a312-6f544e055c6a",
-                    "expectedControlType": "DiscreteButton",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "BuildStructure",
-                    "type": "PassThrough",
-                    "id": "2d542433-edf4-4302-8fea-5f598f58c0df",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "8ba39e49-d1ed-4dd7-934a-5d749cb85019",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "Scale",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ChangeStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "23992451-c7be-422a-85bd-fddc3021b947",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "Scale(factor=2)",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ChangeStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "10161317-2b88-45aa-8663-1e50cff01e5f",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "Scale(factor=3)",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ChangeStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "231ea420-6a87-47c0-a05d-609f40924077",
-                    "path": "<Mouse>/leftButton",
+                    "id": "8f74ba67-5d71-4883-ab15-6e08aaa0e8f9",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "BuildStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5568291b-f9a8-40d6-979a-8dade6b26174",
-                    "path": "<Pen>/tip",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "BuildStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e6f957d1-5b4b-4212-b880-90d04373efa5",
-                    "path": "<Touchscreen>/touch*/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Touch",
-                    "action": "BuildStructure",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e6b0a246-fbce-4f2c-aa5f-006d2b798a4e",
-                    "path": "<XRController>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "BuildStructure",
+                    "groups": "",
+                    "action": "StartWave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -386,6 +311,12 @@
         {
             "name": "--DuringWave",
             "id": "1665e62b-0a92-4c51-a512-2edb89595030",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "--Modes",
+            "id": "c9fa7373-0e15-47a3-b3cd-def978e5a5b5",
             "actions": [],
             "bindings": []
         },
@@ -498,6 +429,109 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Building",
+            "id": "c06e4205-4a07-435b-a218-80b5fc0cc53b",
+            "actions": [
+                {
+                    "name": "ChangeStructure",
+                    "type": "Value",
+                    "id": "12fa4911-2fcf-46a2-a312-6f544e055c6a",
+                    "expectedControlType": "DiscreteButton",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "BuildStructure",
+                    "type": "PassThrough",
+                    "id": "2d542433-edf4-4302-8fea-5f598f58c0df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8ba39e49-d1ed-4dd7-934a-5d749cb85019",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23992451-c7be-422a-85bd-fddc3021b947",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10161317-2b88-45aa-8663-1e50cff01e5f",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "231ea420-6a87-47c0-a05d-609f40924077",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "BuildStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5568291b-f9a8-40d6-979a-8dade6b26174",
+                    "path": "<Pen>/tip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "BuildStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6f957d1-5b4b-4212-b880-90d04373efa5",
+                    "path": "<Touchscreen>/touch*/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "BuildStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6b0a246-fbce-4f2c-aa5f-006d2b798a4e",
+                    "path": "<XRController>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "BuildStructure",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

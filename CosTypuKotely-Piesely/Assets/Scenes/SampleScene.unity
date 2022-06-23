@@ -865,22 +865,6 @@ MonoBehaviour:
     m_ActionName: Player/MousePosition[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1683525254}
-        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
-        m_MethodName: ShowShop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1f192f12-0c8c-4d4f-ae55-64ac349f5b44
-    m_ActionName: Player/Shop[/Keyboard/t]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 447834868}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: ChangeStructure
@@ -979,9 +963,41 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8e8a2fc6-c8c3-4a16-887a-54adbce0b8f4
     m_ActionName: PlayerState/ChangeMode[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1683525254}
+        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
+        m_MethodName: ShowShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fb620232-90cf-4c83-b073-a9b712a87180
+    m_ActionName: Shop/Shop[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 447834868}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: StartWave
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e80d69af-001e-493d-97c5-16d1e37f4e0d
+    m_ActionName: States/StartWave[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!58 &209584029
@@ -4023,6 +4039,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &756573976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756573977}
+  - component: {fileID: 756573978}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &756573977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756573976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1062084475}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &756573978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756573976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e67b37ac63b3e43885a37b57e424d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWave: 0
+  enemiesCounter: 0
+  spanwer: {fileID: 792994074}
 --- !u!1 &771669325
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,11 +4282,13 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: InfinityWave, ns: , asm: Assembly-CSharp}
+      type: {class: BasicWave, ns: , asm: Assembly-CSharp}
       data:
         enemies:
         - {fileID: 1648417105040539630, guid: e021bcb5f56a04648bfbe4aef9098b86, type: 3}
         range: 17
+        enemyCount: 20
+        time: 1
 --- !u!4 &792994075
 Transform:
   m_ObjectHideFlags: 0
@@ -4258,7 +4322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &808374091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9688,6 +9752,7 @@ Transform:
   - {fileID: 1683525253}
   - {fileID: 447834867}
   - {fileID: 895564906}
+  - {fileID: 756573977}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12761,7 +12826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f372e95de8fb4de4c91e056e8dd84229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWaveTime: 1
   input: {fileID: 209584028}
 --- !u!1 &2019506475
 GameObject:

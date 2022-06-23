@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
         if (Hp <= 0)
         {
             Player.Instance.PlayerStats.Gold.AddValue(Gold);
+            WaveManager.Instance.AddEnemyCounter(-1);
             Destroy(gameObject);
         }
     }

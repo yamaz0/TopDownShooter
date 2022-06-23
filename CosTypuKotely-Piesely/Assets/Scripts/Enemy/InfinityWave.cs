@@ -7,34 +7,32 @@ public class BasicWave : WaveBase
     [SerializeField]
     private int enemyCount;
     [SerializeField]
-    private float enemyCountMultiplier;
+    private float time;
 
     private int WaveNumber { get; set; }
 
     public override void AddEnemy()
     {
-        throw new System.NotImplementedException();
+        Vector3 randomPoint = Random.insideUnitCircle.normalized * Range;
+        Vector3 spawnPoint = CachedPlayerTransform.position + randomPoint;
+        int randomEnemyId = Random.Range(0, Enemies.Count);
+
+        Enemy enemy = Enemies[randomEnemyId];
+        Enemy createEnemy = GameObject.Instantiate(enemy, spawnPoint, Quaternion.identity);
+        createEnemy.Init(WaveNumber);
     }
 
     public override IEnumerator InitializeWave()
     {
         WaveNumber++;
-        WaitForSecond = new WaitForSeconds(1 / enemyCountMultiplier);
+        WaveManager.Instance.AddEnemyCounter(enemyCount);
+        WaitForSecond = new WaitForSeconds(time);
 
-        for (int i = 0; i < enemyCount * enemyCountMultiplier; i++)
+        for (int i = 0; i < enemyCount; i++)
         {
             yield return WaitForSecond;
-
-            Vector3 randomPoint = Random.insideUnitCircle.normalized * Range;
-            Vector3 spawnPoint = CachedPlayerTransform.position + randomPoint;
-            int randomEnemyId = Random.Range(0, Enemies.Count);
-
-            Enemy enemy = Enemies[randomEnemyId];
-            Enemy createEnemy = GameObject.Instantiate(enemy, spawnPoint, Quaternion.identity);
-            createEnemy.Init(WaveNumber);
+            AddEnemy();
         }
-
-        GameManager.Instance.ChangeWaveState();
     }
 }
 
@@ -52,7 +50,7 @@ public class InfinityWave : WaveBase
 
         Enemy enemy = Enemies[randomEnemyId];
         GameObject.Instantiate(enemy, spawnPoint, Quaternion.identity);
-        EnemyCount.AddValue(1);
+        EnemyCount++;
     }
 
     public override IEnumerator InitializeWave()

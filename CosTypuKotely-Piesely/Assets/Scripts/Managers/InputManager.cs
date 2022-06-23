@@ -39,9 +39,17 @@ public class InputManager : SingletonPersistence<InputManager>
         }
     }
 
+    public void StartWave(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            WaveManager.Instance.StartWave();
+        }
+    }
+
     public void ChangeMode(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && GameManager.Instance.IsWaveTime == false)
+        if (callbackContext.performed && WaveManager.Instance.IsWave == false)
         {
             PlayerBuild playerBuild = Player.Instance.PlayerBuild;
             playerBuild.ChangeMode();

@@ -6,24 +6,21 @@ using UnityEngine.InputSystem;
 public class GameManager : SingletonPersistence<GameManager>
 {
     [SerializeField]
-    private bool isWaveTime = false;
-    [SerializeField]
     private PlayerInput input;
-
-    public bool IsWaveTime { get => isWaveTime; set => isWaveTime = value; }
-
-    public void ChangeWaveState()
-    {
-        isWaveTime = !isWaveTime;
-        if (isWaveTime)
-            input.actions.FindActionMap("PlayerState").Disable();
-        else
-            input.actions.FindActionMap("PlayerState").Enable();
-    }
 
     private void Start()
     {
         Player.Instance.PlayerStats.Hp.OnValueChanged += CheckLose;
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("Start game!");
+
+        InputManager.Instance.ActionMapSetActiv("CharacterControl", true);
+        InputManager.Instance.ActionMapSetActiv("Shop", true);
+        InputManager.Instance.ActionMapSetActiv("Shooting", true);
     }
 
     private void OnDisable()
