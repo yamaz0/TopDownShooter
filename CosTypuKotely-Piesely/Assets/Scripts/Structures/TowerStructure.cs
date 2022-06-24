@@ -33,9 +33,10 @@ public class TowerStructure : StructureBase
             return;
         }
 
-        if (CacheTime + ((TowerInfo)Info).FireRate > Time.unscaledTime)
+        if (CacheTime + ((TowerInfo)Info).FireRate <= Time.unscaledTime)
         {
             //Shoot
+            CacheTime = Time.unscaledTime;
             Enemy.TakeDamage(((TowerInfo)Info).Dmg);
         }
     }

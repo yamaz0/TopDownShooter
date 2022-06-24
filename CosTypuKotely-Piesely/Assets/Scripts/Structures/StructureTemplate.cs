@@ -18,7 +18,7 @@ public class StructureTemplate : MonoBehaviour
 
     public StructureInfo Info { get; private set; }
     public int ObjectsColliderNumber { get; private set; }
-    public bool CanBuild { get; private set; }
+    public bool CanBuild { get; private set; } = true;
     public Transform PlaceTransform { get => placeTransform; set => placeTransform = value; }
 
     private void FixedUpdate()
