@@ -21,6 +21,8 @@ public class GameManager : SingletonPersistence<GameManager>
         InputManager.Instance.ActionMapSetActiv("CharacterControl", true);
         InputManager.Instance.ActionMapSetActiv("Shop", true);
         InputManager.Instance.ActionMapSetActiv("Shooting", true);
+
+        WaveManager.Instance.StartWave();
     }
 
     private void OnDisable()

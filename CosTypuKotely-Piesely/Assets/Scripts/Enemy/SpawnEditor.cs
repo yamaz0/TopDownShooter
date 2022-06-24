@@ -8,7 +8,11 @@ public class SpawnEditor : UnityEditor.Editor
     {
         var script = (Spawn)target;
 
-        if (GUILayout.Button($"Add wave", GUILayout.Height(40)))
+        if (GUILayout.Button($"Add baswave", GUILayout.Height(40)))
+        {
+            script.Wave = new BasicWave();
+        }
+        if (GUILayout.Button($"Add infwave", GUILayout.Height(40)))
         {
             script.Wave = new InfinityWave();
         }

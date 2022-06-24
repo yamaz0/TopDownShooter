@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c184345926443c4e97cc5e2b9c85ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 3
   dmg: 1
   gold: 1
   rb: {fileID: 1648417105040539628}

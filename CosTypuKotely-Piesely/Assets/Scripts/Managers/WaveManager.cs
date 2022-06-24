@@ -5,34 +5,29 @@ public class WaveManager : Singleton<WaveManager>
     [SerializeField]
     private bool isWave = false;
     [SerializeField]
-    private int enemiesCounter;
-    [SerializeField]
-    private Spawn spanwer;
+    private Spawn spawner;
     public bool IsWave { get => isWave; set => isWave = value; }
-    public int EnemiesCounter { get => enemiesCounter; set => enemiesCounter = value; }
+    [SerializeField]
+    private StatementTextUI statementTextUI;
+
+    public Float EnemiesCounter { get; set; }
+    public Spawn Spawner { get => spawner; set => spawner = value; }
 
     public event System.Action OnWaveStartChanged = delegate { };
     public event System.Action OnWaveEndChanged = delegate { };
-    public event System.Action<int> OnEnemyCountChanged = delegate { };
-
 
     private void Start()
     {
-        OnEnemyCountChanged += CheckWaveEnd;
+        EnemiesCounter = new Float(0);
+        EnemiesCounter.OnValueChanged += CheckWaveEnd;
     }
 
     private void OnDisable()
     {
-        OnEnemyCountChanged -= CheckWaveEnd;
+        EnemiesCounter.OnValueChanged -= CheckWaveEnd;
     }
 
-    public void AddEnemyCounter(int amount)
-    {
-        EnemiesCounter += amount;
-        OnEnemyCountChanged(EnemiesCounter);
-    }
-
-    public void CheckWaveEnd(int amount)
+    public void CheckWaveEnd(float amount)
     {
         if (amount <= 0)
         {
@@ -46,21 +41,18 @@ public class WaveManager : Singleton<WaveManager>
         InputManager.Instance.ActionMapSetActiv("States", !state);
     }
 
-    public void InitWave(WaveBase wave)
-    {
-        EnemiesCounter = wave.EnemyCount;
-    }
-
     public void StartWave()
     {
-        spanwer.StartWave();
+        Spawner.StartWave();
         ChangeWaveState(true);
         OnWaveStartChanged();
+        statementTextUI.ShowText("Wave Start");
     }
 
     public void EndWave()
     {
         ChangeWaveState(false);
         OnWaveEndChanged();
+        statementTextUI.ShowText("Wave End");
     }
 }
