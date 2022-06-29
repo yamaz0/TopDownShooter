@@ -25,10 +25,8 @@ MonoBehaviour:
         id: 0
         name: barykada1
         undamagedIcon: {fileID: 21300000, guid: 85b5c08cd5f304b4eb3a556df2a428d6, type: 3}
-        damagedIcon: {fileID: 21300000, guid: 1f4a0aae86ebe3a4abe7d92019f422cb, type: 3}
         cost: 0
-        repairCost: 0
-        hp: 0
+        hp: 80.8
         type: 0
     00000001:
       type: {class: TowerInfo, ns: , asm: Assembly-CSharp}
@@ -36,13 +34,11 @@ MonoBehaviour:
         id: 1
         name: tower1
         undamagedIcon: {fileID: 21300000, guid: 6af3d947474fc5e4faba11f046a39d24, type: 3}
-        damagedIcon: {fileID: 21300000, guid: 1f4a0aae86ebe3a4abe7d92019f422cb, type: 3}
         cost: 0
-        repairCost: 0.58
         hp: 0.7
         type: 1
         dmg: 0.43
-        fireRate: 46.78
+        fireRate: 2
         range: 5
     00000002:
       type: {class: TowerInfo, ns: , asm: Assembly-CSharp}
@@ -50,13 +46,11 @@ MonoBehaviour:
         id: 2
         name: towe2
         undamagedIcon: {fileID: 21300002, guid: 6af3d947474fc5e4faba11f046a39d24, type: 3}
-        damagedIcon: {fileID: 21300000, guid: 1f4a0aae86ebe3a4abe7d92019f422cb, type: 3}
         cost: 0.78
-        repairCost: 1.02
         hp: 1.2
         type: 1
         dmg: 1.02
-        fireRate: 0.96
+        fireRate: 1
         range: 11
     00000003:
       type: {class: BarricadeInfo, ns: , asm: Assembly-CSharp}
@@ -64,8 +58,6 @@ MonoBehaviour:
         id: 3
         name: barykada2
         undamagedIcon: {fileID: 21300000, guid: 85b5c08cd5f304b4eb3a556df2a428d6, type: 3}
-        damagedIcon: {fileID: 21300000, guid: 1f4a0aae86ebe3a4abe7d92019f422cb, type: 3}
         cost: 0
-        repairCost: 1.15
-        hp: 5.29
+        hp: 61.05
         type: 0

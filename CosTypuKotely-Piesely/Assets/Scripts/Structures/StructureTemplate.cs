@@ -35,7 +35,6 @@ public class StructureTemplate : MonoBehaviour
         }
 
         Info = infoBase;
-        gameObject.SetActive(true);
         spriteRenderer.sprite = Info.UndamagedIcon;
         colider.size = Info.UndamagedIcon.rect.size / Info.UndamagedIcon.pixelsPerUnit;
     }

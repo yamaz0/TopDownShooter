@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Singleton<Player>
+public interface IDamageable
+{
+    void TakeDamage(float value);
+}
+
+public class Player : Singleton<Player>, IDamageable
 {
     private const float TO_PERCENTAGE = 0.01f;
 
@@ -20,6 +25,11 @@ public class Player : Singleton<Player>
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
     public PlayerShoot PlayerShoot { get => playerShoot; set => playerShoot = value; }
     public PlayerBuild PlayerBuild { get => playerBuild; set => playerBuild = value; }
+
+    public void TakeDamage(float value)
+    {
+        PlayerStats.Hp.AddValue(value);
+    }
 
     protected override void Initialize()
     {

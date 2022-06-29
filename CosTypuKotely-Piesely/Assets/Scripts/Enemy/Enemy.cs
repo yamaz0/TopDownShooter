@@ -12,15 +12,21 @@ public class Enemy : MonoBehaviour
     private float gold;
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float maxSpeed;
 
     public float Hp { get => hp; set => hp = value; }
     public float Dmg { get => dmg; set => dmg = value; }
     public float Gold { get => gold; set => gold = value; }
 
+    public IDamageable Target = null;
+
     private void Update()
     {
         Vector2 direction = Player.Instance.transform.position - transform.position;
-        rb.velocity = direction.normalized * 300 * Time.deltaTime;
+        rb.velocity = direction.normalized * speed * Time.deltaTime;
     }
 
     public void Init(int strenghtMultiplier)
@@ -28,6 +34,7 @@ public class Enemy : MonoBehaviour
         Hp *= strenghtMultiplier;
         Dmg *= strenghtMultiplier;
         Gold *= strenghtMultiplier;
+        speed = maxSpeed;
     }
 
     public void TakeDamage(float damage)
@@ -36,17 +43,24 @@ public class Enemy : MonoBehaviour
 
         if (Hp <= 0)
         {
-            Player.Instance.PlayerStats.Gold.AddValue(Gold);
-            WaveManager.Instance.EnemiesCounter.AddValue(-1);
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Player.Instance.PlayerStats.Gold.AddValue(Gold);
+        WaveManager.Instance.EnemiesCounter.AddValue(-1);
+        Destroy(gameObject);
+    }
+
+    private IDamageable CheckDamageable(Collider2D other)
+    {
+        return other.GetComponent<IDamageable>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {
-            Player.Instance.PlayerStats.Hp.AddValue(-Dmg);
-        }
+        CheckDamageable(other)?.TakeDamage(-Dmg);
     }
 }

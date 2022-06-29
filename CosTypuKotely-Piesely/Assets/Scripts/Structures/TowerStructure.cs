@@ -5,6 +5,9 @@ public class TowerStructure : StructureBase
 {
     public Enemy Enemy { get; private set; }
     WaitForSeconds rotateWaitTime = new WaitForSeconds(.1f);
+    [SerializeField]
+    private LayerMask mask;
+
     public float CacheTime { get; private set; }
 
     private void FixedUpdate()
@@ -43,15 +46,8 @@ public class TowerStructure : StructureBase
 
     private void SearchEnemy()
     {
-        Collider2D hitinfo = Physics2D.OverlapCircle(transform.position, ((TowerInfo)Info).Range);
+        Collider2D hitinfo = Physics2D.OverlapCircle(transform.position, ((TowerInfo)Info).Range, mask);
         Enemy = hitinfo?.gameObject.GetComponent<Enemy>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (IsDamaged == false && other.gameObject.tag.Equals("Enemy"))
-        {
-            AddHp(-1);
-        }
-    }
 }

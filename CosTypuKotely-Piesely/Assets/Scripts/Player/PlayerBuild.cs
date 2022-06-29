@@ -26,12 +26,19 @@ public class PlayerBuild
             UnlockStructureIds = new List<int> { 0 };
         }
 
-        CurrentStructureId = UnlockStructureIds[0];
+        SetCurrentStructureId(UnlockStructureIds[0]);
+        // WaveManager.Instance.OnWaveStart+=ShowTemplate;
     }
 
     public void ChangeMode()
     {
         IsBuildMode = !IsBuildMode;
+        ShowTemplate(IsBuildMode);
+    }
+
+    public void ShowTemplate(bool activeState)
+    {
+        StructureTemplate.gameObject.SetActive(activeState);
     }
 
     public void SetCurrentStructureId(int id)

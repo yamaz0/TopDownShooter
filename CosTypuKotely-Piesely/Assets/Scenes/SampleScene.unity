@@ -9157,6 +9157,8 @@ MonoBehaviour:
   structures:
   - {fileID: 2080516282}
   - {fileID: 2120941458}
+  buildCooldownTime: 1
+  CanBuild: 1
 --- !u!1 &939130876
 GameObject:
   m_ObjectHideFlags: 0
@@ -13196,10 +13198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 5
-  isDamaged: 0
   type: 1
   spriteRenderer: {fileID: 2080516283}
   boxcollider: {fileID: 2080516285}
+  mask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!212 &2080516283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13386,7 +13390,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 5
-  isDamaged: 0
   type: 0
   spriteRenderer: {fileID: 2120941459}
   boxcollider: {fileID: 2120941457}

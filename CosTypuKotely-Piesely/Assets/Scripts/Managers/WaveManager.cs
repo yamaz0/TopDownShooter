@@ -13,8 +13,8 @@ public class WaveManager : Singleton<WaveManager>
     public Float EnemiesCounter { get; set; }
     public Spawn Spawner { get => spawner; set => spawner = value; }
 
-    public event System.Action OnWaveStartChanged = delegate { };
-    public event System.Action OnWaveEndChanged = delegate { };
+    public event System.Action OnWaveStart = delegate { };
+    public event System.Action OnWaveEnd = delegate { };
 
     private void Start()
     {
@@ -45,14 +45,17 @@ public class WaveManager : Singleton<WaveManager>
     {
         Spawner.StartWave();
         ChangeWaveState(true);
-        OnWaveStartChanged();
+        InputManager.Instance.ActionMapSetActiv("Building", false);
+        InputManager.Instance.ActionMapSetActiv("Shooting", true);
         statementTextUI.ShowText("Wave Start");
+        Player.Instance.PlayerBuild.ShowTemplate(false);
+        OnWaveStart();
     }
 
     public void EndWave()
     {
         ChangeWaveState(false);
-        OnWaveEndChanged();
         statementTextUI.ShowText("Wave End");
+        OnWaveEnd();
     }
 }
