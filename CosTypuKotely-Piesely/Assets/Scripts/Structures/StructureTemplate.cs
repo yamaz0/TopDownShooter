@@ -35,8 +35,8 @@ public class StructureTemplate : MonoBehaviour
         }
 
         Info = infoBase;
-        spriteRenderer.sprite = Info.UndamagedIcon;
-        colider.size = Info.UndamagedIcon.rect.size / Info.UndamagedIcon.pixelsPerUnit;
+        spriteRenderer.sprite = Info.Icon;
+        colider.size = Info.Icon.rect.size / Info.Icon.pixelsPerUnit;
     }
 
     public bool CheckConditions()

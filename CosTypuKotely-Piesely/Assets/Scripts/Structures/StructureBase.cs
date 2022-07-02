@@ -23,9 +23,9 @@ public class StructureBase : MonoBehaviour, IDamageable
     {
         Info = info;
         gameObject.SetActive(true);
-        spriteRenderer.sprite = Info.UndamagedIcon;
+        spriteRenderer.sprite = Info.Icon;
         HealthPoints = info.Hp;
-        spriteRenderer.sprite = info.UndamagedIcon;
+        spriteRenderer.sprite = info.Icon;
         // boxcollider.size = Info.UndamagedIcon.rect.size / Info.UndamagedIcon.pixelsPerUnit;
     }
 
