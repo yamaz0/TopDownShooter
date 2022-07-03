@@ -21,6 +21,9 @@ public class WeaponBuy : WeaponShop
 
     public override void OnButtonClick()
     {
+        if (Player.Instance.PlayerStats.Gold.Value < (Weapon.Bullets.CurrentWeaponLevel * 100 + 100)) return;
+
+        Player.Instance.PlayerStats.Gold.AddValue(Weapon.Bullets.CurrentWeaponLevel * 100 + 100);
         Weapon.UnlockWeapon();
         UpdateWeaponUI();
     }

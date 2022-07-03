@@ -18,11 +18,24 @@ public class StructureUnlock : MonoBehaviour
     [SerializeField]
     private Transform contentInfo;
 
+    [SerializeField]
+    private StructureInfo CacheInfo { get; set; }
+
     public void Init(StructureInfo info)
     {
+        CacheInfo = info;
         nameText.SetText(info.Name.ToString());
         costText.SetText(info.UnlockCost.ToString());
         typeText.SetText(info.Type.ToString());
         icon.sprite = info.Icon;
+    }
+
+    public void Unlock()
+    {
+        if (Player.Instance.PlayerStats.Gold.Value < CacheInfo.UnlockCost) return;
+
+        Player playerInstance = Player.Instance;
+        playerInstance.PlayerStats.Gold.AddValue(-CacheInfo.UnlockCost);
+        playerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
     }
 }

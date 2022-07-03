@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class PlayerBuild
     public List<int> UnlockStructureIds { get => unlockStructureIds; set => unlockStructureIds = value; }
     public int CurrentStructureId { get => currentStructureId; set => currentStructureId = value; }
     public StructureTemplate StructureTemplate { get => structureTemplate; set => structureTemplate = value; }
+    public event System.Action<int> OnStructureUnlocked = delegate { };
 
     public void Init()
     {
@@ -28,6 +30,12 @@ public class PlayerBuild
 
         SetCurrentStructureId(UnlockStructureIds[0]);
         // WaveManager.Instance.OnWaveStart+=ShowTemplate;
+    }
+
+    public void UnlockStructure(int id)
+    {
+        UnlockStructureIds.Add(id);
+        OnStructureUnlocked(id);
     }
 
     public void ChangeMode()
