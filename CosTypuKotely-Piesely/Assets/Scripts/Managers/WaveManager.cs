@@ -94,21 +94,21 @@ public class WaveManager : Singleton<WaveManager>
     private void Start()
     {
         EnemiesCounter = new Float(0);
-        EnemiesCounter.OnValueChanged += CheckWaveEnd;
+        // EnemiesCounter.OnValueChanged += CheckWaveEnd;
     }
 
     private void OnDisable()
     {
-        EnemiesCounter.OnValueChanged -= CheckWaveEnd;
+        // EnemiesCounter.OnValueChanged -= CheckWaveEnd;
     }
 
-    public void CheckWaveEnd(float amount)
-    {
-        if (amount <= 0)
-        {
-            EndWave();
-        }
-    }
+    // public void CheckWaveEnd(float amount)
+    // {
+    //     if (amount <= 0)
+    //     {
+    //         EndWave();
+    //     }
+    // }
 
     public void AddEnemyCount(int val)
     {
