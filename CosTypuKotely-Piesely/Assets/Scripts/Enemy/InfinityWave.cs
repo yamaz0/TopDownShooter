@@ -24,7 +24,6 @@ public class InfinityWave : WaveBase
 
     public override IEnumerator InitializeWave()
     {
-        WaveManager.Instance.EnemiesCounter.AddValue(1);//Cheat zeby faza fali nigdy sie nie skonczyla
         while (isWaveEnable)
         {
             yield return new WaitForSeconds(5);

@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Player.Instance.PlayerStats.Gold.AddValue(Gold);
-        WaveManager.Instance.EnemiesCounter.AddValue(-1);
+        WaveManager.Instance.EnemiesCounter.AddValue(1);
         Destroy(gameObject);
     }
 

@@ -3,6 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class Cost
+{
+    [SerializeField]
+    private AnimationCurve curve;
+    [SerializeField]
+    private int level;
+
+    public void Init(AnimationCurve c, int startLvl = 0)
+    {
+        curve = c;
+        level = startLvl;
+    }
+
+    public float GetValue()
+    {
+        return curve.Evaluate(level);
+    }
+
+    public float GetValue(int targetLevel)
+    {
+        return curve.Evaluate(targetLevel);
+    }
+    public bool TryBuy()
+    {
+        float cost = GetValue();
+        Float playerGold = Player.Instance.PlayerStats.Gold;
+
+        if (playerGold.Value < cost)
+            return false;
+
+        playerGold.AddValue(-cost);
+        level++;
+
+        return true;
+    }
+}
+
+[System.Serializable]
 public class Float
 {
     [SerializeField]
