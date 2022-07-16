@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+[System.Serializable]
 public abstract class WaveEndConditionBase
 {
     public abstract bool CheckEndWave();
@@ -13,6 +13,7 @@ public abstract class WaveEndConditionBase
     }
 }
 
+[System.Serializable]
 public class WaveEndEnemyCountCondition : WaveEndConditionBase
 {
     public override bool CheckEndWave()
@@ -38,7 +39,7 @@ public class WaveEndEnemyCountCondition : WaveEndConditionBase
     }
 }
 
-// Specify what you want to happen when the Elapsed event is raised.
+[System.Serializable]
 public class WaveEndTimeCondition : WaveEndConditionBase
 {
     [SerializeField]
@@ -49,6 +50,7 @@ public class WaveEndTimeCondition : WaveEndConditionBase
     private void OnElapsed(object source, System.Timers.ElapsedEventArgs e)
     {
         EndWave();
+        timer.Close();
     }
 
     public override bool CheckEndWave()
@@ -83,6 +85,8 @@ public class WaveManager : Singleton<WaveManager>
     public bool IsWave { get => isWave; set => isWave = value; }
     [SerializeField]
     private StatementTextUI statementTextUI;
+    [SerializeReference]
+    private WaveEndConditionBase x=new WaveEndTimeCondition();
 
     public Float EnemiesCounter { get; set; }
     public Spawn Spawner { get => spawner; set => spawner = value; }
@@ -94,11 +98,13 @@ public class WaveManager : Singleton<WaveManager>
     private void Start()
     {
         EnemiesCounter = new Float(0);
+        x.Attach();
         // EnemiesCounter.OnValueChanged += CheckWaveEnd;
     }
 
     private void OnDisable()
     {
+        x.Detach();
         // EnemiesCounter.OnValueChanged -= CheckWaveEnd;
     }
 
