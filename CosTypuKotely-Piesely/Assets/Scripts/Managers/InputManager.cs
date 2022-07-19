@@ -65,8 +65,7 @@ public class InputManager : SingletonPersistence<InputManager>
         if (callbackContext.performed)
         {
             float v = callbackContext.ReadValue<float>();
-            Debug.Log(v);
-            Player.Instance.PlayerBuild.SetCurrentStructureId((int)v - 1);//do zmiany bo 0 wtedy jest ujemne
+            Player.Instance.PlayerBuild.SetCurrentStructureId((int)v);
         }
     }
 
