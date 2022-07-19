@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76080f02e9c7f2a4d8761d7e43f141db, type: 3}
+  m_Name: WeaponScriptableObject
+  m_EditorClassIdentifier: 
+  objects:
+  - id: 0
+  - id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 0
+        name: pukafka
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 0
+        bullets:
+        - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
+        - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
+        - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
+    00000001:
+      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 1
+        name: lazerek
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 5
+        bullets:
+        - {fileID: -7893238372448576483, guid: aece1bac99d16fd4db6ad75336a8f382, type: 3}
+        - {fileID: -7893238372448576483, guid: 7816cacc632594b4fb5bcc5f509129f1, type: 3}
+        - {fileID: -7893238372448576483, guid: 1abcfa8ffb492bf46a379b959a2c1079, type: 3}

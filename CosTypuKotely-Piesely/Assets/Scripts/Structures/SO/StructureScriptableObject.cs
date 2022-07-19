@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StructureScriptableObject", menuName = "SO/StructureScriptableObject")]
-public partial class StructureScriptableObject : SingletonScriptableObject<StructureScriptableObject>
+public class StructureScriptableObject : SingletonScriptableObject<StructureScriptableObject>
 {
     public StructureInfo GetStructureInfoById(int id)
     {
