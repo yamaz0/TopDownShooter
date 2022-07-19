@@ -14,14 +14,14 @@ public class WeaponUpgradesShop : MonoBehaviour
     [SerializeField]
     private List<Weapon> weapons;
 
+    private void OnEnable()
+    {
+        Refresh();
+    }
+
     public void Refresh()
     {
-        for (int i = weaponsUi.Count - 1; i >= 0; i--)
-        {
-            Destroy(weaponsUi[i].gameObject);
-        }
-
-        weaponsUi.Clear();
+        weaponsUi.ClearAndDestroy();
 
         for (int i = 0; i < weapons.Count; i++)
         {

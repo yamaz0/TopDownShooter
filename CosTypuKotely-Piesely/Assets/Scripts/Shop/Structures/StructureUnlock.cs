@@ -14,6 +14,8 @@ public class StructureUnlock : MonoBehaviour
     [SerializeField]
     private Image icon;
     [SerializeField]
+    private Button btn;
+    [SerializeField]
     private InfoTemplate infoTemplate;
     [SerializeField]
     private Transform contentInfo;
@@ -30,12 +32,28 @@ public class StructureUnlock : MonoBehaviour
         icon.sprite = info.Icon;
     }
 
-    public void Unlock()
+    public void SetUnlockState(bool state)
     {
-        if (Player.Instance.PlayerStats.Gold.Value < CacheInfo.UnlockCost) return;
+        btn.gameObject.SetActive(state);
+    }
 
+    public void OnButtonClicked()
+    {
+        if (Player.Instance.PlayerStats.Gold.Value < CacheInfo.UnlockCost)
+        {
+            Unlock();
+        }
+        else
+        {
+            Debug.Log("Nie stac cie na odblokowanie tej struktury!");
+        }
+    }
+
+    private void Unlock()
+    {
         Player playerInstance = Player.Instance;
         playerInstance.PlayerStats.Gold.AddValue(-CacheInfo.UnlockCost);
         playerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
+        SetUnlockState(true);
     }
 }
