@@ -10,26 +10,19 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        SetMaxHp(Player.Instance.PlayerStats.Hp.Value);
-        SetHp(Player.Instance.PlayerStats.MaxHp.Value);
+        SetHp(Player.Instance.PlayerStats.Hp.Value);
 
         Player.Instance.PlayerStats.Hp.OnValueChanged += SetHp;
-        Player.Instance.PlayerStats.MaxHp.OnValueChanged += SetMaxHp;
     }
 
     private void OnDisable()
     {
         Player.Instance.PlayerStats.Hp.OnValueChanged -= SetHp;
-        Player.Instance.PlayerStats.MaxHp.OnValueChanged -= SetMaxHp;
-    }
-
-    public void SetMaxHp(float value)
-    {
-        slider.maxValue = value;
     }
 
     public void SetHp(float value)
     {
-        slider.value = value;
+        float hpPercentageValue = Player.Instance.PlayerStats.Hp.Value / Player.Instance.PlayerStats.MaxHp.Value;
+        slider.value = hpPercentageValue;
     }
 }
