@@ -18,7 +18,7 @@ public class InfinityWave : WaveBase
         Enemy enemy = Enemies[randomEnemyId];
         Enemy newEnemy = GameObject.Instantiate(enemy, spawnPoint, Quaternion.identity);
         newEnemy.Init(waveNumber);
-        WaveManager.Instance.EnemiesCounter.AddValue(1);
+        WaveManager.Instance.EnemiesCounter.AddValue(999999);
         EnemyCount++;
     }
 

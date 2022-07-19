@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public float Hp { get => hp; set => hp = value; }
     public float Dmg { get => dmg; set => dmg = value; }
     public float Gold { get => gold; set => gold = value; }
+    public bool IsAlive { get; private set; }
 
     public IDamageable Target = null;
 
@@ -35,13 +36,14 @@ public class Enemy : MonoBehaviour
         Dmg *= strenghtMultiplier;
         Gold *= strenghtMultiplier;
         speed = maxSpeed;
+        IsAlive = true;
     }
 
     public void TakeDamage(float damage)
     {
         Hp -= damage;
 
-        if (Hp <= 0)
+        if (Hp <= 0 && IsAlive == true)
         {
             Die();
         }
@@ -50,7 +52,8 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Player.Instance.PlayerStats.Gold.AddValue(Gold);
-        WaveManager.Instance.EnemiesCounter.AddValue(1);
+        WaveManager.Instance.EnemiesCounter.AddValue(-1);
+        IsAlive = false;
         Destroy(gameObject);
     }
 

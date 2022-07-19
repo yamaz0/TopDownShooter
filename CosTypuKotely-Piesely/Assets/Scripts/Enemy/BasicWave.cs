@@ -25,7 +25,7 @@ public class BasicWave : WaveBase
     public override IEnumerator InitializeWave()
     {
         WaveNumber++;
-        WaveManager.Instance.AddEnemyCount(enemyCount);
+        WaveManager.Instance.EnemiesCounter.AddValue(enemyCount);
         WaitForSecond = new WaitForSeconds(time);
 
         for (int i = 0; i < enemyCount; i++)
