@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Extensions
 {
-    public static T GetElementById<T>(this IList<T> list, int id) where T: BaseInfo
+    public static T GetElementById<T>(this IList<T> list, int id) where T : BaseInfo
     {
         foreach (var obj in list)
         {
@@ -17,7 +17,7 @@ public static class Extensions
         return default(T);
     }
 
-    public static T GetElementByName<T>(this IList<T> list, string name) where T: BaseInfo
+    public static T GetElementByName<T>(this IList<T> list, string name) where T : BaseInfo
     {
         foreach (T obj in list)
         {
@@ -28,5 +28,15 @@ public static class Extensions
         }
 
         return default(T);
+    }
+
+    public static void ClearAndDestroy<T>(this IList<T> list) where T : MonoBehaviour
+    {
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(list[i].gameObject);
+        }
+
+        list.Clear();
     }
 }
