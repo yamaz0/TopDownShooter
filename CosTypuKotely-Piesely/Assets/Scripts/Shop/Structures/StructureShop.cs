@@ -33,7 +33,7 @@ public class StructureShop : MonoBehaviour
 
             newStructureUnlock.gameObject.SetActive(true);
             newStructureUnlock.Init(info);
-            newStructureUnlock.SetUnlockState(isUnlocked);
+            newStructureUnlock.SetUnlockVisibility(!isUnlocked);
 
             Structures.Add(newStructureUnlock);
         }

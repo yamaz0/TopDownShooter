@@ -1,11 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StatShop : MonoBehaviour
 {
     [SerializeField]
-    private StatUI hpStat;
-    [SerializeField]
-    private StatUI armorStat;
-    [SerializeField]
-    private StatUI goldStat;//moze mnoznik otrzymywanego golda 
+    private List<StatUI> stats;
+
+    private void OnEnable()
+    {
+        foreach (var stat in stats)
+        {
+            stat.Init();
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var stat in stats)
+        {
+            stat.DetachEvents();
+        }
+    }
+
 }

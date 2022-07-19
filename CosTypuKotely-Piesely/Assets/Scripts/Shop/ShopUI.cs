@@ -1,29 +1,8 @@
-using System.Collections;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class ShopUI : MonoBehaviour
-{
-    [SerializeField]
-    private StatUI hp;
-    [SerializeField]
-    private StatUI armor;
-    [SerializeField]
-    private StatUI gold;
-    [SerializeField]
-    private WeaponUpgradesShop weaponUpgradesShop;
+// public class StatsShop : MonoBehaviour
+// {
 
-    private void OnEnable()
-    {
-        hp.Init();
-        armor.Init();
-        gold.Init();
-        weaponUpgradesShop.Refresh();
-    }
-
-    private void OnDisable()
-    {
-        hp.DetachEvents();
-        armor.DetachEvents();
-        gold.DetachEvents();
-    }
-}
+// }

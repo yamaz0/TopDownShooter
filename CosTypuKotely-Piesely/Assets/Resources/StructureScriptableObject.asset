@@ -49,7 +49,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 1
           m_RotationOrder: 4
-        unlockCost: 0
+        unlockCost: 1
         hp: 80.8
         type: 0
     00000001:
@@ -82,7 +82,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        unlockCost: 0
+        unlockCost: 2
         hp: 0.7
         type: 1
         dmg: 0.43
@@ -118,7 +118,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        unlockCost: 0
+        unlockCost: 3
         hp: 1.2
         type: 1
         dmg: 1.02
@@ -154,6 +154,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        unlockCost: 0
+        unlockCost: 4
         hp: 61.05
         type: 0

@@ -32,14 +32,15 @@ public class StructureUnlock : MonoBehaviour
         icon.sprite = info.Icon;
     }
 
-    public void SetUnlockState(bool state)
+    public void SetUnlockVisibility(bool state)
     {
         btn.gameObject.SetActive(state);
+        costText.gameObject.SetActive(state);
     }
 
     public void OnButtonClicked()
     {
-        if (Player.Instance.PlayerStats.Gold.Value < CacheInfo.UnlockCost)
+        if (Player.Instance.PlayerStats.Gold.Value >= CacheInfo.UnlockCost)
         {
             Unlock();
         }
@@ -54,6 +55,6 @@ public class StructureUnlock : MonoBehaviour
         Player playerInstance = Player.Instance;
         playerInstance.PlayerStats.Gold.AddValue(-CacheInfo.UnlockCost);
         playerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
-        SetUnlockState(true);
+        SetUnlockVisibility(false);
     }
 }
