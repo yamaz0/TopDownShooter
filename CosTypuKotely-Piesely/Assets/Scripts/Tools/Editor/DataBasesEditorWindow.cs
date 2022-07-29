@@ -5,15 +5,7 @@ using UnityEditor;
 using System.Reflection;
 using System;
 
-
-[CreateAssetMenu(fileName = "DataWeaponsEditorWindow", menuName = "ScriptableObjects/DataWeaponsEditorWindow")]
-public class DataWeaponsEditorWindow : ScriptableSingleton<WeaponInfo>
-{
-
-}
-
-[CreateAssetMenu(fileName = "DataBasesEditorWindow", menuName = "ScriptableObjects/DataBasesEditorWindow")]
-public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow> where Y: BaseInfo
+abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow>
 {
     public enum State
     {
@@ -21,40 +13,40 @@ public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow> 
         CREATE,
         MODIFY
     }
-
-    [SerializeField]
+    public abstract void Init();
     private int createWidth = 0;
-
     private bool isShowFilter = false;
     private bool isShowAllFields = false;
     private string searchString = string.Empty;
     private string searchStringField = string.Empty;
     private System.Type filterType = null;
-    private Comparer<Y> sortedMethod = Comparer<Y>.Create((x, y) => x.Id.CompareTo(y.Id));
+    private Comparer<BaseInfo> sortedMethod = Comparer<BaseInfo>.Create((x, BaseInfo) => x.Id.CompareTo(BaseInfo.Id));
     private bool isSortDescending = false;
-    private List<Y> bases = new List<Y>();
+    private List<BaseInfo> bases = new List<BaseInfo>();
 
     private List<Type> baseInfoTypes;
     private State currentState = new State();
     private State previusState = new State();
-    private Y currentBase = null;
+    private BaseInfo currentBase = null;
 
     private int basesViewStartY = 110;
 
     public bool IsShowFilter { get => isShowFilter; set => isShowFilter = value; }
     public string SearchString { get => searchString; set => searchString = value; }
     public string SearchStringField { get => searchStringField; set => searchStringField = value; }
-    public List<Y> Bases { get => bases; set => bases = value; }
+    public List<BaseInfo> Bases { get => bases; set => bases = value; }
     public List<Type> BaseInfoTypes { get => baseInfoTypes; set => baseInfoTypes = value; }
     public State CurrentState { get => currentState; set => currentState = value; }
     public State PreviusState { get => previusState; set => previusState = value; }
-    public Y CurrentBase { get => currentBase; set => currentBase = value; }
+    public BaseInfo CurrentObjectInstance { get => currentBase; set => currentBase = value; }
     public int CreateWidth { get => createWidth; set => createWidth = value; }
     public int BeginAreaY { get => basesViewStartY; set => basesViewStartY = value; }
     public bool IsShowAllFields { get => isShowAllFields; set => isShowAllFields = value; }
     public Type FilterType { get => filterType; set => filterType = value; }
-    public Comparer<Y> SortedMethod { get => sortedMethod; set => sortedMethod = value; }
+    public Comparer<BaseInfo> SortedMethod { get => sortedMethod; set => sortedMethod = value; }
     public bool IsSortDescending { get => isSortDescending; set => isSortDescending = value; }
+    public IEditorWindowData DataInstance { get; set; }
+
 
     public void ChangeState(State s)
     {
@@ -75,9 +67,9 @@ public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow> 
                 break;
         }
     }
-    public void SetCurrentSelectBase(Y info)
+    public void SetCurrentSelectBase(BaseInfo info)
     {
-        CurrentBase = info;
+        CurrentObjectInstance = info;
     }
 
     public void ResetSelectedBase()
@@ -103,7 +95,7 @@ public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow> 
         }
     }
 
-    public void SortBases(Comparer<Y> comparer)
+    public void SortBases(Comparer<BaseInfo> comparer)
     {
         sortedMethod = comparer;
         Bases.Sort(comparer);
@@ -116,26 +108,32 @@ public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow> 
 
     public void CreateBaseTypeInstance(Type t)
     {
-        int baseId = BasesScriptableObject.Instance.Bases.Count > 0 ? BasesScriptableObject.Instance.Bases[BasesScriptableObject.Instance.Bases.Count - 1].Id + 1 : 0;
+        int baseId = DataInstance.Objects.Count > 0 ? DataInstance.Objects[DataInstance.Objects.Count - 1].Id + 1 : 0;
 
-        Y info = (Y)System.Activator.CreateInstance(t);
+        BaseInfo info = (BaseInfo)System.Activator.CreateInstance(t);
         info.Id = baseId;
 
         SetCurrentSelectBase(info);
     }
 
-    public void SaveBaseInstance()
+    public void SaveCurrentInstance()
     {
-        BasesScriptableObject.Instance.UpdateBaseInstance(CurrentBase);
+        DataInstance.UpdateBaseInstance(CurrentObjectInstance);
     }
 
-    public void RemoveBase(Y info)
+    public void AddCurrentInstance()
     {
-        if (CurrentBase != null && CurrentBase.Id == info.Id)
+        DataInstance.AddBaseInstance(CurrentObjectInstance);
+        ResetSelectedBase();
+    }
+
+    public void RemoveInstance(BaseInfo info)
+    {
+        if (CurrentObjectInstance != null && CurrentObjectInstance.Id == info.Id)
         {
             ResetSelectedBase();
             ChangeState(State.NONE);
         }
-        BasesScriptableObject.Instance.RemoveBaseInstance(info);
+        DataInstance.RemoveBaseInstance(info);
     }
 }
