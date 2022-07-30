@@ -12,9 +12,9 @@ public class WeaponInfo : BaseInfo
     public Sprite Icon { get => icon; set => icon = value; }
     public float UnlockCost { get => unlockCost; set => unlockCost = value; }
 
-    public override void CopyValues(BaseInfo info)
+    public WeaponInfo(WeaponInfo info) : base(info)
     {
-        Id = info.Id;
-        Name = info.Name;
+        Icon = info.Icon;
+        UnlockCost = info.UnlockCost;
     }
 }

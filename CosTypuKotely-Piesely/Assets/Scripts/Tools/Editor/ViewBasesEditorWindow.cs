@@ -96,8 +96,8 @@ public class ViewBasesEditorWindow
                 {
                     DataEditor.ChangeState(DataBasesEditorWindow.State.MODIFY);
 
-                    BaseInfo baseInfoCopy = (BaseInfo)System.Activator.CreateInstance(info.GetType());
-                    baseInfoCopy.CopyValues(info);
+                    BaseInfo baseInfoCopy = (BaseInfo)System.Activator.CreateInstance(info.GetType(),info);
+                    // baseInfoCopy.CopyValues(info);
 
                     DataEditor.SetCurrentSelectBase(baseInfoCopy);
                 }

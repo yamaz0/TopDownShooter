@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Reflection;
 using System;
 using System.Linq;
+using UnityEditorInternal;
 
 public class CreateBasesEditorWindow
 {
@@ -38,6 +39,25 @@ public class CreateBasesEditorWindow
         {
             return EditorGUILayout.ObjectField("Sprite: ", (Sprite)obj, typeof(Sprite), false);
         });
+
+        // fieldsDictionary.Add(typeof(IList), (obj) =>
+        // {
+        //     IList list = (IList)obj;
+        //     ReorderableList rs = new ReorderableList(list, list.GetType().GetGenericArguments().Single());
+
+        //     rs.drawElementCallback =
+        //     (Rect rect, int index, bool isActive, bool isFocused) =>
+        //     {
+        //         SerializedProperty element = rs.serializedProperty.GetArrayElementAtIndex(index);
+        //         rect.y += 2;
+        //         EditorGUI.PropertyField(
+        //             new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight),
+        //             element.FindPropertyRelative("Name"), GUIContent.none);
+        //     };
+
+        //     return EditorGUILayout.PropertyField(rs.serializedProperty, true);
+        // });
+
     }
 
     public void ShowBackButton()
@@ -79,15 +99,21 @@ public class CreateBasesEditorWindow
         PropertyInfo[] propertyInfos = inf.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         foreach (var propertyInfo in propertyInfos)
         {
-            Debug.Log(propertyInfo.Name);
-            object value = propertyInfo.GetValue(inf);
+            Type t = propertyInfo.PropertyType;
+
+            // if (t.IsGenericType == true)
+            // {
+            //     t = typeof(IList);
+            // }
+
+            object value = propertyInfo.GetValue(inf, null);
             EditorGUILayout.LabelField($"{propertyInfo.Name}:");
 
-            bool v = fieldsDictionary.TryGetValue(propertyInfo.PropertyType, out Func<object, object> f);
+            bool v = fieldsDictionary.TryGetValue(t, out Func<object, object> f);
 
             if (v == false)
             {
-                EditorGUILayout.LabelField($"{propertyInfo.PropertyType} handle not exist");
+                EditorGUILayout.LabelField($"{t} handle not exist");
                 continue;
             }
 

@@ -13,4 +13,11 @@ public class TowerInfo : StructureInfo
     public float Dmg { get => dmg; set => dmg = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
     public float Range { get => range; set => range = value; }
+
+    public TowerInfo(TowerInfo info) : base(info)
+    {
+        Dmg = info.Dmg;
+        FireRate = info.FireRate;
+        Range = info.Range;
+    }
 }
