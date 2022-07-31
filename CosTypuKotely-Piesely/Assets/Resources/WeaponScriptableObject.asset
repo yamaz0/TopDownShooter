@@ -15,6 +15,12 @@ MonoBehaviour:
   objects:
   - id: 0
   - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
   references:
     version: 1
     00000000:
@@ -39,3 +45,51 @@ MonoBehaviour:
         - {fileID: -7893238372448576483, guid: aece1bac99d16fd4db6ad75336a8f382, type: 3}
         - {fileID: -7893238372448576483, guid: 7816cacc632594b4fb5bcc5f509129f1, type: 3}
         - {fileID: -7893238372448576483, guid: 1abcfa8ffb492bf46a379b959a2c1079, type: 3}
+    00000002:
+      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 2
+        name: dsaasd
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 0.87
+        bullets: []
+    00000003:
+      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 3
+        name: asdsad
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 1.28
+        bullets: []
+    00000004:
+      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 4
+        name: saddsa
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 2.72
+        bullets: []
+    00000005:
+      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 5
+        name: sdsdad
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 1.34
+        bullets: []
+    00000006:
+      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 6
+        name: sadasd
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 2.4
+        bullets: []
+    00000007:
+      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 7
+        name: asd
+        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
+        unlockCost: 8.3
+        bullets: []

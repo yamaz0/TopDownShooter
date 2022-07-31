@@ -11,7 +11,10 @@ public class WeaponInfo : BaseInfo
 
     public Sprite Icon { get => icon; set => icon = value; }
     public float UnlockCost { get => unlockCost; set => unlockCost = value; }
+    public WeaponInfo()
+    {
 
+    }
     public WeaponInfo(WeaponInfo info) : base(info)
     {
         Icon = info.Icon;

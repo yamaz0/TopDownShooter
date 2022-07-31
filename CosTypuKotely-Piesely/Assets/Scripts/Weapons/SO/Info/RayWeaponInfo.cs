@@ -8,7 +8,10 @@ public class RayWeaponInfo : WeaponInfo
     private List<RayBullet> bullets = new List<RayBullet>();
 
     public List<RayBullet> Bullets { get => bullets; set => bullets = value; }
-
+public RayWeaponInfo()
+{
+    
+}
     public RayWeaponInfo(RayWeaponInfo info) : base(info)
     {
         Bullets.AddRange(info.Bullets);

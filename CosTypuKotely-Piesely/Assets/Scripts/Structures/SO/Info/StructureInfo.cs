@@ -18,7 +18,10 @@ public class StructureInfo : BaseInfo
     public float Hp { get => hp; private set => hp = value; }
     public StructureType Type { get => type; set => type = value; }
     public float UnlockCost { get => unlockCost; set => unlockCost = value; }
-
+public StructureInfo()
+{
+    
+}
     public StructureInfo(StructureInfo info) : base(info)
     {
         Icon = info.Icon;

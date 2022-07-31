@@ -11,7 +11,10 @@ public class BaseInfo
 
     public int Id { get => id; set => id = value; }
     public string Name { get => name; set => name = value; }
+    public BaseInfo()
+    {
 
+    }
     public BaseInfo(BaseInfo info)
     {
         Id = info.Id;
@@ -19,22 +22,17 @@ public class BaseInfo
     }
 
 #if UNITY_EDITOR
-    public virtual void ShowFields()
-    {
-        GUILayout.Label("Id: " + Id.ToString());
-        Name = UnityEditor.EditorGUILayout.TextField("Name: ", Name);
-    }
 
-    public void ShowBaseBaseInfo()
+    public void ShowBaseInfo()
     {
         // GUILayout.Box(GenerateTextureFromSprite(Icon), GUILayout.Width(100), GUILayout.Height(50));
         GUILayout.Label("Id: " + Id.ToString());
         GUILayout.Label(Name);
     }
 
-    public virtual void ShowAllBaseInfo()
+    public virtual void ShowAllInfo()
     {
-        ShowBaseBaseInfo();
+        ShowBaseInfo();
     }
 #endif
 }

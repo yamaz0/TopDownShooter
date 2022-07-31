@@ -5,6 +5,8 @@ using UnityEditor;
 using System.Reflection;
 using System;
 
+
+
 abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow>
 {
     public enum State
@@ -46,7 +48,6 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
     public Comparer<BaseInfo> SortedMethod { get => sortedMethod; set => sortedMethod = value; }
     public bool IsSortDescending { get => isSortDescending; set => isSortDescending = value; }
     public IEditorWindowData DataInstance { get; set; }
-
 
     public void ChangeState(State s)
     {

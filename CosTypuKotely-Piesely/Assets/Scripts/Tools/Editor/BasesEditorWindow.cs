@@ -72,7 +72,7 @@ public class BasesEditorWindow : EditorWindow
         }
         GUILayout.EndArea();
 
-        viewBasesEditorWindow.ShowBases(DataEditor.Bases);
+        viewBasesEditorWindow.ShowData(DataEditor.Bases);
 
         if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "", GUIStyle.none))
         {

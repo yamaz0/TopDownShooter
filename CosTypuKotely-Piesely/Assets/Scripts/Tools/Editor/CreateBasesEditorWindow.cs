@@ -93,10 +93,10 @@ public class CreateBasesEditorWindow
         }
         // createBasesEditorWindow.ShowBasesCreator();
     }
-    public void ShowFields(BaseInfo inf)
+    public void ShowFields(object inf)
     {
-
         PropertyInfo[] propertyInfos = inf.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
         foreach (var propertyInfo in propertyInfos)
         {
             Type t = propertyInfo.PropertyType;
