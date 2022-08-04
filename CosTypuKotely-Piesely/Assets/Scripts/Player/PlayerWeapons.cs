@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerShoot
+public class PlayerWeapons
 {
     [SerializeField]
     private List<Weapon> weapons = new List<Weapon>();
@@ -24,7 +24,7 @@ public class PlayerShoot
 
     public void ChangeWeapon(int index)
     {
-        if (weapons[index].IsUnlocked == true && CurrentWeapon != weapons[index])
+        if (weapons[index].IsUnlocked == true && CurrentWeapon != weapons[index])//TODO zmienic to na SO albo w ogole na klase z przypisanowymi klawiszami
         {
             CurrentWeapon.gameObject.SetActive(false);
             CurrentWeapon = weapons[index];
