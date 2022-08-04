@@ -35,7 +35,7 @@ public class InputManager : SingletonPersistence<InputManager>
         if (callbackContext.performed)
         {
             float v = callbackContext.ReadValue<float>();
-            Player.Instance.PlayerShoot.ChangeWeapon((int)v - 1);//do zmiany bo 0 wtedy jest ujemne
+            Player.Instance.PlayerShoot.ChangeWeapon((int)v);
         }
     }
 

@@ -57,7 +57,7 @@ public class PlayerBuild
         }
         else
         {
-            CurrentStructureId = -1;
+            return;
         }
 
         StructureInfo info = StructureScriptableObject.Instance.GetStructureInfoById(CurrentStructureId);
