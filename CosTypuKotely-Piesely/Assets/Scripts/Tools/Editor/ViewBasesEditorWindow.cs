@@ -8,47 +8,16 @@ using System.Reflection;
 public class ViewBasesEditorWindow
 {
     Vector2 scrollPos;
-    private Dictionary<Type, Action<object>> fieldsDictionary = new Dictionary<Type, Action<object>>();
 
     List<BaseInfo> filterList = new List<BaseInfo>();
     DataBasesEditorWindow DataEditor { get; set; }
     public void Init(DataBasesEditorWindow x)
     {
         DataEditor = x;
-        FillDictionary();
+        DataEditor.Data.Init();
+        DataEditor.OnDataChanged += RefreshLists;
+
         RefreshLists();
-    }
-
-    public void FillDictionary()
-    {
-        fieldsDictionary.Add(typeof(int), (obj) =>
-        {
-            int x = (int)obj;
-            GUILayout.Label(x.ToString());
-        });
-
-        fieldsDictionary.Add(typeof(float), (obj) =>
-        {
-            float x = (float)obj;
-            GUILayout.Label(x.ToString());
-        });
-
-        fieldsDictionary.Add(typeof(double), (obj) =>
-        {
-            double x = (double)obj;
-            GUILayout.Label(x.ToString());
-        });
-
-        fieldsDictionary.Add(typeof(Sprite), (obj) =>
-        {
-            Sprite x = (Sprite)obj;
-            GUILayout.Box(Utils.GenerateTextureFromSprite(x), GUILayout.Width(100), GUILayout.Height(50));
-        });
-
-        fieldsDictionary.Add(typeof(string), (obj) =>
-        {
-            GUILayout.Label((string)obj);
-        });
     }
 
     public void RefreshLists()
@@ -59,14 +28,15 @@ public class ViewBasesEditorWindow
 
     public void SearchBases()
     {
-        DataEditor.Bases.Clear();
+        DataEditor.Data.TileInfos.Clear();
         if (string.IsNullOrEmpty(DataEditor.SearchString) == false)
         {
-            DataEditor.Bases.AddRange(filterList.FindAll((x) => x.Name.Contains(DataEditor.SearchString)));
+            // DataEditor.Bases.AddRange(filterList.FindAll((x) => x.Name.Contains(DataEditor.SearchString)));
+            DataEditor.Data.Add(filterList.FindAll((x) => x.Name.Contains(DataEditor.SearchString)));
         }
         else
         {
-            DataEditor.Bases.AddRange(filterList);
+            DataEditor.Data.Add(filterList);
         }
     }
 
@@ -76,11 +46,11 @@ public class ViewBasesEditorWindow
         GUILayout.Label("Sort By: ");
         if (GUILayout.Button("ID"))
         {
-            DataEditor.SortBases(Comparer<BaseInfo>.Create((x, y) => x.Id.CompareTo(y.Id)));
+            DataEditor.SortBases(Comparer<TileInfo>.Create((x, y) => x.BaseInfoCache.Id.CompareTo(y.BaseInfoCache.Id)));
         }
         if (GUILayout.Button("NAME"))
         {
-            DataEditor.SortBases(Comparer<BaseInfo>.Create((x, y) => x.Name.CompareTo(y.Name)));
+            DataEditor.SortBases(Comparer<TileInfo>.Create((x, y) => x.BaseInfoCache.Name.CompareTo(y.BaseInfoCache.Name)));
         }
         //TODO wiecej compererow jakos zrobic dynamicznie ze wzgledu na typ
         GUILayout.EndHorizontal();
@@ -95,43 +65,45 @@ public class ViewBasesEditorWindow
         }
     }
 
-    public void ShowData(List<BaseInfo> infos)
+    public void ShowData(Data data)
     {
-        if (infos != null)
+        // System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
+        // s.Start();
+        if (data != null)
         {
             GUILayout.BeginArea(new Rect(0, DataEditor.BeginAreaY, Screen.width - DataEditor.CreateWidth, Screen.height - 25 - DataEditor.BeginAreaY));
             scrollPos = GUILayout.BeginScrollView(scrollPos, false, true);
 
             int w = 0;
             int h = 0;
-            float expand = DataEditor.IsShowAllFields == true ? 1.2f : 1.0f;
+            float expand = DataEditor.IsShowAllFields == true ? DataEditor.Data.MaxFieldsHeight : 150.0f;
 
-            foreach (var info in infos)
+            foreach (var info in data.TileInfos)
             {
                 if (w == 0)
                 {
                     GUILayout.BeginHorizontal();
                 }
                 GUILayout.BeginVertical();
-                GUILayout.BeginArea(new Rect(100 * w, 150 * expand * h, 100, 500));
+                GUILayout.BeginArea(new Rect(100 * w, expand * h, 100, 500));
                 if (DataEditor.IsShowAllFields == true)
                 {
                     ShowAllInfo(info);
                 }
                 else
-                    ShowBaseInfo(info);
+                    ShowBaseInfo(info.BaseInfoCache);
 
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Del"))
                 {
-                    DataEditor.RemoveInstance(info);
+                    DataEditor.RemoveInstance(info.BaseInfoCache);
                     break;
                 }
                 if (GUILayout.Button("Mod"))
                 {
                     DataEditor.ChangeState(DataBasesEditorWindow.State.MODIFY);
 
-                    BaseInfo baseInfoCopy = (BaseInfo)System.Activator.CreateInstance(info.GetType(), info);
+                    BaseInfo baseInfoCopy = (BaseInfo)System.Activator.CreateInstance(info.BaseInfoCache.GetType(), info.BaseInfoCache);
                     // baseInfoCopy.CopyValues(info);
 
                     DataEditor.SetCurrentSelectBase(baseInfoCopy);
@@ -153,34 +125,40 @@ public class ViewBasesEditorWindow
             GUILayout.EndScrollView();
             GUILayout.EndArea();
         }
+        // s.Stop();
+        // Debug.Log(s.Elapsed);
     }
 
-    private void ShowAllInfo(object info)
+    private void ShowAllInfo(TileInfo info)
     {
-        PropertyInfo[] propertyInfos = info.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-        foreach (var propertyInfo in propertyInfos)
+        foreach (var field in info.Fields)
         {
-            Type t = propertyInfo.PropertyType;
-
-            // if (t.IsGenericType == true)
-            // {
-            //     t = typeof(IList);
-            // }
-
-            object value = propertyInfo.GetValue(info, null);
-            EditorGUILayout.LabelField($"{propertyInfo.Name}:");
-
-            bool v = fieldsDictionary.TryGetValue(t, out Action<object> f);
-
-            if (v == false)
-            {
-                EditorGUILayout.LabelField($"{t} handle not exist");
-                continue;
-            }
-
-            f(value);
+            field.Show();
         }
+        // PropertyInfo[] propertyInfos = info.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+        // foreach (var propertyInfo in propertyInfos)
+        // {
+        //     Type t = propertyInfo.PropertyType;
+
+        //     // if (t.IsGenericType == true)
+        //     // {
+        //     //     t = typeof(IList);
+        //     // }
+
+        //     object value = propertyInfo.GetValue(info, null);
+        //     EditorGUILayout.LabelField($"{propertyInfo.Name}:");
+
+        //     bool v = fieldsDictionary.TryGetValue(t, out Action<object> f);
+
+        //     if (v == false)
+        //     {
+        //         EditorGUILayout.LabelField($"{t} handle not exist");
+        //         continue;
+        //     }
+
+        //     f(value);
+        // }
     }
 
     private void ShowBaseInfo(BaseInfo info)

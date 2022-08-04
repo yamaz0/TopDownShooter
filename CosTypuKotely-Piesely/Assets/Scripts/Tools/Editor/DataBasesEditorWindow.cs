@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using System.Reflection;
 using System;
-
-
 
 abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEditorWindow>
 {
@@ -22,9 +18,9 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
     private string searchString = string.Empty;
     private string searchStringField = string.Empty;
     private System.Type filterType = null;
-    private Comparer<BaseInfo> sortedMethod = Comparer<BaseInfo>.Create((x, BaseInfo) => x.Id.CompareTo(BaseInfo.Id));
+    private Comparer<TileInfo> sortedMethod = Comparer<TileInfo>.Create((x, TileInfo) => x.BaseInfoCache.Id.CompareTo(TileInfo.BaseInfoCache.Id));
     private bool isSortDescending = false;
-    private List<BaseInfo> bases = new List<BaseInfo>();
+    private Data data = new Data();
 
     private List<Type> baseInfoTypes;
     private State currentState = new State();
@@ -36,7 +32,7 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
     public bool IsShowFilter { get => isShowFilter; set => isShowFilter = value; }
     public string SearchString { get => searchString; set => searchString = value; }
     public string SearchStringField { get => searchStringField; set => searchStringField = value; }
-    public List<BaseInfo> Bases { get => bases; set => bases = value; }
+
     public List<Type> BaseInfoTypes { get => baseInfoTypes; set => baseInfoTypes = value; }
     public State CurrentState { get => currentState; set => currentState = value; }
     public State PreviusState { get => previusState; set => previusState = value; }
@@ -45,9 +41,12 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
     public int BeginAreaY { get => basesViewStartY; set => basesViewStartY = value; }
     public bool IsShowAllFields { get => isShowAllFields; set => isShowAllFields = value; }
     public Type FilterType { get => filterType; set => filterType = value; }
-    public Comparer<BaseInfo> SortedMethod { get => sortedMethod; set => sortedMethod = value; }
+    public Comparer<TileInfo> SortedMethod { get => sortedMethod; set => sortedMethod = value; }
     public bool IsSortDescending { get => isSortDescending; set => isSortDescending = value; }
     public IEditorWindowData DataInstance { get; set; }
+    public Data Data { get => data; set => data = value; }
+
+    public event Action OnDataChanged = delegate{};
 
     public void ChangeState(State s)
     {
@@ -80,7 +79,7 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
 
     public void ReverseBaseList()
     {
-        Bases.Reverse();
+        Data.TileInfos.Reverse();
     }
 
     public void ShowHideBaseFilter()
@@ -96,10 +95,10 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
         }
     }
 
-    public void SortBases(Comparer<BaseInfo> comparer)
+    public void SortBases(Comparer<TileInfo> comparer)
     {
         sortedMethod = comparer;
-        Bases.Sort(comparer);
+        Data.Sort(comparer);
 
         if (IsSortDescending == true)
         {
@@ -120,12 +119,14 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
     public void SaveCurrentInstance()
     {
         DataInstance.UpdateBaseInstance(CurrentObjectInstance);
+        OnDataChanged();
     }
 
     public void AddCurrentInstance()
     {
         DataInstance.AddBaseInstance(CurrentObjectInstance);
         ResetSelectedBase();
+        OnDataChanged();
     }
 
     public void RemoveInstance(BaseInfo info)
@@ -136,5 +137,6 @@ abstract public class DataBasesEditorWindow : ScriptableSingleton<DataBasesEdito
             ChangeState(State.NONE);
         }
         DataInstance.RemoveBaseInstance(info);
+        OnDataChanged();
     }
 }

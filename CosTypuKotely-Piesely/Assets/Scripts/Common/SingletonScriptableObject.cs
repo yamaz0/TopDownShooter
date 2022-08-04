@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public interface IEditorWindowData
@@ -37,6 +38,7 @@ public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData 
         if (info != null && notExists)
         {
             Objects.Add(info);
+            EditorUtility.SetDirty(this);
         }
     }
 
@@ -49,6 +51,7 @@ public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData 
                 if (Objects[i].Id == info.Id)
                 {
                     Objects[i] = info;
+                    EditorUtility.SetDirty(this);
                     return;
                 }
             }
@@ -64,6 +67,7 @@ public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData 
                 if (Objects[i].Id == info.Id)
                 {
                     Objects.RemoveAt(i);
+                    EditorUtility.SetDirty(this);
                     return;
                 }
             }
