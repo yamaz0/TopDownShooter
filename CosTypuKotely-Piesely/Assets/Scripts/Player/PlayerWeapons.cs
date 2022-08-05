@@ -1,6 +1,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public class WeaponsSelector
+{
+    [SerializeField]
+    private List<WeaponSlot> weaponsSlots = new List<WeaponSlot>();
+
+    public Counter CurrentSlotNumber { get; set; } = new Counter(0, 0, 9);
+
+    public void AddWeaponToSlot(Weapon w)
+    {
+        CurrentSlotNumber.Increase();
+        //TODO
+    }
+
+    public void NextSlot()
+    {
+        CurrentSlotNumber.Increase();
+        ChangeWeapn();
+    }
+
+    public void PreviousSlot()
+    {
+        CurrentSlotNumber.Decrease();
+        ChangeWeapn();
+    }
+
+    public void SetWeaponSlot(int slotIndex)
+    {
+        if (weaponsSlots[slotIndex].WeaponId == -1) return;
+
+        CurrentSlotNumber.Set(slotIndex);
+        ChangeWeapn();
+    }
+    private void ChangeWeapn()
+    {
+        Player.Instance.PlayerShoot.ChangeWeapon(weaponsSlots[CurrentSlotNumber.Value].WeaponId);//TODO tu bedzie cos innego
+    }
+}
+
+public class WeaponSlot
+{
+    int weaponId;
+    int slotNumber;
+
+    public int WeaponId { get => weaponId; set => weaponId = value; }
+    public int SlotNumber { get => slotNumber; set => slotNumber = value; }
+}
+
 [System.Serializable]
 public class PlayerWeapons
 {
