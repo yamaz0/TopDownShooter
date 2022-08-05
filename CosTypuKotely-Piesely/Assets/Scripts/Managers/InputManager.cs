@@ -17,11 +17,11 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed)
         {
-            Player.Instance.PlayerShoot.Shoot();
+            Player.Instance.PlayerWeapons.Shoot();
         }
         else if (callbackContext.canceled)
         {
-            Player.Instance.PlayerShoot.StopShoot();
+            Player.Instance.PlayerWeapons.StopShoot();
         }
     }
 
@@ -35,7 +35,7 @@ public class InputManager : SingletonPersistence<InputManager>
         if (callbackContext.performed)
         {
             float v = callbackContext.ReadValue<float>();
-            Player.Instance.PlayerShoot.ChangeWeapon((int)v);
+            Player.Instance.PlayerWeapons.ChangeWeapon((int)v);
         }
     }
 

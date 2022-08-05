@@ -15,7 +15,7 @@ public class Player : Singleton<Player>, IDamageable
     [SerializeField]
     private Movement movement;
     [SerializeField]
-    private PlayerWeapons playerShoot;
+    private PlayerWeapons playerWeapons;
     [SerializeField]
     private PlayerStats playerStats;
     [SerializeField]
@@ -23,7 +23,7 @@ public class Player : Singleton<Player>, IDamageable
 
     public Movement Movement { get => movement; set => movement = value; }
     public PlayerStats PlayerStats { get => playerStats; set => playerStats = value; }
-    public PlayerWeapons PlayerShoot { get => playerShoot; set => playerShoot = value; }
+    public PlayerWeapons PlayerWeapons { get => playerWeapons; set => playerWeapons = value; }
     public PlayerBuild PlayerBuild { get => playerBuild; set => playerBuild = value; }
 
     public void TakeDamage(float value)
@@ -33,7 +33,7 @@ public class Player : Singleton<Player>, IDamageable
 
     protected override void Initialize()
     {
-        PlayerShoot.Init();
+        PlayerWeapons.Init();
         PlayerBuild.Init();
     }
 

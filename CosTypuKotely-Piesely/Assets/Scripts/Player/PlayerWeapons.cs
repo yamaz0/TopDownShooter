@@ -9,6 +9,7 @@ public class WeaponsSelector
     private List<WeaponSlot> weaponsSlots = new List<WeaponSlot>();
 
     public Counter CurrentSlotNumber { get; set; } = new Counter(0, 0, 9);
+    public List<WeaponSlot> WeaponsSlots { get => weaponsSlots; set => weaponsSlots = value; }
 
     public void AddWeaponToSlot(Weapon w)
     {
@@ -30,24 +31,25 @@ public class WeaponsSelector
 
     public void SetWeaponSlot(int slotIndex)
     {
-        if (weaponsSlots[slotIndex].WeaponId == -1) return;
+        // if (WeaponsSlots[slotIndex].WeaponId == -1) return;
 
         CurrentSlotNumber.Set(slotIndex);
         ChangeWeapn();
     }
     private void ChangeWeapn()
     {
-        Player.Instance.PlayerShoot.ChangeWeapon(weaponsSlots[CurrentSlotNumber.Value].WeaponId);//TODO tu bedzie cos innego
+        // Player.Instance.PlayerWeapons.ChangeWeapon(WeaponsSlots[CurrentSlotNumber.Value].WeaponId);//TODO tu bedzie cos innego
     }
 }
 
 public class WeaponSlot
 {
-    int weaponId;
+    Weapon weapon;
     int slotNumber;
 
-    public int WeaponId { get => weaponId; set => weaponId = value; }
+    // public int WeaponId { get => weaponId; set => weaponId = value; }
     public int SlotNumber { get => slotNumber; set => slotNumber = value; }
+    public Weapon Weapon { get => weapon; set => weapon = value; }
 }
 
 [System.Serializable]
@@ -55,7 +57,10 @@ public class PlayerWeapons
 {
     [SerializeField]
     private List<Weapon> weapons = new List<Weapon>();
+    [SerializeField]
+    private WeaponsSelector weaponsSelector;
     public Weapon CurrentWeapon { get; set; }
+    public WeaponsSelector WeaponsSelector { get => weaponsSelector; set => weaponsSelector = value; }
 
     public event System.Action<Weapon> OnWeaponChanged = delegate { };
 

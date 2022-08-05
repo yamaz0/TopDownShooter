@@ -9,12 +9,12 @@ public class AmmoUI : MonoBehaviour
     Weapon CacheCurrentWeapon { get; set; }
     private void Start()
     {
-        CacheCurrentWeapon = Player.Instance.PlayerShoot.CurrentWeapon;
+        CacheCurrentWeapon = Player.Instance.PlayerWeapons.CurrentWeapon;
         SetWeaponUI(CacheCurrentWeapon);
         SetCurrentAmmo(CacheCurrentWeapon.Magazine.CurrentMagazineSize);
         SetMaxAmmo(CacheCurrentWeapon.Magazine.MagazineMaxSize);
 
-        Player.Instance.PlayerShoot.OnWeaponChanged += SetWeaponUI;
+        Player.Instance.PlayerWeapons.OnWeaponChanged += SetWeaponUI;
         AttachAmmoEvents();
     }
 
@@ -26,7 +26,7 @@ public class AmmoUI : MonoBehaviour
 
     private void OnDisable()
     {
-        Player.Instance.PlayerShoot.OnWeaponChanged -= SetWeaponUI;
+        Player.Instance.PlayerWeapons.OnWeaponChanged -= SetWeaponUI;
         DetachAmmoEvents();
     }
 
