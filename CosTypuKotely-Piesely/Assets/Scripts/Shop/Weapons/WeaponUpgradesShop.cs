@@ -11,8 +11,6 @@ public class WeaponUpgradesShop : MonoBehaviour
     private Transform content;
     [SerializeField]
     private List<WeaponShop> weaponsUi;
-    [SerializeField]
-    private List<Weapon> weapons;
 
     private void OnEnable()
     {
@@ -22,6 +20,7 @@ public class WeaponUpgradesShop : MonoBehaviour
     public void Refresh()
     {
         weaponsUi.ClearAndDestroy();
+        List<Weapon> weapons = Player.Instance.PlayerWeapons.GetWeapons();
 
         for (int i = 0; i < weapons.Count; i++)
         {

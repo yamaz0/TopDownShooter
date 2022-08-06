@@ -39,6 +39,30 @@ public class InputManager : SingletonPersistence<InputManager>
         }
     }
 
+    public void ReloadWeapon(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            Player.Instance.PlayerWeapons.CurrentWeapon.Reload();
+        }
+    }
+
+    public void ChangeNextWeapon(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            Player.Instance.PlayerWeapons.WeaponsSelector.NextSlot();
+        }
+    }
+
+    public void ChangePreviousWeapon(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            Player.Instance.PlayerWeapons.WeaponsSelector.PreviousSlot();
+        }
+    }
+
     public void StartWave(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)

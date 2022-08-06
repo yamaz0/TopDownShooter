@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullets
 {
     [SerializeField]
-    private List<Bullet> bullets;
+    private List<Bullet> bullets = new List<Bullet>();
     [SerializeField]
     private int amountToPool;
 
@@ -13,8 +13,9 @@ public class Bullets
 
     private List<Bullet> PooledBullets { get; set; }
 
-    public void Init()
+    public void Init(WeaponInfo info)
     {
+        bullets.AddRange(info.Bullets);
         CurrentBullet = bullets[0];
         PooledBullets = new List<Bullet>();
 

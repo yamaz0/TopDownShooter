@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     private bool isUnlocked;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private WeaponInfo info;
 
     public Bullets Bullets { get => bullets; set => bullets = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
@@ -22,20 +24,29 @@ public class Weapon : MonoBehaviour
     Coroutine Coroutine { get; set; }
     bool IsPressFire { get; set; }
     public Magazine Magazine { get => magazine; set => magazine = value; }
+    public WeaponInfo Info { get => info; set => info = value; }
 
     private void OnEnable()
     {
         if (Magazine.IsReloading == true)
         {
             //przeladowanie od nowa
-            StartCoroutine(Magazine.ReloadCorutine());
+            Reload();
         }
     }
 
-    public void Init()
+    public void Reload()
     {
-        Bullets.Init();
-        Magazine.Init();
+        if (Magazine.CanReload() == true)
+            StartCoroutine(Magazine.ReloadCorutine());
+    }
+
+    public void Init(WeaponInfo inf)
+    {
+        Bullets.Init(inf);
+        Magazine.Init(inf);
+        FireRate = inf.FireRate;
+        Info = inf;
     }
 
     public void UpgradeWeapon()
@@ -68,11 +79,11 @@ public class Weapon : MonoBehaviour
     private void SubtractMagazineAmmo()
     {
         Magazine.AddAmmo(-1);
-        bool isReloading = Magazine.CheckMagazine();
+        bool needReload = Magazine.CheckMagazine();
 
-        if (isReloading == true)
+        if (needReload == true)
         {
-            StartCoroutine(Magazine.ReloadCorutine());
+            Reload();
         }
     }
 

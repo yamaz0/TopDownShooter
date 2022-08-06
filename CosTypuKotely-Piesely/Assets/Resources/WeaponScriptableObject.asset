@@ -15,180 +15,31 @@ MonoBehaviour:
   objects:
   - id: 0
   - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
-  - id: 6
-  - id: 7
-  - id: 8
-  - id: 9
-  - id: 10
-  - id: 11
-  - id: 12
-  - id: 13
-  - id: 14
-  - id: 15
-  - id: 16
-  - id: 17
-  - id: 18
   references:
     version: 1
     00000000:
-      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
+      type: {class: WeaponInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 0
-        name: pukafka
+        name: pifpaf
         icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
+        unlockCost: 10
+        magazineSize: 30
+        fireRate: 300
         bullets:
         - {fileID: 1823818033918589086, guid: 35a41db9100b8b74692e5aadc37a7e7c, type: 3}
         - {fileID: 1823818033918589086, guid: 4fb6057dc6f0e194b940f80ed8d95ec8, type: 3}
         - {fileID: 1823818033918589086, guid: e57f67c9996dbb847a896d7d69ae850e, type: 3}
     00000001:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
+      type: {class: WeaponInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 1
-        name: lazerek
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 5
+        name: pewpew
+        icon: {fileID: 21300000, guid: a1c4e5c36c7ec7e42ae3cbadc63fb92a, type: 3}
+        unlockCost: 100
+        magazineSize: 60
+        fireRate: 600
         bullets:
         - {fileID: -7893238372448576483, guid: aece1bac99d16fd4db6ad75336a8f382, type: 3}
         - {fileID: -7893238372448576483, guid: 7816cacc632594b4fb5bcc5f509129f1, type: 3}
         - {fileID: -7893238372448576483, guid: 1abcfa8ffb492bf46a379b959a2c1079, type: 3}
-    00000002:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 2
-        name: dziala
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 27.83
-        bullets: []
-    00000003:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 4
-        name: saddsa
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 2.72
-        bullets: []
-    00000004:
-      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 5
-        name: sdsdad
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 1.34
-        bullets: []
-    00000005:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 6
-        name: sadasd
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 2.4
-        bullets: []
-    00000006:
-      type: {class: ProjectileWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 7
-        name: asd
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 8.3
-        bullets: []
-    00000007:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 8
-        name: opop'o
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 50
-        bullets: []
-    00000008:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 9
-        name: sft
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    00000009:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 10
-        name: fdd
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000A:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 11
-        name: hjh
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000B:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 12
-        name: gghf
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000C:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 13
-        name: kly
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000D:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 14
-        name: jkkj
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000E:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 15
-        name: jkljk
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    0000000F:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 16
-        name: jkljkl
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    00000010:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 17
-        name: kjll
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    00000011:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 18
-        name: jkljkl
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []
-    00000012:
-      type: {class: RayWeaponInfo, ns: , asm: Assembly-CSharp}
-      data:
-        id: 19
-        name: kljkl
-        icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 0
-        bullets: []

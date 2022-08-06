@@ -15,8 +15,9 @@ public class Magazine
     public event System.Action<int> OnMagazineSizeChanged = delegate { };
     public event System.Action<int> OnMagazineMaxSizeChanged = delegate { };
 
-    public void Init()
+    public void Init(WeaponInfo info)
     {
+        MagazineMaxSize = info.MagazineSize;
         SetAmmo(MagazineMaxSize);
     }
 
@@ -33,16 +34,17 @@ public class Magazine
 
     public bool CheckMagazine()
     {
-        if (CurrentMagazineSize <= 0)
-        {
-            IsReloading = true;
-        }
+        return CurrentMagazineSize <= 0;
+    }
 
-        return IsReloading;
+    public bool CanReload()
+    {
+        return CurrentMagazineSize < MagazineMaxSize;
     }
 
     public IEnumerator ReloadCorutine()
     {
+        IsReloading = true;
         yield return new WaitForSeconds(2);
         SetAmmo(MagazineMaxSize);
         IsReloading = false;

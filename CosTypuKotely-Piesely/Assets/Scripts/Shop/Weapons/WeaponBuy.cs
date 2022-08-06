@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class WeaponBuy : WeaponShop
 {
     public override void UpdateWeaponUI()
@@ -21,9 +23,13 @@ public class WeaponBuy : WeaponShop
 
     public override void OnButtonClick()
     {
-        if (Player.Instance.PlayerStats.Gold.Value < (Weapon.Bullets.CurrentWeaponLevel * 100 + 100)) return;
+        if (Player.Instance.PlayerStats.Gold.Value < (Weapon.Info.UnlockCost))
+        {
+            Debug.Log("Not enough cash.");
+            return;
+        }
 
-        Player.Instance.PlayerStats.Gold.AddValue(Weapon.Bullets.CurrentWeaponLevel * 100 + 100);
+        Player.Instance.PlayerStats.Gold.AddValue(Weapon.Info.UnlockCost);
         Weapon.UnlockWeapon();
         UpdateWeaponUI();
     }

@@ -1,64 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class WeaponsSelector
-{
-    [SerializeField]
-    private List<WeaponSlot> weaponsSlots = new List<WeaponSlot>();
-
-    public Counter CurrentSlotNumber { get; set; } = new Counter(0, 0, 9);
-    public List<WeaponSlot> WeaponsSlots { get => weaponsSlots; set => weaponsSlots = value; }
-
-    public void AddWeaponToSlot(Weapon w)
-    {
-        CurrentSlotNumber.Increase();
-        //TODO
-    }
-
-    public void NextSlot()
-    {
-        CurrentSlotNumber.Increase();
-        ChangeWeapn();
-    }
-
-    public void PreviousSlot()
-    {
-        CurrentSlotNumber.Decrease();
-        ChangeWeapn();
-    }
-
-    public void SetWeaponSlot(int slotIndex)
-    {
-        // if (WeaponsSlots[slotIndex].WeaponId == -1) return;
-
-        CurrentSlotNumber.Set(slotIndex);
-        ChangeWeapn();
-    }
-    private void ChangeWeapn()
-    {
-        // Player.Instance.PlayerWeapons.ChangeWeapon(WeaponsSlots[CurrentSlotNumber.Value].WeaponId);//TODO tu bedzie cos innego
-    }
-}
-
-public class WeaponSlot
-{
-    Weapon weapon;
-    int slotNumber;
-
-    // public int WeaponId { get => weaponId; set => weaponId = value; }
-    public int SlotNumber { get => slotNumber; set => slotNumber = value; }
-    public Weapon Weapon { get => weapon; set => weapon = value; }
-}
-
 [System.Serializable]
 public class PlayerWeapons
 {
     [SerializeField]
-    private List<Weapon> weapons = new List<Weapon>();
-    [SerializeField]
-    private WeaponsSelector weaponsSelector;
+    private WeaponsSelector weaponsSelector = new WeaponsSelector();
     public Weapon CurrentWeapon { get; set; }
     public WeaponsSelector WeaponsSelector { get => weaponsSelector; set => weaponsSelector = value; }
 
@@ -66,25 +13,43 @@ public class PlayerWeapons
 
     public void Init()
     {
-        foreach (var weapon in weapons)
+        List<WeaponInfo> wi = WeaponsScriptableObject.Instance.GetWeaponsList();//TODO zmienic na pobieranie z dostepnych na mapie
+
+        WeaponsSelector.Init();
+        WeaponsSelector.AddWeaponToSlot(wi[0]);//TODO bron startowa
+        WeaponsSelector.AddWeaponToSlot(wi[1]);//TODO bron startowa
+    }
+
+    public void Reload()
+    {
+        CurrentWeapon.Magazine.ReloadCorutine();
+    }
+
+    public List<Weapon> GetWeapons()
+    {
+        List<Weapon> list = new List<Weapon>();
+
+        foreach (var slot in WeaponsSelector.WeaponsSlots)
         {
-            weapon.Init();
+            if (slot.Weapon != null)
+                list.Add(slot.Weapon);
         }
 
-        CurrentWeapon = weapons[0];
-        CurrentWeapon.IsUnlocked = true;
-        CurrentWeapon.gameObject.SetActive(true);
+        return list;
     }
 
     public void ChangeWeapon(int index)
     {
-        if (weapons[index].IsUnlocked == true && CurrentWeapon != weapons[index])//TODO zmienic to na SO albo w ogole na klase z przypisanowymi klawiszami
-        {
-            CurrentWeapon.gameObject.SetActive(false);
-            CurrentWeapon = weapons[index];
-            CurrentWeapon.gameObject.SetActive(true);
-            OnWeaponChanged(CurrentWeapon);
-        }
+        WeaponsSelector.SetWeaponSlot(index);
+    }
+
+    public void ChangeWeapon(Weapon weapon)
+    {
+        if (weapon == null) return;
+        CurrentWeapon?.gameObject.SetActive(false);
+        CurrentWeapon = weapon;
+        CurrentWeapon.gameObject.SetActive(true);
+        OnWeaponChanged(CurrentWeapon);
     }
 
     public void Shoot()
