@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WheelElementUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
+public class WheelElementUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
@@ -14,12 +14,12 @@ public class WheelElementUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         transform.DOScale(1f, 0.2f);
     }
 
-    public virtual void OnSelect(BaseEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
 
     }
 
-    public virtual void OnDeselect(BaseEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
 
     }

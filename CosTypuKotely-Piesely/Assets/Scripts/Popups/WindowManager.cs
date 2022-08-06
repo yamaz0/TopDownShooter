@@ -7,6 +7,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private GameObject shop;
     [SerializeField]
+    private GameObject wheelWeaponsUI;
+    [SerializeField]
     private CameraFollow cameraFollow;
 
     private void SetCharacterMovement(bool state)
@@ -19,5 +21,9 @@ public class WindowManager : Singleton<WindowManager>
     {
         SetCharacterMovement(shop.activeSelf);
         shop.SetActive(!shop.activeSelf);
+    }
+    public void ShowWeaponsWheel()
+    {
+        wheelWeaponsUI.SetActive(!wheelWeaponsUI.activeSelf);
     }
 }

@@ -96,6 +96,7 @@ public class Weapon : MonoBehaviour
     public void StopShoot()
     {
         IsPressFire = false;
-        StopCoroutine(Coroutine);
+        if (Coroutine != null)
+            StopCoroutine(Coroutine);
     }
 }

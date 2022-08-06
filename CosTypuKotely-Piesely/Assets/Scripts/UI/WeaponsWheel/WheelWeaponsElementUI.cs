@@ -12,20 +12,24 @@ public class WheelWeaponsElementUI : WheelElementUI
     private TMPro.TMP_Text weaponNameText;
     [SerializeField]
     private int slotIndex;
+    public string slotWeaponName;
 
     public void Init(WeaponSlot slot)
     {
         slotIndex = slot.SlotNumber;
-        // icon.sprite = slot.Weapon.Info.Icon;
-        // weaponNameText.SetText(slot.Weapon.Info.Name);
+        if (slot.Weapon == null) return;
+        icon.sprite = slot.Weapon.Info.Icon;
+        slotWeaponName = slot.Weapon.Info.Name;
     }
 
-    public override void OnSelect(BaseEventData eventData)
+    public override void OnPointerDown(PointerEventData eventData)
     {
         Player.Instance.PlayerWeapons.ChangeWeapon(slotIndex);
+        weaponNameText.SetText(slotWeaponName);
+        WindowManager.Instance.ShowWeaponsWheel();
     }
-    public override void OnDeselect(BaseEventData eventData)
+    public override void OnPointerUp(PointerEventData eventData)
     {
-        
+
     }
 }
