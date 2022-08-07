@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  timeToDeactivate: 2
+  upgradeCost: 20
   rb: {fileID: 1823818033918589085}
   speed: 25
 --- !u!50 &1823818033918589085

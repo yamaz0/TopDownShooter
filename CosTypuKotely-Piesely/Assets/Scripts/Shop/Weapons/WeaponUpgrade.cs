@@ -1,7 +1,19 @@
+using UnityEngine;
+
 public class WeaponUpgrade : WeaponShop
 {
     public override void OnButtonClick()
     {
+        float upgradeCost = Weapon.Bullets.GetNextBullet().UpgradeCost;
+        Float playerCash = Player.Instance.PlayerStats.Cash;
+
+        if (upgradeCost > playerCash.Value)
+        {
+            Debug.Log("Not enough cash");
+            return;
+        }
+
+        playerCash.AddValue(-upgradeCost);
         Weapon.UpgradeWeapon();
         UpdateWeaponUI();
     }
@@ -14,14 +26,12 @@ public class WeaponUpgrade : WeaponShop
         bool isNextBulletExist = nextBullet != null;
 
         FireRateText.SetText(Weapon.FireRate.ToString());
-        CostText.SetText((currentWeaponLevel * 100 + 100).ToString());
-
         DamageText.SetText(currentBullet.Damage.ToString());
-
         LevelWeaponText.SetText(currentWeaponLevel.ToString());
 
         if (isNextBulletExist == true)
         {
+            CostText.SetText(nextBullet.UpgradeCost.ToString());
             NextDamageText.SetText(nextBullet.Damage.ToString());
             NextLevelWeaponText.SetText((currentWeaponLevel + 1).ToString());
         }
@@ -29,7 +39,7 @@ public class WeaponUpgrade : WeaponShop
         {
             NextDamageText.SetText("MAX");
             NextLevelWeaponText.SetText("MAX");
-            Image.color = new UnityEngine.Color(0.2391734f,254717f,2390976f);
+            Image.color = new UnityEngine.Color(0.2391734f, 254717f, 2390976f);
         }
 
         Button.gameObject.SetActive(isNextBulletExist);

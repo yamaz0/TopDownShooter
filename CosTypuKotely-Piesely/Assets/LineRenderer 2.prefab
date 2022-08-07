@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   timeToDeactivate: 0.05
+  upgradeCost: 30
   lineRenderer: {fileID: 5286298281204168261}
   filtr:
     useTriggers: 0

@@ -28,7 +28,7 @@ public class Cost
     public bool TryBuy()
     {
         float cost = GetValue();
-        Float playerGold = Player.Instance.PlayerStats.Gold;
+        Float playerGold = Player.Instance.PlayerStats.Cash;
 
         if (playerGold.Value < cost)
             return false;

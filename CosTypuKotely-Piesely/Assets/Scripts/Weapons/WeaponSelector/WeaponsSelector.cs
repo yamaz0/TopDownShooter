@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponsSelector
 {
+    private const int SLOT_COUNT = 10;
     [SerializeField]
     private Weapon weaponTemplate;
     [SerializeField]
@@ -16,41 +17,75 @@ public class WeaponsSelector
 
     public void Init()
     {
-        WeaponsSlots = new List<WeaponSlot>(10);
-        for (int i = 0; i < 10; i++)
+        if (WeaponsSlots != null && WeaponsSlots.Count == SLOT_COUNT)
         {
-            WeaponsSlots.Add(new WeaponSlot(i));
+            for (int i = 0; i < SLOT_COUNT; i++)
+            {
+                Weapon w = WeaponsSlots[i].Weapon;
+                if (w != null) { GameObject.Destroy(w); }
+            }
+        }
+        else
+        {
+            WeaponsSlots = new List<WeaponSlot>(SLOT_COUNT);
+
+            for (int i = 0; i < SLOT_COUNT; i++)
+            {
+                WeaponsSlots.Add(new WeaponSlot(i));
+            }
         }
     }
 
-    public void AddWeaponToSlot(int weaponId)
+    public void AddWeaponToSlot(int weaponId, int slotIndex = 1)
     {
         WeaponInfo weaponInfo = WeaponsScriptableObject.Instance.GetWeaponInfoById(weaponId);
-        AddWeaponToSlot(weaponInfo);
+        AddWeaponToSlot(weaponInfo, slotIndex);
     }
 
-    public void AddWeaponToSlot(WeaponInfo info)
+    public void AddWeaponToSlot(WeaponInfo info, int slotIndex = 1)
     {
         Weapon newWeapon = GameObject.Instantiate(weaponTemplate, playerWeaponTransform);
         newWeapon.Init(info);
         newWeapon.gameObject.SetActive(true);//mozliwosc wycieku broni. bedzie kupiona ale nie bedzie przypisana xD//TODO do poprawy
 
-        for (int i = 0; i < WeaponsSlots.Count; i++)
+        SetWeaponToIndexOrFirstEmpty(newWeapon, slotIndex);
+    }
+
+    private void SetWeaponToIndexOrFirstEmpty(Weapon newWeapon, int slotIndex)//TODO sprobowac przerobic na ladniejsze
+    {
+        if (WeaponsSlots[slotIndex].Weapon == null)//jesli docelowy slot jest pusty
         {
-            if (WeaponsSlots[i].Weapon == null)
+            SetWeaponToSlot(newWeapon, slotIndex);
+        }
+        else//jesli nie jest pusty to znajdz pusty ale od pierwszego slotu a na koncu osobno sprawdz zerowy
+        {
+            for (int i = 1; i < WeaponsSlots.Count; i++)
             {
-                WeaponsSlots[i].SetWeapon(newWeapon);
-                newWeapon.IsUnlocked = true;
-                CurrentSlotNumber.Set(i);
-                ChangeWeapn();
-                break;
+                if (WeaponsSlots[i].Weapon == null)
+                {
+                    SetWeaponToSlot(newWeapon, i);
+                    return;
+                }
+            }
+
+            if (WeaponsSlots[0].Weapon == null)
+            {
+                SetWeaponToSlot(newWeapon, 0);
             }
         }
     }
 
+    private void SetWeaponToSlot(Weapon newWeapon, int i)
+    {
+        WeaponsSlots[i].SetWeapon(newWeapon);
+        newWeapon.IsUnlocked = true;
+        CurrentSlotNumber.Set(i);
+        ChangeWeapn();
+    }
+
     public void NextSlot()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < SLOT_COUNT; i++)
         {
             CurrentSlotNumber.Increase();
 
@@ -65,7 +100,7 @@ public class WeaponsSelector
 
     public void PreviousSlot()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < SLOT_COUNT; i++)
         {
             CurrentSlotNumber.Decrease();
 

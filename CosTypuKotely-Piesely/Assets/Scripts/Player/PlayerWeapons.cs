@@ -16,8 +16,8 @@ public class PlayerWeapons
         List<WeaponInfo> wi = WeaponsScriptableObject.Instance.GetWeaponsList();//TODO zmienic na pobieranie z dostepnych na mapie
 
         WeaponsSelector.Init();
-        WeaponsSelector.AddWeaponToSlot(wi[0]);//TODO bron startowa
-        WeaponsSelector.AddWeaponToSlot(wi[1]);//TODO bron startowa
+        WeaponsSelector.AddWeaponToSlot(wi[1], 2);//TODO bron startowa
+        WeaponsSelector.AddWeaponToSlot(wi[0], 1);//TODO bron startowa
     }
 
     public void Reload()

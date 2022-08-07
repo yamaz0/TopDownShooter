@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour
         Bullets.Init(inf);
         Magazine.Init(inf);
         FireRate = inf.FireRate;
+        spriteRenderer.sprite = inf.Icon;
         Info = inf;
     }
 

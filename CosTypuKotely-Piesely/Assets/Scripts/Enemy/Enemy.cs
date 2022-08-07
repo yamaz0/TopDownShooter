@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Player.Instance.PlayerStats.Gold.AddValue(Gold);
+        Player.Instance.PlayerStats.Cash.AddValue(Gold);
         WaveManager.Instance.EnemiesCounter.AddValue(-1);
         IsAlive = false;
         Destroy(gameObject);

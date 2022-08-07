@@ -40,7 +40,7 @@ public class StructureUnlock : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        if (Player.Instance.PlayerStats.Gold.Value >= CacheInfo.UnlockCost)
+        if (Player.Instance.PlayerStats.Cash.Value >= CacheInfo.UnlockCost)
         {
             Unlock();
         }
@@ -53,7 +53,7 @@ public class StructureUnlock : MonoBehaviour
     private void Unlock()
     {
         Player playerInstance = Player.Instance;
-        playerInstance.PlayerStats.Gold.AddValue(-CacheInfo.UnlockCost);
+        playerInstance.PlayerStats.Cash.AddValue(-CacheInfo.UnlockCost);
         playerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
         SetUnlockVisibility(false);
     }

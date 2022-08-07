@@ -14,13 +14,13 @@ public class PlayerStats
     [SerializeField]
     private Float fireRate = new Float(100);
     [SerializeField]
-    private Float gold = new Float(0);
+    private Float cash = new Float(0);
 
     public Float Hp { get => hp; set => hp = value; }
     public Float MaxHp { get => maxHp; set => maxHp = value; }
     public Float Armor { get => armor; set => armor = value; }
     public Float Speed { get => speed; set => speed = value; }
-    public Float Gold { get => gold; set => gold = value; }
+    public Float Cash { get => cash; set => cash = value; }
     public Float FireRateBonus { get => fireRate; set => fireRate = value; }
 
     public Float GetStat(string statName)
@@ -31,7 +31,7 @@ public class PlayerStats
             "MaxHp" => MaxHp,
             "Armor" => Armor,
             "Speed" => Speed,
-            "Gold" => Gold,
+            "Cash" => Cash,
             _ => null
         };
     }

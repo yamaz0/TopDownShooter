@@ -11,15 +11,22 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private CameraFollow cameraFollow;
 
-    private void SetCharacterMovement(bool state)
+    private void SetCharacterControl(bool state)
     {
         InputManager.Instance.ActionMapSetActiv("CharacterControl", state);
         cameraFollow.enabled = state;
     }
 
+    private void SetCharacterShooting(bool state)
+    {
+        InputManager.Instance.ActionMapSetActiv("Shooting", state);
+        cameraFollow.enabled = state;
+    }
+
     public void ShowShop()
     {
-        SetCharacterMovement(shop.activeSelf);
+        SetCharacterControl(shop.activeSelf);
+        SetCharacterShooting(shop.activeSelf);
         shop.SetActive(!shop.activeSelf);
     }
     public void ShowWeaponsWheel()

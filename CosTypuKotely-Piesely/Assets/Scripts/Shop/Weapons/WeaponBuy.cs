@@ -23,13 +23,13 @@ public class WeaponBuy : WeaponShop
 
     public override void OnButtonClick()
     {
-        if (Player.Instance.PlayerStats.Gold.Value < (Weapon.Info.UnlockCost))
+        if (Player.Instance.PlayerStats.Cash.Value < Weapon.Info.UnlockCost)
         {
             Debug.Log("Not enough cash.");
             return;
         }
 
-        Player.Instance.PlayerStats.Gold.AddValue(Weapon.Info.UnlockCost);
+        Player.Instance.PlayerStats.Cash.AddValue(-Weapon.Info.UnlockCost);
         Weapon.UnlockWeapon();
         UpdateWeaponUI();
     }
