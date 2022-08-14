@@ -83,9 +83,9 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         unlockCost: 2
-        hp: 0.7
+        hp: 100
         type: 1
-        dmg: 0.43
+        dmg: 1
         fireRate: 2
         range: 5
     00000002:
@@ -119,9 +119,9 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         unlockCost: 3
-        hp: 1.2
+        hp: 500
         type: 1
-        dmg: 1.02
+        dmg: 10
         fireRate: 1
         range: 11
     00000003:
@@ -155,5 +155,5 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         unlockCost: 4
-        hp: 61.05
+        hp: 1000
         type: 0

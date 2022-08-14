@@ -2,14 +2,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public interface IEditorWindowData
-{
-    List<BaseInfo> Objects { get; set; }
-    public void AddBaseInstance(BaseInfo x);
-    public void UpdateBaseInstance(BaseInfo x);
-    public void RemoveBaseInstance(BaseInfo x);
-}
-
 [System.Serializable]
 public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData where T : SingletonScriptableObject<T>
 {
@@ -30,7 +22,7 @@ public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData 
     {
         Init();
     }
-
+#if UNITY_EDITOR
     public void AddBaseInstance(BaseInfo info)
     {
         bool notExists = Objects.ContainsId(info) == false;
@@ -73,4 +65,5 @@ public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData 
             }
         }
     }
+#endif
 }
