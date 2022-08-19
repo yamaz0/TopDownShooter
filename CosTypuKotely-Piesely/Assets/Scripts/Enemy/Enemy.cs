@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Enemy : MonoBehaviour
 {
@@ -24,9 +25,12 @@ public class Enemy : MonoBehaviour
 
     public IDamageable Target = null;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void Update()
     {
-        Vector2 direction = Player.Instance.transform.position - transform.position;
+        Vector2 direction = PlayerInstance.transform.position - transform.position;
         rb.velocity = direction.normalized * speed * Time.deltaTime;
     }
 
@@ -51,7 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Player.Instance.PlayerStats.Cash.AddValue(Gold);
+        PlayerInstance.PlayerStats.Cash.AddValue(Gold);
         WaveManager.Instance.EnemiesCounter.AddValue(-1);
         IsAlive = false;
         Destroy(gameObject);

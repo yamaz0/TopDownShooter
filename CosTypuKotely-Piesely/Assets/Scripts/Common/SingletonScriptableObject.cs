@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData where T : SingletonScriptableObject<T>
+public abstract class SingletonScriptableObject<T> : ScriptableObject, IEditorWindowData where T : SingletonScriptableObject<T>
 {
     private static T instance;
 

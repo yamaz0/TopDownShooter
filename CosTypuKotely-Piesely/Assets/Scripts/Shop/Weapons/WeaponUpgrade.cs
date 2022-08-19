@@ -1,11 +1,15 @@
 using UnityEngine;
+using Zenject;
 
 public class WeaponUpgrade : WeaponShop
 {
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     public override void OnButtonClick()
     {
         float upgradeCost = Weapon.Bullets.GetNextBullet().UpgradeCost;
-        Float playerCash = Player.Instance.PlayerStats.Cash;
+        Float playerCash = PlayerInstance.PlayerStats.Cash;
 
         if (upgradeCost > playerCash.Value)
         {

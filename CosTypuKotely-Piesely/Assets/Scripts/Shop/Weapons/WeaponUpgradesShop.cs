@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class WeaponUpgradesShop : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class WeaponUpgradesShop : MonoBehaviour
     [SerializeField]
     private List<WeaponShop> weaponsUi;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void OnEnable()
     {
         Refresh();
@@ -20,7 +24,7 @@ public class WeaponUpgradesShop : MonoBehaviour
     public void Refresh()
     {
         weaponsUi.ClearAndDestroy();
-        List<Weapon> weapons = Player.Instance.PlayerWeapons.GetWeapons();
+        List<Weapon> weapons = PlayerInstance.PlayerWeapons.GetWeapons();
 
         for (int i = 0; i < weapons.Count; i++)
         {

@@ -2,27 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class HealthBar : MonoBehaviour
 {
     [SerializeField]
     private Slider slider;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void Start()
     {
-        SetHp(Player.Instance.PlayerStats.Hp.Value);
+        SetHp(PlayerInstance.PlayerStats.Hp.Value);
 
-        Player.Instance.PlayerStats.Hp.OnValueChanged += SetHp;
+        PlayerInstance.PlayerStats.Hp.OnValueChanged += SetHp;
     }
 
     private void OnDisable()
     {
-        Player.Instance.PlayerStats.Hp.OnValueChanged -= SetHp;
+        PlayerInstance.PlayerStats.Hp.OnValueChanged -= SetHp;
     }
 
     public void SetHp(float value)
     {
-        float hpPercentageValue = Player.Instance.PlayerStats.Hp.Value / Player.Instance.PlayerStats.MaxHp.Value;
+        float hpPercentageValue = PlayerInstance.PlayerStats.Hp.Value / PlayerInstance.PlayerStats.MaxHp.Value;
         slider.value = hpPercentageValue;
     }
 }

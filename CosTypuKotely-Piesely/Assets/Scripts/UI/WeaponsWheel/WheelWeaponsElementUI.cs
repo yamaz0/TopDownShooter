@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 public class WheelWeaponsElementUI : WheelElementUI
 {
@@ -14,6 +15,9 @@ public class WheelWeaponsElementUI : WheelElementUI
     private int slotIndex;
     public string slotWeaponName;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     public void Init(WeaponSlot slot)
     {
         slotIndex = slot.SlotNumber;
@@ -24,7 +28,7 @@ public class WheelWeaponsElementUI : WheelElementUI
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        Player.Instance.PlayerWeapons.ChangeWeapon(slotIndex);
+        PlayerInstance.PlayerWeapons.ChangeWeapon(slotIndex);
         weaponNameText.SetText(slotWeaponName);
         WindowManager.Instance.ShowWeaponsWheel();
     }

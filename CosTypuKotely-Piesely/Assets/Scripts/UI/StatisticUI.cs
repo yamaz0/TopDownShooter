@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class StatisticUI : MonoBehaviour
 {
@@ -10,14 +11,17 @@ public class StatisticUI : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text text;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void Start()
     {
-        Player.Instance.PlayerStats.GetStat(statName).OnValueChanged += SetValue;
+        PlayerInstance.PlayerStats.GetStat(statName).OnValueChanged += SetValue;
     }
 
     private void OnDisable()
     {
-        Player.Instance.PlayerStats.GetStat(statName).OnValueChanged -= SetValue;
+        PlayerInstance.PlayerStats.GetStat(statName).OnValueChanged -= SetValue;
     }
 
     public void SetValue(float value)

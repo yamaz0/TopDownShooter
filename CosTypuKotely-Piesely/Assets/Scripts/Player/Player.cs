@@ -31,7 +31,7 @@ public class Player : Singleton<Player>, IDamageable
         PlayerStats.Hp.AddValue(value);
     }
 
-    protected override void Initialize()
+    public void Init()//TODO zmienic na initializacje przy wczytaniu mapy
     {
         PlayerWeapons.Init();
         PlayerBuild.Init();

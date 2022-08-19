@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 [System.Serializable]
 public class StatUI: MonoBehaviour
@@ -10,11 +11,13 @@ public class StatUI: MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text statNameText;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
     public Float CacheStat { get; private set; }
 
     public void Init()
     {
-        Float stat = Player.Instance.PlayerStats.GetStat(statName);
+        Float stat = PlayerInstance.PlayerStats.GetStat(statName);
         CacheStat = stat;
         SetText(CacheStat.Value);
         statNameText.SetText(statName);

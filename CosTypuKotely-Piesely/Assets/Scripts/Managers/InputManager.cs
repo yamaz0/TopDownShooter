@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class InputManager : SingletonPersistence<InputManager>
 {
@@ -8,6 +9,8 @@ public class InputManager : SingletonPersistence<InputManager>
 
     public PlayerInput Input { get => input; }
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
     // private void Start()
     // {
     //     ActionMapSetActiv("WaveBreak", true);
@@ -17,17 +20,17 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed)
         {
-            Player.Instance.PlayerWeapons.Shoot();
+            PlayerInstance.PlayerWeapons.Shoot();
         }
         else if (callbackContext.canceled)
         {
-            Player.Instance.PlayerWeapons.StopShoot();
+            PlayerInstance.PlayerWeapons.StopShoot();
         }
     }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
-        Player.Instance.Movement.SetDirection(callbackContext.ReadValue<Vector2>());
+        PlayerInstance.Movement.SetDirection(callbackContext.ReadValue<Vector2>());
     }
 
     public void ChangeWeapon(InputAction.CallbackContext callbackContext)
@@ -35,7 +38,7 @@ public class InputManager : SingletonPersistence<InputManager>
         if (callbackContext.performed)
         {
             float v = callbackContext.ReadValue<float>();
-            Player.Instance.PlayerWeapons.ChangeWeapon((int)v);
+            PlayerInstance.PlayerWeapons.ChangeWeapon((int)v);
         }
     }
 
@@ -43,7 +46,7 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed)
         {
-            Player.Instance.PlayerWeapons.CurrentWeapon.Reload();
+            PlayerInstance.PlayerWeapons.CurrentWeapon.Reload();
         }
     }
 
@@ -51,7 +54,7 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed)
         {
-            Player.Instance.PlayerWeapons.WeaponsSelector.NextSlot();
+            PlayerInstance.PlayerWeapons.WeaponsSelector.NextSlot();
         }
     }
 
@@ -59,7 +62,7 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed)
         {
-            Player.Instance.PlayerWeapons.WeaponsSelector.PreviousSlot();
+            PlayerInstance.PlayerWeapons.WeaponsSelector.PreviousSlot();
         }
     }
 
@@ -75,7 +78,7 @@ public class InputManager : SingletonPersistence<InputManager>
     {
         if (callbackContext.performed && WaveManager.Instance.IsWave == false)
         {
-            PlayerBuild playerBuild = Player.Instance.PlayerBuild;
+            PlayerBuild playerBuild = PlayerInstance.PlayerBuild;
             playerBuild.ChangeMode();
             bool isBuildMode = playerBuild.IsBuildMode;
 
@@ -89,14 +92,14 @@ public class InputManager : SingletonPersistence<InputManager>
         if (callbackContext.performed)
         {
             float v = callbackContext.ReadValue<float>();
-            Player.Instance.PlayerBuild.SetCurrentStructureId((int)v);
+            PlayerInstance.PlayerBuild.SetCurrentStructureId((int)v);
         }
     }
 
     public void BuildStructure(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
-            Player.Instance.PlayerBuild.Build();
+            PlayerInstance.PlayerBuild.Build();
     }
 
     public void ActionMapSetActiv(string name, bool state)

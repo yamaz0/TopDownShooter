@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class StructureTemplate : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class StructureTemplate : MonoBehaviour
     public bool CanBuild { get; private set; } = true;
     public Transform PlaceTransform { get => placeTransform; set => placeTransform = value; }
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void FixedUpdate()
     {
         transform.position = PlaceTransform.position;
@@ -41,7 +45,7 @@ public class StructureTemplate : MonoBehaviour
 
     public bool CheckConditions()
     {
-        bool playerHaveGold = Player.Instance.PlayerStats.Cash.Value >= Info.Cost.Evaluate(0);//TODO
+        bool playerHaveGold = PlayerInstance.PlayerStats.Cash.Value >= Info.Cost.Evaluate(0);//TODO
         return CanBuild && playerHaveGold;
     }
 

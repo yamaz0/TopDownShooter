@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 [System.Serializable]
 public class WeaponsSelector
@@ -14,6 +15,9 @@ public class WeaponsSelector
 
     public Counter CurrentSlotNumber { get; set; } = new Counter(0, 0, 9);
     public List<WeaponSlot> WeaponsSlots { get => weaponsSlots; set => weaponsSlots = value; }
+
+    [Inject]
+    private Player PlayerInstance { get; set; }
 
     public void Init()
     {
@@ -125,6 +129,6 @@ public class WeaponsSelector
 
     private void ChangeWeapn()
     {
-        Player.Instance.PlayerWeapons.ChangeWeapon(WeaponsSlots[CurrentSlotNumber.Value].Weapon);
+        PlayerInstance.PlayerWeapons.ChangeWeapon(WeaponsSlots[CurrentSlotNumber.Value].Weapon);
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class AmmoUI : MonoBehaviour
 {
@@ -7,14 +8,18 @@ public class AmmoUI : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text maxAmmoText;
     Weapon CacheCurrentWeapon { get; set; }
+
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     private void Start()
     {
-        CacheCurrentWeapon = Player.Instance.PlayerWeapons.CurrentWeapon;
+        CacheCurrentWeapon = PlayerInstance.PlayerWeapons.CurrentWeapon;
         SetWeaponUI(CacheCurrentWeapon);
         SetCurrentAmmo(CacheCurrentWeapon.Magazine.CurrentMagazineSize);
         SetMaxAmmo(CacheCurrentWeapon.Magazine.MagazineMaxSize);
 
-        Player.Instance.PlayerWeapons.OnWeaponChanged += SetWeaponUI;
+        PlayerInstance.PlayerWeapons.OnWeaponChanged += SetWeaponUI;
         AttachAmmoEvents();
     }
 
@@ -26,7 +31,7 @@ public class AmmoUI : MonoBehaviour
 
     private void OnDisable()
     {
-        Player.Instance.PlayerWeapons.OnWeaponChanged -= SetWeaponUI;
+        PlayerInstance.PlayerWeapons.OnWeaponChanged -= SetWeaponUI;
         DetachAmmoEvents();
     }
 

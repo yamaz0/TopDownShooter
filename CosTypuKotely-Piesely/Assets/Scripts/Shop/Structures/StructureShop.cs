@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class StructureShop : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class StructureShop : MonoBehaviour
     [SerializeField]
     private Transform content;
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
     public List<StructureUnlock> Structures { get; private set; }
 
     private void OnEnable()
@@ -29,7 +32,7 @@ public class StructureShop : MonoBehaviour
         foreach (var info in structuresInfo)
         {
             StructureUnlock newStructureUnlock = Instantiate(template, content);
-            bool isUnlocked = Player.Instance.PlayerBuild.UnlockStructureIds.Contains(info.Id);
+            bool isUnlocked = PlayerInstance.PlayerBuild.UnlockStructureIds.Contains(info.Id);
 
             newStructureUnlock.gameObject.SetActive(true);
             newStructureUnlock.Init(info);

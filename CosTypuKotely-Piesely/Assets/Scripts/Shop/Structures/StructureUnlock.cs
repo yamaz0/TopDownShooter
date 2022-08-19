@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class StructureUnlock : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class StructureUnlock : MonoBehaviour
     [SerializeField]
     private StructureInfo CacheInfo { get; set; }
 
+    [Inject]
+    private Player PlayerInstance { get; set; }
+
     public void Init(StructureInfo info)
     {
         CacheInfo = info;
@@ -40,7 +44,7 @@ public class StructureUnlock : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        if (Player.Instance.PlayerStats.Cash.Value >= CacheInfo.UnlockCost)
+        if (PlayerInstance.PlayerStats.Cash.Value >= CacheInfo.UnlockCost)
         {
             Unlock();
         }
@@ -52,9 +56,8 @@ public class StructureUnlock : MonoBehaviour
 
     private void Unlock()
     {
-        Player playerInstance = Player.Instance;
-        playerInstance.PlayerStats.Cash.AddValue(-CacheInfo.UnlockCost);
-        playerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
+        PlayerInstance.PlayerStats.Cash.AddValue(-CacheInfo.UnlockCost);
+        PlayerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
         SetUnlockVisibility(false);
     }
 }

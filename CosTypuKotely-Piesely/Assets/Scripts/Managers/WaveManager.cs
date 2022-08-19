@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class WaveManager : Singleton<WaveManager>
 {
@@ -12,17 +13,14 @@ public class WaveManager : Singleton<WaveManager>
     [SerializeReference]
     private WaveEndConditionBase x = new WaveEndEnemyCountCondition();
 
-    public Float EnemiesCounter { get; set; }
+    public Float EnemiesCounter { get; set; } = new Float(0);
     public Spawn Spawner { get => spawner; set => spawner = value; }
 
     public event System.Action OnWaveStart = delegate { };
     public event System.Action OnWaveEnd = delegate { };
 
-    private void Start()
-    {
-        EnemiesCounter = new Float(0);
-        // EnemiesCounter.OnValueChanged += CheckWaveEnd;
-    }
+    [Inject]
+    private Player PlayerInstance { get; set; }
 
     private void OnDisable()
     {
@@ -49,7 +47,7 @@ public class WaveManager : Singleton<WaveManager>
         InputManager.Instance.ActionMapSetActiv("Building", false);
         InputManager.Instance.ActionMapSetActiv("Shooting", true);
         statementTextUI.ShowText("Wave Start");
-        Player.Instance.PlayerBuild.ShowTemplate(false);
+        PlayerInstance.PlayerBuild.ShowTemplate(false);
         ResetWave();
         OnWaveStart();
         Spawner.StartWave();
