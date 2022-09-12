@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-public class WheelWeaponsElementUI : WheelElementUI
+public class WheelWeaponsElementUI : SelectElementUI
 {
     [SerializeField]
     private Image icon;

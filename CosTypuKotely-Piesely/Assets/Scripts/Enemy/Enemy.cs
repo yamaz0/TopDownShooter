@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+// using Zenject;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +14,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
+    private BoxCollider2D boxCollider;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float maxSpeed;
@@ -25,13 +29,16 @@ public class Enemy : MonoBehaviour
 
     public IDamageable Target = null;
 
-    [Inject]
-    private Player PlayerInstance { get; set; }
+    // [Inject]
+    // private Player PlayerInstance { get; set; }
 
     private void Update()
     {
-        Vector2 direction = PlayerInstance.transform.position - transform.position;
-        rb.velocity = direction.normalized * speed * Time.deltaTime;
+        if (IsAlive == true)
+        {
+            Vector2 direction = Player.Instance.transform.position - transform.position;
+            rb.velocity = direction.normalized * speed * Time.deltaTime;
+        }
     }
 
     public void Init(int strenghtMultiplier)
@@ -55,12 +62,25 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        PlayerInstance.PlayerStats.Cash.AddValue(Gold);
+        Player.Instance.PlayerStats.Cash.AddValue(Gold);
         WaveManager.Instance.EnemiesCounter.AddValue(-1);
         IsAlive = false;
-        Destroy(gameObject);
+        rb.velocity = Vector2.zero;
+        boxCollider.enabled = false;
+        StartCoroutine(Dissolve());
     }
 
+    private IEnumerator Dissolve()
+    {
+        float fade = 1;
+        while (fade > 0)
+        {
+            fade -= Time.deltaTime;
+            spriteRenderer.material.SetFloat("_Fade", fade);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(gameObject);
+    }
     private IDamageable CheckDamageable(Collider2D other)
     {
         return other.GetComponent<IDamageable>();

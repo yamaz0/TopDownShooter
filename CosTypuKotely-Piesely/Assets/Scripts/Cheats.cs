@@ -53,11 +53,30 @@ public class Cheats : MonoBehaviour
         return str;
     }
 
-
-    [MenuItem("Cheats/test")]
-    static void PrintRandomAtributesValues()
+    static bool day = true;
+    [MenuItem("Cheats/DayNight")]
+    static void DayNight()
     {
-        WaveManager.Instance.StartWave();
+        day = !day;
+        LightManager.Instance.SetDayLight(day);
+    }
+
+    [MenuItem("Cheats/AreaLightSize")]
+    static void AreaLightSize()
+    {
+        Player.Instance.PlayerLight.AreaLightSize.AddValue(1);
+    }
+
+    [MenuItem("Cheats/FlashlightStrenght")]
+    static void FlashlightStrenght()
+    {
+        Player.Instance.PlayerLight.FlashlightStrenght.AddValue(1);
+    }
+
+    [MenuItem("Cheats/FlashlightLenght")]
+    static void FlashlightLenght()
+    {
+        Player.Instance.PlayerLight.FlashlightLenght.AddValue(1);
     }
 
     [MenuItem("Cheats/TimeCouting")]

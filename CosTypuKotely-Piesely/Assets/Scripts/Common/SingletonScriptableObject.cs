@@ -16,8 +16,12 @@ public abstract class SingletonScriptableObject<T> : ScriptableObject, IEditorWi
     [RuntimeInitializeOnLoadMethod]
     public void Init()
     {
-        instance = Resources.LoadAll<T>("")[0];
+        if (instance == null)
+        {
+            instance = Resources.LoadAll<T>("")[0];
+        }
     }
+
     private void OnEnable()
     {
         Init();

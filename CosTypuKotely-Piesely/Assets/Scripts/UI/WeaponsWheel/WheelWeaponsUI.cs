@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Zenject;
 
-public class WheelWeaponsUI : WheelUI
+public class WheelWeaponsUI : SelectElementsUI
 {
     [Inject]
     private Player PlayerInstance { get; set; }

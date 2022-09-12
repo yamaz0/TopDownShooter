@@ -11,13 +11,15 @@ public class PlayerWeapons
 
     public event System.Action<Weapon> OnWeaponChanged = delegate { };
 
-    public void Init()
+    public void Init(List<int> weaponsId)
     {
-        List<WeaponInfo> wi = WeaponsScriptableObject.Instance.GetWeaponsList();//TODO zmienic na pobieranie z dostepnych na mapie
-
         WeaponsSelector.Init();
-        WeaponsSelector.AddWeaponToSlot(wi[1], 2);//TODO bron startowa
-        WeaponsSelector.AddWeaponToSlot(wi[0], 1);//TODO bron startowa
+
+        for (int i = 0; i < weaponsId.Count; i++)
+        {
+            int id = weaponsId[i];
+            WeaponsSelector.AddWeaponToSlot(id, i);
+        }
     }
 
     public void Reload()

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: MonitoringSettings
   m_EditorClassIdentifier: 
   enableMonitoring: 0
-  autoInstantiateUI: 1
+  autoInstantiateUI: 0
   openDisplayOnLoad: 0
   monitoringUIController: {fileID: 5494832875220723481, guid: 66c099bdd3d5f694484563c43d722f4f, type: 3}
   showRuntimeMonitoringObject: 0
-  showRuntimeUIController: 1
+  showRuntimeUIController: 0
   logBadImageFormatException: 1
   logOperationCanceledException: 0
   logThreadAbortException: 2

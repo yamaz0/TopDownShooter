@@ -4,6 +4,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
+public class GameplayController
+{
+
+    //start map
+    //init all 
+    // start wave
+    public event System.Action OnGameStarted = delegate { };
+    public event System.Action OnGameEnd = delegate { };
+    // public void StartGame(MapInfo? cos takiego przeslac przy scene load)
+    public void StartGame()
+    {
+        //getMap from mapManager
+        //init shop
+        //init ui ammo player health weapons and others
+        //start waves
+    }
+
+}
+
 public class GameManager : SingletonPersistence<GameManager>
 {
     [SerializeField]
@@ -26,6 +45,7 @@ public class GameManager : SingletonPersistence<GameManager>
     {
         Debug.Log("Start game!");
         PlayerInstance.Init();
+        LightManager.Instance.Init();
 
         InputManagerInstance.ActionMapSetActiv("CharacterControl", true);
         InputManagerInstance.ActionMapSetActiv("Shop", true);

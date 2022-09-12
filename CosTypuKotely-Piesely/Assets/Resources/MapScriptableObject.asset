@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b16c2a1d39dfd84d9b451f0dd875997, type: 3}
+  m_Name: MapScriptableObject
+  m_EditorClassIdentifier: 
+  objects:
+  - id: 0
+  - id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: MapInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 0
+        name: Jeden ;p
+        defaultMapOption:
+          condition: 0
+          startWeaponsID: 0100000000000000
+          shopWeaponsID: 
+        tilemap: {fileID: 0}
+        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+          eleifend quam id lectus maximus elementum. Nullam viverra eros et velit
+          feugiat feugiat. Pellentesque laoreet bibendum ante at efficitur. Aenean
+          lacinia mi at arcu volutpat finibus. Nulla sit amet posuere massa, convallis
+          cursus lorem. Cras euismod nulla rutrum, tincidunt nisl a, fermentum dui
+    00000001:
+      type: {class: MapInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 1
+        name: dwa
+        defaultMapOption:
+          condition: 0
+          startWeaponsID: 0000000001000000
+          shopWeaponsID: 
+        tilemap: {fileID: 0}
+        description: Duis interdum lacus ac leo condimentum consequat. Cras pretium
+          id mi quis luctus. Nullam in justo auctor, semper eros at, tincidunt ante.
+          Etiam sit amet fermentum risus. Vivamus vel tristique urna. Praesent vestibulum
+          maximus leo. Vestibulum pretium pretium consectetur.

@@ -98,6 +98,8 @@ MonoBehaviour:
   dmg: 1
   gold: 1
   rb: {fileID: 1648417105040539628}
+  boxCollider: {fileID: 1648417105040539631}
+  spriteRenderer: {fileID: 1648417106746859304}
   speed: 300
   maxSpeed: 300
 --- !u!58 &6282654282725384314
@@ -166,7 +168,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 746561bbe4c58f840adfb5f4d0f0a22a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

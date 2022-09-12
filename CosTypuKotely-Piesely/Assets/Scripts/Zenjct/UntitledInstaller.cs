@@ -5,13 +5,13 @@ using UnityEngine;
 using Zenject;
 using System.Collections.Generic;
 
-public class UntitledInstaller : MonoInstaller
+public class UntitledInstaller : MonoInstaller<UntitledInstaller>
 {
-
     public override void InstallBindings()
     {
         BindManagersFromSingletonType(typeof(Singleton<>));
         BindManagersFromSingletonType(typeof(SingletonScriptableObject<>));
+        // Container.Bind<MapManager>().FromInstance(MapManager.Instance);
         // Container.Bind<StructureScriptableObject>().FromScriptableObjectResource("");
     }
 
@@ -22,9 +22,7 @@ public class UntitledInstaller : MonoInstaller
         for (int i = 0; i < types.Count; i++)
         {
             Type type = types[i];
-            PropertyInfo propertyInfo = type.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Instance);
-            object t = propertyInfo.GetValue(null, null);
-            Container.Bind(types[i]).FromInstance(t);
+            Container.Bind(types[i]).FromInstance(FindObjectOfType(type));
         }
     }
 
