@@ -9,17 +9,17 @@ public class Cost
     [SerializeField]
     private int level;
 
-    [Inject]
-    private Player PlayerInstance { get; set; }
+    public int Level { get => level; private set => level = value; }
+
     public void Init(AnimationCurve c, int startLvl = 0)
     {
         curve = c;
-        level = startLvl;
+        Level = startLvl;
     }
 
     public float GetValue()
     {
-        return curve.Evaluate(level);
+        return curve.Evaluate(Level);
     }
 
     public float GetValue(int targetLevel)
@@ -29,13 +29,13 @@ public class Cost
     public bool TryBuy()
     {
         float cost = GetValue();
-        Float playerGold = PlayerInstance.PlayerStats.Cash;
+        Float playerGold = Player.Instance.PlayerStats.Cash;
 
         if (playerGold.Value < cost)
             return false;
 
         playerGold.AddValue(-cost);
-        level++;
+        Level++;
 
         return true;
     }

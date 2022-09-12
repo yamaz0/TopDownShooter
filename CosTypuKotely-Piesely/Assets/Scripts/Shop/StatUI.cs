@@ -1,37 +1,46 @@
+using TMPro;
 using UnityEngine;
 using Zenject;
-
 [System.Serializable]
-public class StatUI: MonoBehaviour
+public class StatUI : ShopAttributeUI
 {
-    [SerializeField]
-    private string statName;
     [SerializeField]
     private TMPro.TMP_Text statValueText;
     [SerializeField]
-    private TMPro.TMP_Text statNameText;
+    private string statName;
+    [SerializeField]
+    private float value = 1;
 
     [Inject]
     private Player PlayerInstance { get; set; }
     public Float CacheStat { get; private set; }
+    public TMP_Text StatValueText { get => statValueText; set => statValueText = value; }
 
-    public void Init()
+    public override void Init()
     {
         Float stat = PlayerInstance.PlayerStats.GetStat(statName);
         CacheStat = stat;
         SetText(CacheStat.Value);
-        statNameText.SetText(statName);
+        StatNameText.SetText(statName);
         CacheStat.OnValueChanged += SetText;
+        Button.onClick.RemoveAllListeners();
+        Button.onClick.AddListener(OnButtonClick);
     }
 
-    public void DetachEvents()
+    public override void DetachEvents()
     {
         CacheStat.OnValueChanged -= SetText;
+        Button.onClick.RemoveAllListeners();
     }
 
-    public void SetText(float value)
+    public override void SetText(float value)
     {
-        statValueText.SetText(value.ToString());
+        StatValueText.SetText(value.ToString());
     }
 
+    public override void OnButtonClick()
+    {
+        if (Cost.TryBuy())
+            CacheStat.AddValue(value);
+    }
 }

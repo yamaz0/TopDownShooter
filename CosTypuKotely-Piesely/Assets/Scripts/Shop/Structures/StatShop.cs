@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatShop : MonoBehaviour
 {
     [SerializeField]
-    private List<StatUI> stats;
+    private List<ShopAttributeUI> stats;
 
     private void OnEnable()
     {
