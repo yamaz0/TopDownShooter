@@ -5,38 +5,52 @@ using Zenject;
 public class Cost
 {
     [SerializeField]
+    private float value;
+    [SerializeField]
     private AnimationCurve curve;
     [SerializeField]
     private int level;
 
+    public float Value { get => value; set => this.value = value; }
+    public AnimationCurve Curve { get => curve; set => curve = value; }
     public int Level { get => level; private set => level = value; }
 
     public void Init(AnimationCurve c, int startLvl = 0)
     {
-        curve = c;
+        Curve = c;
         Level = startLvl;
     }
 
-    public float GetValue()
+    public void SetLevel(int lvl)
     {
-        return curve.Evaluate(Level);
+        Level = lvl;
+        CalculateNewValue();
     }
 
-    public float GetValue(int targetLevel)
+    public float GetCostAtLevel(int lvl)
     {
-        return curve.Evaluate(targetLevel);
+        return Curve.Evaluate(lvl);
     }
+
+    private void CalculateNewValue()
+    {
+        Value = Curve.Evaluate(Level);
+    }
+    public bool CanBuy()
+    {
+        float cost = Value;
+        float playerGold = Player.Instance.PlayerStats.Cash.Value;
+
+        return playerGold >= cost;
+    }
+
     public bool TryBuy()
     {
-        float cost = GetValue();
-        Float playerGold = Player.Instance.PlayerStats.Cash;
-
-        if (playerGold.Value < cost)
-            return false;
-
-        playerGold.AddValue(-cost);
-        Level++;
-
-        return true;
+        if (CanBuy() == true)
+        {
+            Player.Instance.PlayerStats.Cash.AddValue(-Value);
+            return true;
+        }
+        return false;
     }
 }

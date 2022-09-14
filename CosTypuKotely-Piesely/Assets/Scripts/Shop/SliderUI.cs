@@ -5,6 +5,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class SliderUI : ShopAttributeUI
 {
+    private const int MAX_LVL = 4;
     [SerializeField]
     private string lightAtributeName;
     [SerializeField]
@@ -21,23 +22,35 @@ public class SliderUI : ShopAttributeUI
     {
         Button.onClick.RemoveAllListeners();
         Button.onClick.AddListener(OnButtonClick);
+        Cost.SetLevel((int)slider.value);
+        SetText(Cost.GetCostAtLevel((int)slider.value));
     }
 
     public override void OnButtonClick()
     {
         if (Cost.TryBuy())
         {
-            Player.Instance.PlayerLight.GetStat(lightAtributeName).SetValue(values[Cost.Level - 1]);
+            Float stat = Player.Instance.PlayerLight.GetStat(lightAtributeName);
+            float value = GetValue();
+            stat.SetValue(value);
+
             slider.value++;
-            if (Cost.Level == 4)
+            Cost.SetLevel((int)slider.value);
+
+            if (slider.value >= MAX_LVL)
             {
                 Button.enabled = false;
             }
         }
     }
 
+    private float GetValue()
+    {
+        return values[(int)slider.value];
+    }
+
     public override void SetText(float value)
     {
-        throw new System.NotImplementedException();
+        CostValueText.SetText(value.ToString());
     }
 }

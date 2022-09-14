@@ -10,11 +10,12 @@ public class Float
 
     public float Value { get => value; private set => this.value = value; }
 
-    public event System.Action<float> OnValueChanged = delegate { };
+    public event System.Action<float> OnValueChanged;
 
     public Float(float initValue)
     {
         Value = initValue;
+        OnValueChanged = delegate { };
     }
 
     public void AddValue(float value)
