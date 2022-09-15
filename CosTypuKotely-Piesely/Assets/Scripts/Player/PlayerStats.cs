@@ -15,6 +15,8 @@ public class PlayerStats
     private Float fireRate = new Float(100);
     [SerializeField]
     private Float cash = new Float(0);
+    [SerializeField]
+    private bool dualShoot = false;
 
     public Float Hp { get => hp; set => hp = value; }
     public Float MaxHp { get => maxHp; set => maxHp = value; }
@@ -22,6 +24,7 @@ public class PlayerStats
     public Float Speed { get => speed; set => speed = value; }
     public Float Cash { get => cash; set => cash = value; }
     public Float FireRateBonus { get => fireRate; set => fireRate = value; }
+    public bool DualShoot { get => dualShoot; set => dualShoot = value; }
 
     public Float GetStat(string statName)
     {

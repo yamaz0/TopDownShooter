@@ -13,7 +13,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private bool isUnlocked;
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    private Transform leftHand;
+    [SerializeField]
+    private Transform rightHand;
     [SerializeField]
     private WeaponInfo info;
 
@@ -46,7 +48,7 @@ public class Weapon : MonoBehaviour
         Bullets.Init(inf);
         Magazine.Init(inf);
         FireRate = inf.FireRate;
-        spriteRenderer.sprite = inf.Icon;
+        // spriteRenderer.sprite = inf.Icon;
         Info = inf;
     }
 
@@ -62,6 +64,10 @@ public class Weapon : MonoBehaviour
 
     IEnumerator ShootingCorutine()
     {
+        bool left = true;
+        bool dualShoot = Player.Instance.PlayerStats.DualShoot;
+        Transform bulletSpawnTransform;
+
         while (IsPressFire == true)
         {
             if (Magazine.IsReloading == false)//do przerobienia
@@ -69,7 +75,19 @@ public class Weapon : MonoBehaviour
                 Vector3 mouseWorldPosition = Utils.MouseScreenToWorldPoint();
                 Vector3 direction = mouseWorldPosition - transform.position;
 
-                Bullets.Fire(direction, transform);
+                if (dualShoot == true)
+                {
+                    Bullets.Fire(direction, leftHand);
+                    Bullets.Fire(direction, rightHand);
+                }
+                else
+                {
+                    bulletSpawnTransform = left ? leftHand : rightHand;
+                    left = !left;
+
+                    Bullets.Fire(direction, bulletSpawnTransform);
+                }
+
                 SubtractMagazineAmmo();
             }
 
