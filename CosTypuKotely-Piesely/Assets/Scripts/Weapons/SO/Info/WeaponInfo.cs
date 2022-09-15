@@ -8,7 +8,7 @@ public class WeaponInfo : BaseInfo
     [SerializeField]
     private Sprite icon;
     [SerializeField]
-    private float unlockCost;
+    private Cost unlockCost;
     [SerializeField]
     private int magazineSize;
     [SerializeField]
@@ -17,7 +17,7 @@ public class WeaponInfo : BaseInfo
     private List<Bullet> bullets = new List<Bullet>();
 
     public Sprite Icon { get => icon; set => icon = value; }
-    public float UnlockCost { get => unlockCost; set => unlockCost = value; }
+    public Cost UnlockCost { get => unlockCost; set => unlockCost = value; }
     public List<Bullet> Bullets { get => bullets; set => bullets = value; }
     public int MagazineSize { get => magazineSize; set => magazineSize = value; }
     public int FireRate { get => fireRate; set => fireRate = value; }

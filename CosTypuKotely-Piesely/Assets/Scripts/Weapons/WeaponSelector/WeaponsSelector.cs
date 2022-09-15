@@ -40,13 +40,13 @@ public class WeaponsSelector
         }
     }
 
-    public void AddWeaponToSlot(int weaponId, int slotIndex = 1)
+    public void AddWeapon(int weaponId, int slotIndex = 1)
     {
         WeaponInfo weaponInfo = WeaponsScriptableObject.Instance.GetWeaponInfoById(weaponId);
-        AddWeaponToSlot(weaponInfo, slotIndex);
+        AddWeapon(weaponInfo, slotIndex);
     }
 
-    public void AddWeaponToSlot(WeaponInfo info, int slotIndex = 1)
+    public void AddWeapon(WeaponInfo info, int slotIndex = 1)
     {
         Weapon newWeapon = GameObject.Instantiate(weaponTemplate, playerWeaponTransform);
         newWeapon.Init(info);

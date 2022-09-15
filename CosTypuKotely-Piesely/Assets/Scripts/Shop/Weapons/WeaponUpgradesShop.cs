@@ -6,12 +6,11 @@ public class WeaponUpgradesShop : MonoBehaviour
 {
     [SerializeField]
     private WeaponUpgrade upgradeTemplate;
-    [SerializeField]
-    private WeaponBuy unlockTemplate;
+
     [SerializeField]
     private Transform content;
     [SerializeField]
-    private List<WeaponShop> weaponsUi;
+    private List<WeaponUpgrade> weaponsUi;
 
     [Inject]
     private Player PlayerInstance { get; set; }
@@ -28,18 +27,7 @@ public class WeaponUpgradesShop : MonoBehaviour
 
         for (int i = 0; i < weapons.Count; i++)
         {
-            WeaponShop template;
-
-            if (weapons[i].IsUnlocked == true)
-            {
-                template = upgradeTemplate;
-            }
-            else
-            {
-                template = unlockTemplate;
-            }
-
-            WeaponShop newWeaponUI = Instantiate(template, content);
+            WeaponUpgrade newWeaponUI = Instantiate(upgradeTemplate, content);
             newWeaponUI.gameObject.SetActive(true);
             newWeaponUI.Init(weapons[i]);
 

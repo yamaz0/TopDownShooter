@@ -18,7 +18,7 @@ public class PlayerWeapons
         for (int i = 0; i < weaponsId.Count; i++)
         {
             int id = weaponsId[i];
-            WeaponsSelector.AddWeaponToSlot(id, i);
+            WeaponsSelector.AddWeapon(id, i);
         }
     }
 

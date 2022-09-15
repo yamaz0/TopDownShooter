@@ -8,11 +8,11 @@ abstract public class Bullet : MonoBehaviour
     [SerializeField]
     private float timeToDeactivate = 2;
     [SerializeField]
-    private float upgradeCost = 100;
+    private Cost upgradeCost = new Cost();
 
     public float Damage { get => damage; set => damage = value; }
     public float TimeToDeactivate { get => timeToDeactivate; set => timeToDeactivate = value; }
-    public float UpgradeCost { get => upgradeCost; set => upgradeCost = value; }
+    public Cost UpgradeCost { get => upgradeCost; set => upgradeCost = value; }
 
     abstract public void Init(Vector2 direction);
 

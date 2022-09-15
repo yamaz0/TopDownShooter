@@ -1,25 +1,39 @@
+using TMPro;
 using UnityEngine;
 using Zenject;
 
 public class WeaponUpgrade : WeaponShop
 {
+    [SerializeField]
+    private TMPro.TMP_Text levelWeaponText;
+    [SerializeField]
+    private TMPro.TMP_Text nextLevelWeaponText;
+    [SerializeField]
+    private TMPro.TMP_Text nextDamageText;
+
+    protected TMP_Text LevelWeaponText { get => levelWeaponText; set => levelWeaponText = value; }
+    protected TMP_Text NextLevelWeaponText { get => nextLevelWeaponText; set => nextLevelWeaponText = value; }
+    protected TMP_Text NextDamageText { get => nextDamageText; set => nextDamageText = value; }
+
+    public Weapon Weapon { get; set; }
+
     [Inject]
     private Player PlayerInstance { get; set; }
 
+    public void Init(Weapon weapon)
+    {
+        Weapon = weapon;
+        Icon.sprite = weapon.Info.Icon;
+        UpdateWeaponUI();
+    }
+
     public override void OnButtonClick()
     {
-        float upgradeCost = Weapon.Bullets.GetNextBullet().UpgradeCost;
-        Float playerCash = PlayerInstance.PlayerStats.Cash;
-
-        if (upgradeCost > playerCash.Value)
+        if (Weapon.Bullets.GetNextBullet().UpgradeCost.TryBuy())
         {
-            Debug.Log("Not enough cash");
-            return;
+            Weapon.UpgradeWeapon();
+            UpdateWeaponUI();
         }
-
-        playerCash.AddValue(-upgradeCost);
-        Weapon.UpgradeWeapon();
-        UpdateWeaponUI();
     }
 
     public override void UpdateWeaponUI()
@@ -35,7 +49,7 @@ public class WeaponUpgrade : WeaponShop
 
         if (isNextBulletExist == true)
         {
-            CostText.SetText(nextBullet.UpgradeCost.ToString());
+            CostText.SetText(nextBullet.UpgradeCost.Value.ToString());
             NextDamageText.SetText(nextBullet.Damage.ToString());
             NextLevelWeaponText.SetText((currentWeaponLevel + 1).ToString());
         }

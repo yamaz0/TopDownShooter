@@ -44,6 +44,12 @@ public class Cost
         return playerGold >= cost;
     }
 
+    public bool TryBuy(int level)
+    {
+        SetLevel(level);
+        return TryBuy();
+    }
+
     public bool TryBuy()
     {
         if (CanBuy() == true)

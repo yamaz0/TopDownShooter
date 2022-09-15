@@ -3,38 +3,36 @@ using Zenject;
 
 public class WeaponBuy : WeaponShop
 {
+    public WeaponInfo WeaponInfo { get; set; }
+
     [Inject]
     private Player PlayerInstance { get; set; }
 
+    public void Init(WeaponInfo weaponInfo)
+    {
+        WeaponInfo = weaponInfo;
+        Icon.sprite = weaponInfo.Icon;
+        UpdateWeaponUI();
+    }
+
     public override void UpdateWeaponUI()
     {
-        Bullet currentBullet = Weapon.Bullets.CurrentBullet;
-        Bullet nextBullet = Weapon.Bullets.GetNextBullet();
-        int currentWeaponLevel = Weapon.Bullets.CurrentWeaponLevel;
-        bool isNextBulletExist = nextBullet != null;
-
-        FireRateText.SetText(Weapon.FireRate.ToString());
-        CostText.SetText((currentWeaponLevel * 100 + 100).ToString());
-
-        LevelWeaponText.SetText("0");
-        DamageText.SetText("0");
-
-        DamageText.SetText(currentBullet.Damage.ToString());
-        NextLevelWeaponText.SetText("1");
-
-        Button.gameObject.SetActive(isNextBulletExist);
+        FireRateText.SetText(WeaponInfo.FireRate.ToString());
+        CostText.SetText(WeaponInfo.UnlockCost.Value.ToString());
+        DamageText.SetText(WeaponInfo.Bullets[0].Damage.ToString());
     }
 
     public override void OnButtonClick()
     {
-        if (PlayerInstance.PlayerStats.Cash.Value < Weapon.Info.UnlockCost)
+        if (WeaponInfo.UnlockCost.TryBuy())
+        {
+            Player.Instance.PlayerWeapons.WeaponsSelector.AddWeapon(WeaponInfo);
+            // UpdateWeaponUI();//TODO Refresh shop
+        }
+        else
         {
             Debug.Log("Not enough cash.");
             return;
         }
-
-        PlayerInstance.PlayerStats.Cash.AddValue(-Weapon.Info.UnlockCost);
-        Weapon.UnlockWeapon();
-        UpdateWeaponUI();
     }
 }

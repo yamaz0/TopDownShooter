@@ -44,6 +44,13 @@ public class RefillStatUI : ShopAttributeUI
     {
         if (Cost.TryBuy())
             CacheStat.SetValue(CacheMaxStat.Value);
+        else
+        {
+            int cash = (int)Player.Instance.PlayerStats.Cash.Value;
+
+            if (Cost.TryBuy(cash))
+                CacheStat.AddValue(cash);
+        }
     }
 
     public void SetValueText(float value)
