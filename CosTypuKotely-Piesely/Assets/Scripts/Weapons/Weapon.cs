@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
@@ -13,9 +12,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private bool isUnlocked;
     [SerializeField]
-    private Transform leftHand;
+    private Shooting leftHand;
     [SerializeField]
-    private Transform rightHand;
+    private Shooting rightHand;
     [SerializeField]
     private WeaponInfo info;
 
@@ -66,7 +65,6 @@ public class Weapon : MonoBehaviour
     {
         bool left = true;
         bool dualShoot = Player.Instance.PlayerStats.DualShoot;
-        Transform bulletSpawnTransform;
 
         while (IsPressFire == true)
         {
@@ -77,15 +75,16 @@ public class Weapon : MonoBehaviour
 
                 if (dualShoot == true)
                 {
-                    Bullets.Fire(direction, leftHand);
-                    Bullets.Fire(direction, rightHand);
+                    Fire(leftHand, direction);
+                    Fire(rightHand, direction);
                 }
                 else
                 {
-                    bulletSpawnTransform = left ? leftHand : rightHand;
+                    if (left)
+                        Fire(leftHand, direction);
+                    else
+                        Fire(rightHand, direction);
                     left = !left;
-
-                    Bullets.Fire(direction, bulletSpawnTransform);
                 }
 
                 SubtractMagazineAmmo();
@@ -93,6 +92,12 @@ public class Weapon : MonoBehaviour
 
             yield return new WaitForSeconds(60f / fireRate);//do optymalizacji
         }
+    }
+
+    private void Fire(Shooting shooting, Vector3 direction)
+    {
+        shooting.StartEffect();
+        Bullets.Fire(direction, shooting.TransformObject);
     }
 
     private void SubtractMagazineAmmo()
