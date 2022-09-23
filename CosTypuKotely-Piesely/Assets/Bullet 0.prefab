@@ -110,6 +110,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     level: 0
   rb: {fileID: 1823818033918589085}
+  puffEffect: {fileID: 2070501061166836861, guid: fec426f53ebd7b44b8a4e18d5709ce4e, type: 3}
+  trailRenderer: {fileID: 1146508784491368514}
   speed: 15
 --- !u!50 &1823818033918589085
 Rigidbody2D:
@@ -198,7 +200,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Time: 0.15
   m_Parameters:
     serializedVersion: 3

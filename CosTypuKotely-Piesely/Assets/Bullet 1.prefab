@@ -110,6 +110,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     level: 0
   rb: {fileID: 1823818033918589085}
+  puffEffect: {fileID: 2070501061166836861, guid: fec426f53ebd7b44b8a4e18d5709ce4e, type: 3}
+  trailRenderer: {fileID: -943762769380097228}
   speed: 20
 --- !u!50 &1823818033918589085
 Rigidbody2D:
