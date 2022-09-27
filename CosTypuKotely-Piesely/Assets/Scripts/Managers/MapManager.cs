@@ -10,9 +10,9 @@ public class MapOption
     [SerializeField]
     private WinCodition condition;
     [SerializeField]
-    private List<int> startWeaponsID;
+    private List<int> startWeaponsID = new List<int>() { 0 };
     [SerializeField]
-    private List<int> shopWeaponsID;
+    private List<int> shopWeaponsID = new List<int>() { 0, 1 };
     [SerializeField]
     private bool isDay;
 
@@ -25,7 +25,7 @@ public class MapOption
         condition = option.condition;
         StartWeaponsID.AddRange(option.StartWeaponsID);
         ShopWeaponsID.AddRange(option.ShopWeaponsID);
-        IsDay = option.IsDay;
+        IsDay = option.isDay;
     }
 }
 
@@ -34,7 +34,7 @@ public class MapManager : SingletonPersistence<MapManager>
     [SerializeField]
     private MapInfo selectedMap;
     [SerializeField]
-    private MapOption options;
+    private MapOption options = new MapOption();
 
     public MapInfo SelectedMap { get => selectedMap; set => selectedMap = value; }
     public MapOption Options { get => options; set => options = value; }
@@ -43,5 +43,6 @@ public class MapManager : SingletonPersistence<MapManager>
     {
         SelectedMap = map;
         Options = option;
+
     }
 }

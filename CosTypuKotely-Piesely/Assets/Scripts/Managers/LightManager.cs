@@ -12,6 +12,8 @@ public class LightManager : Singleton<LightManager>
     [SerializeField]
     private Light2D lightscr;
 
+    public bool IsDay { get => isDay; set => isDay = value; }
+
     public void SetLightSettings()
     {
         lightscr.intensity = globalIntensity;
@@ -38,7 +40,7 @@ public class LightManager : Singleton<LightManager>
 
     private void SetDay()
     {
-        isDay = true;
+        IsDay = true;
         globalIntensity = 1;
         globalAmbientColor = Color.white;
         Player.Instance.PlayerLight.SetPlayerLightAccesories(false);
@@ -46,7 +48,7 @@ public class LightManager : Singleton<LightManager>
 
     private void SetNight()
     {
-        isDay = false;
+        IsDay = false;
         globalIntensity = 0.07f;
         globalAmbientColor = Color.red;
         Player.Instance.PlayerLight.SetPlayerLightAccesories(true);
