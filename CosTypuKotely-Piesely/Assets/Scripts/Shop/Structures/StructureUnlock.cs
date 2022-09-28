@@ -31,7 +31,7 @@ public class StructureUnlock : MonoBehaviour
     {
         CacheInfo = info;
         nameText.SetText(info.Name.ToString());
-        costText.SetText(info.UnlockCost.ToString());
+        costText.SetText(info.UnlockCost.Value.ToString());
         typeText.SetText(info.Type.ToString());
         icon.sprite = info.Icon;
     }
@@ -44,7 +44,7 @@ public class StructureUnlock : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        if (PlayerInstance.PlayerStats.Cash.Value >= CacheInfo.UnlockCost)
+        if (CacheInfo.UnlockCost.TryBuy())
         {
             Unlock();
         }
@@ -56,7 +56,6 @@ public class StructureUnlock : MonoBehaviour
 
     private void Unlock()
     {
-        PlayerInstance.PlayerStats.Cash.AddValue(-CacheInfo.UnlockCost);
         PlayerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
         SetUnlockVisibility(false);
     }

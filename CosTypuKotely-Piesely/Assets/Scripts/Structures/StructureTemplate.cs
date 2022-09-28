@@ -45,7 +45,7 @@ public class StructureTemplate : MonoBehaviour
 
     public bool CheckConditions()
     {
-        bool playerHaveGold = PlayerInstance.PlayerStats.Cash.Value >= Info.Cost.Evaluate(0);//TODO
+        bool playerHaveGold = Info.BuildCost.TryBuy();
         return CanBuild && playerHaveGold;
     }
 

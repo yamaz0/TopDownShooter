@@ -25,7 +25,7 @@ public class StructureShop : MonoBehaviour
 
     public void Refresh()
     {
-        List<StructureInfo> structuresInfo = StructureScriptableObject.Instance.GetStructuresList();
+        List<StructureInfo> structuresInfo = StructureScriptableObject.Instance.GetStructuresList();//TODO zmienic na dostepne na mapie a nie wszystkie w grze xd
 
         Structures.ClearAndDestroy();
 

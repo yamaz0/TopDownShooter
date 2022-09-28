@@ -13,6 +13,11 @@ public class PlayerBuild
     private StructureTemplate structureTemplate;
 
     [SerializeField]
+    private GameObject weaponUI;
+    [SerializeField]
+    private GameObject buildingUI;
+
+    [SerializeField]
     private int currentStructureId;
 
     public bool IsBuildMode { get => isBuildMode; set => isBuildMode = value; }
@@ -20,6 +25,7 @@ public class PlayerBuild
     public int CurrentStructureId { get => currentStructureId; set => currentStructureId = value; }
     public StructureTemplate StructureTemplate { get => structureTemplate; set => structureTemplate = value; }
     public event System.Action<int> OnStructureUnlocked = delegate { };
+    public event System.Action<StructureInfo> OnStructureChanged = delegate { };
 
     public void Init()
     {
@@ -46,6 +52,8 @@ public class PlayerBuild
 
     public void ShowTemplate(bool activeState)
     {
+        weaponUI.SetActive(!activeState);
+        buildingUI.SetActive(activeState);
         StructureTemplate.gameObject.SetActive(activeState);
     }
 
@@ -62,6 +70,8 @@ public class PlayerBuild
 
         StructureInfo info = StructureScriptableObject.Instance.GetStructureInfoById(CurrentStructureId);
         StructureTemplate.Init(info);
+
+        OnStructureChanged(info);
     }
 
     public void Build()
