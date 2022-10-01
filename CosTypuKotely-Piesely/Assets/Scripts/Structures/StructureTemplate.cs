@@ -45,8 +45,7 @@ public class StructureTemplate : MonoBehaviour
 
     public bool CheckConditions()
     {
-        bool playerHaveGold = Info.BuildCost.TryBuy();
-        return CanBuild && playerHaveGold;
+        return CanBuild && Info.BuildCost.TryBuy();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

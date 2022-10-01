@@ -9,6 +9,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private GameObject wheelWeaponsUI;
     [SerializeField]
+    private GameObject wheelStructuresUI;
+    [SerializeField]
     private CameraFollow cameraFollow;
 
     private void SetCharacterControl(bool state)
@@ -25,12 +27,25 @@ public class WindowManager : Singleton<WindowManager>
 
     public void ShowShop()
     {
-        SetCharacterControl(shop.activeSelf);
-        SetCharacterShooting(shop.activeSelf);
-        shop.SetActive(!shop.activeSelf);
+        bool isShopActive = shop.activeSelf;
+        SetCharacterControl(isShopActive);
+        SetCharacterShooting(isShopActive);
+        shop.SetActive(!isShopActive);
     }
+
     public void ShowWeaponsWheel()
     {
-        wheelWeaponsUI.SetActive(!wheelWeaponsUI.activeSelf);
+        bool isWheelActive = wheelWeaponsUI.activeSelf;
+        SetCharacterControl(isWheelActive);
+        SetCharacterShooting(isWheelActive);
+        wheelWeaponsUI.SetActive(!isWheelActive);
+    }
+
+    public void ShowStructuresWheel()
+    {
+        bool isWheelActive = wheelStructuresUI.activeSelf;
+        SetCharacterControl(isWheelActive);
+        SetCharacterShooting(isWheelActive);
+        wheelStructuresUI.SetActive(!isWheelActive);
     }
 }
