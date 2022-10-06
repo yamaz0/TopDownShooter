@@ -8,6 +8,8 @@ using Zenject;
 public class WheelWeaponsElementUI : SelectElementUI
 {
     [SerializeField]
+    private Image interactionImage;
+    [SerializeField]
     private Image icon;
     [SerializeField]
     private TMPro.TMP_Text weaponNameText;
@@ -18,10 +20,16 @@ public class WheelWeaponsElementUI : SelectElementUI
     [Inject]
     private Player PlayerInstance { get; set; }
 
+    private void OnEnable()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+
     public void Init(WeaponSlot slot)
     {
+        interactionImage.raycastTarget = true;
         slotIndex = slot.SlotNumber;
-        if (slot.Weapon == null) return;
+        if (slot.Weapon == null) return;//todo nigdy tu nie powinno byc nulla
         icon.sprite = slot.Weapon.Info.Icon;
         slotWeaponName = slot.Weapon.Info.Name;
     }

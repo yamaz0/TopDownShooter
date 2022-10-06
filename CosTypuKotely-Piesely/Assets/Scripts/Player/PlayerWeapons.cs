@@ -13,13 +13,12 @@ public class PlayerWeapons
 
     public void Init(List<int> weaponsId)
     {
-        WeaponsSelector.Init();
-
         for (int i = 0; i < weaponsId.Count; i++)
         {
             int id = weaponsId[i];
-            WeaponsSelector.AddWeapon(id, i);
+            WeaponsSelector.AddWeapon(id);
         }
+        ChangeWeapon(1);
     }
 
     public void Reload()
@@ -31,10 +30,10 @@ public class PlayerWeapons
     {
         List<Weapon> list = new List<Weapon>();
 
-        foreach (var slot in WeaponsSelector.WeaponsSlots)
+        foreach (KeyValuePair<int, WeaponSlot> slot in WeaponsSelector.Slots)
         {
-            if (slot.Weapon != null)
-                list.Add(slot.Weapon);
+            // if (slot.Value.Weapon != null)// tu chyba zbedne ale do przetestowania a jak cos to odkomentowac
+            list.Add(slot.Value.Weapon);
         }
 
         return list;
@@ -42,7 +41,9 @@ public class PlayerWeapons
 
     public void ChangeWeapon(int index)
     {
-        WeaponsSelector.SetWeaponSlot(index);
+        WeaponSlot weaponSlot = WeaponsSelector.SetSlot(index);
+        if (weaponSlot == null) return;//tutaj mozna dorobic jakies komunikaty ze brak broni albo dzwiek blednego wybrania borni
+        ChangeWeapon(weaponSlot.Weapon);
     }
 
     public void ChangeWeapon(Weapon weapon)

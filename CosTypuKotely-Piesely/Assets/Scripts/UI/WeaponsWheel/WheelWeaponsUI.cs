@@ -8,14 +8,15 @@ public class WheelWeaponsUI : SelectElementsUI
 
     private void OnEnable()
     {
-        List<WeaponSlot> weaponsSlots = PlayerInstance.PlayerWeapons.WeaponsSelector.WeaponsSlots;
+        Dictionary<int, WeaponSlot> weaponsSlots = PlayerInstance.PlayerWeapons.WeaponsSelector.Slots;
         int index = 0;
         //TODO wybrana bron jest jako wybrana - napis na srodku sie zmienia na start
         foreach (WheelWeaponsElementUI element in Elements)
         {
-            WeaponSlot weaponSlot = weaponsSlots[index];
-            element.Init(weaponSlot);
+            weaponsSlots.TryGetValue(index, out WeaponSlot slot);
             index++;
+            if (slot == null) continue;
+            element.Init(slot);
         }
     }
 }

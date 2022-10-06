@@ -18,6 +18,16 @@ public class Counter
         Value = Mathf.Clamp(v, MinValue, MaxValue);
     }
 
+    public void SetMin(int v)
+    {
+        MinValue = v;
+    }
+
+    public void SetMax(int v)
+    {
+        MaxValue = v;
+    }
+
     public void Increase()
     {
         Value++;
