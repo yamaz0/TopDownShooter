@@ -20,7 +20,7 @@ public class AmmoUI : MonoBehaviour
         SetMaxAmmo(CacheCurrentWeapon.Magazine.MagazineMaxSize);
 
         PlayerInstance.PlayerWeapons.OnWeaponChanged += SetWeaponUI;
-        AttachAmmoEvents();
+        // AttachAmmoEvents();
     }
 
     private void AttachAmmoEvents()

@@ -11,6 +11,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private GameObject wheelStructuresUI;
     [SerializeField]
+    private GameObject canvas;
+    [SerializeField]
     private CameraFollow cameraFollow;
 
     private void SetCharacterControl(bool state)
@@ -19,9 +21,20 @@ public class WindowManager : Singleton<WindowManager>
         cameraFollow.enabled = state;
     }
 
+    public void ShowCanvas()
+    {
+        canvas.SetActive(!canvas.activeSelf);
+    }
+
     private void SetCharacterShooting(bool state)
     {
         InputManager.Instance.ActionMapSetActiv("Shooting", state);
+        cameraFollow.enabled = state;
+    }
+
+    private void SetCharacterBuilding(bool state)
+    {
+        InputManager.Instance.ActionMapSetActiv("Building", state);
         cameraFollow.enabled = state;
     }
 
@@ -45,7 +58,7 @@ public class WindowManager : Singleton<WindowManager>
     {
         bool isWheelActive = wheelStructuresUI.activeSelf;
         SetCharacterControl(isWheelActive);
-        SetCharacterShooting(isWheelActive);
+        SetCharacterBuilding(isWheelActive);
         wheelStructuresUI.SetActive(!isWheelActive);
     }
 }

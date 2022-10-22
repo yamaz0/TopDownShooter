@@ -25,12 +25,17 @@ public class Selector<T> where T : Slot
     public T NextSlot()
     {
         CurrentSlotNumber.Increase();
-        return Slots[CurrentSlotNumber.Value];
+        return GetCurrentSlot();
     }
 
     public T PreviousSlot()
     {
         CurrentSlotNumber.Decrease();
+        return GetCurrentSlot();
+    }
+
+    public T GetCurrentSlot()
+    {
         return Slots[CurrentSlotNumber.Value];
     }
 
@@ -41,7 +46,7 @@ public class Selector<T> where T : Slot
         if (Slots.ContainsKey(slotIndex))
         {
             CurrentSlotNumber.Set(slotIndex);
-            t = Slots[CurrentSlotNumber.Value];
+            t = GetCurrentSlot();
         }
 
         return t;

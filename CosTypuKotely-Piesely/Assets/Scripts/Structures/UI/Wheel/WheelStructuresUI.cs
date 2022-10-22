@@ -8,14 +8,15 @@ public class WheelStructuresUI : SelectElementsUI
 
     private void OnEnable()
     {
-        // List<StructureSlot> structuresSlots = PlayerInstance.PlayerBuild.StructuresSelector.StructuresSlots;
-        // int index = 0;
-        // //TODO wybrana bron jest jako wybrana - napis na srodku sie zmienia na start
-        // foreach (WheelStructureElementUI element in Elements)
-        // {
-        //     StructureSlot structureSlot = structuresSlots[index];
-        //     element.Init(structureSlot);
-        //     index++;
-        // }
+        Dictionary<int, StructureSlot> structuresSlots = PlayerInstance.PlayerBuild.Selector.Slots;
+        int index = 0;
+
+        foreach (WheelStructureElementUI element in Elements)
+        {
+            structuresSlots.TryGetValue(index, out StructureSlot slot);
+            index++;
+            if (slot == null) continue;
+            element.Init(slot);
+        }
     }
 }

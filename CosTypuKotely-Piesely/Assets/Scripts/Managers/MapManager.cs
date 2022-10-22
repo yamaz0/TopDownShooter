@@ -14,11 +14,17 @@ public class MapOption
     [SerializeField]
     private List<int> shopWeaponsID = new List<int>() { 0, 1 };
     [SerializeField]
+    private List<int> startStructuresID = new List<int>() { 0 };
+    [SerializeField]
+    private List<int> shopStructuresID = new List<int>() { 0, 1 };
+    [SerializeField]
     private bool isDay;
 
     public List<int> StartWeaponsID { get => startWeaponsID; set => startWeaponsID = value; }
     public List<int> ShopWeaponsID { get => shopWeaponsID; set => shopWeaponsID = value; }
     public bool IsDay { get => isDay; set => isDay = value; }
+    public List<int> StartStructuresID { get => startStructuresID; set => startStructuresID = value; }
+    public List<int> ShopStructuresID { get => shopStructuresID; set => shopStructuresID = value; }
 
     public void Copy(MapOption option)
     {

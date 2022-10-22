@@ -51,6 +51,8 @@ public class GameManager : SingletonPersistence<GameManager>
         InputManagerInstance.ActionMapSetActiv("Shop", true);
         InputManagerInstance.ActionMapSetActiv("Shooting", true);
 
+        WindowManager.Instance.ShowCanvas();
+
         WaveManagerInstance.StartWave();
     }
 

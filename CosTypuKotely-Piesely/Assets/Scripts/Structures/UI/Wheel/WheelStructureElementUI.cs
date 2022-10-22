@@ -8,6 +8,8 @@ using Zenject;
 public class WheelStructureElementUI : SelectElementUI
 {
     [SerializeField]
+    private Image interactionImage;
+    [SerializeField]
     private Image icon;
     [SerializeField]
     private TMPro.TMP_Text structureNameText;
@@ -18,17 +20,23 @@ public class WheelStructureElementUI : SelectElementUI
     [Inject]
     private Player PlayerInstance { get; set; }
 
+    private void OnEnable()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+
     public void Init(StructureSlot slot)
     {
-        // slotIndex = slot.SlotNumber;
-        // if (slot.Structure == null) return;
-        // icon.sprite = slot.Structure.Info.Icon;
-        // slotStructureName = slot.Structure.Info.Name;
+        interactionImage.raycastTarget = true;
+        slotIndex = slot.SlotNumber;
+        if (slot.Info == null) return;
+        icon.sprite = slot.Info.Icon;
+        slotStructureName = slot.Info.Name;
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        // PlayerInstance.PlayerBuild.SetCurrentStructureId(slotIndex);//TODO ustawienie wybranej struktury
+        Player.Instance.PlayerBuild.SetCurrentStructureSlot(slotIndex);
         structureNameText.SetText(slotStructureName);
         WindowManager.Instance.ShowStructuresWheel();
     }

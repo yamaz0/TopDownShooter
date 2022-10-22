@@ -39,6 +39,18 @@ public class PlayerWeapons
         return list;
     }
 
+    public void NextWeapon()
+    {
+        WeaponSlot weaponSlot = WeaponsSelector.NextSlot();
+        ChangeWeapon(weaponSlot.Weapon);
+    }
+
+    public void PreviousWeapon()
+    {
+        WeaponSlot weaponSlot = WeaponsSelector.PreviousSlot();
+        ChangeWeapon(weaponSlot.Weapon);
+    }
+
     public void ChangeWeapon(int index)
     {
         WeaponSlot weaponSlot = WeaponsSelector.SetSlot(index);

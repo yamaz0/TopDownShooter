@@ -8,7 +8,7 @@ public class PlayerBuild
     [SerializeField]
     private bool isBuildMode = false;
     [SerializeField]
-    private List<int> unlockStructureIds;
+    private StructuresSelector selector;
     [SerializeField]
     private StructureTemplate structureTemplate;
 
@@ -17,31 +17,41 @@ public class PlayerBuild
     [SerializeField]
     private GameObject buildingUI;
 
-    [SerializeField]
-    private int currentStructureId;
-
     public bool IsBuildMode { get => isBuildMode; set => isBuildMode = value; }
-    public List<int> UnlockStructureIds { get => unlockStructureIds; set => unlockStructureIds = value; }
-    public int CurrentStructureId { get => currentStructureId; set => currentStructureId = value; }
     public StructureTemplate StructureTemplate { get => structureTemplate; set => structureTemplate = value; }
-    public event System.Action<int> OnStructureUnlocked = delegate { };
+    public StructuresSelector Selector { get => selector; set => selector = value; }
+
+    public event System.Action<StructureInfo> OnStructureUnlocked = delegate { };
     public event System.Action<StructureInfo> OnStructureChanged = delegate { };
 
-    public void Init()
+    public void Init(List<int> unlockStrucutresIds)
     {
-        if (UnlockStructureIds == null)
+        foreach (var id in unlockStrucutresIds)
         {
-            UnlockStructureIds = new List<int> { 0 };
+            Selector.AddStructure(id);
+        }
+        SetCurrentStructureSlot(1);
+        // WaveManager.Instance.OnWaveStart+=ShowTemplate;
+    }
+
+    public List<StructureInfo> GetStructures()
+    {
+        List<StructureInfo> list = new List<StructureInfo>();
+
+        foreach (KeyValuePair<int, StructureSlot> slot in Selector.Slots)
+        {
+            // if (slot.Value.Structure != null)// tu chyba zbedne ale do przetestowania a jak cos to odkomentowac
+            list.Add(slot.Value.Info);
         }
 
-        SetCurrentStructureId(UnlockStructureIds[0]);
-        // WaveManager.Instance.OnWaveStart+=ShowTemplate;
+        return list;
     }
 
     public void UnlockStructure(int id)
     {
-        UnlockStructureIds.Add(id);
-        OnStructureUnlocked(id);
+        StructureInfo info = StructureScriptableObject.Instance.GetStructureInfoById(id);
+        Selector.AddStructure(info);
+        OnStructureUnlocked(info);
     }
 
     public void ChangeMode()
@@ -57,26 +67,35 @@ public class PlayerBuild
         StructureTemplate.gameObject.SetActive(activeState);
     }
 
-    public void SetCurrentStructureId(int id)
+    public void SetCurrentStructureSlot(int key)
     {
-        if (UnlockStructureIds.Contains(id) == true)
-        {
-            CurrentStructureId = id;
-        }
-        else
-        {
-            return;
-        }
+        StructureSlot slot = Selector.SetSlot(key);
 
-        StructureInfo info = StructureScriptableObject.Instance.GetStructureInfoById(CurrentStructureId);
-        StructureTemplate.Init(info);
-
-        OnStructureChanged(info);
+        StructureTemplate.Init(slot.Info);
+        OnStructureChanged(slot.Info);
     }
+
+
+    public void SetNextStructureSlot()
+    {
+        StructureSlot slot = Selector.NextSlot();
+
+        StructureTemplate.Init(slot.Info);
+        OnStructureChanged(slot.Info);
+    }
+
+    public void SetPreviousStructureSlot()
+    {
+        StructureSlot slot = Selector.PreviousSlot();
+
+        StructureTemplate.Init(slot.Info);
+        OnStructureChanged(slot.Info);
+    }
+
 
     public void Build()
     {
-        if (CurrentStructureId != -1 && StructureTemplate.CheckConditions())
+        if (selector.Slots.Count > 0 && StructureTemplate.CheckConditions())
         {
             BuildManager.Instance.Build(StructureTemplate);
         }

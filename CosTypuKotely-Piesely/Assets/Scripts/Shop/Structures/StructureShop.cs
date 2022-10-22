@@ -25,14 +25,16 @@ public class StructureShop : MonoBehaviour
 
     public void Refresh()
     {
-        List<StructureInfo> structuresInfo = StructureScriptableObject.Instance.GetStructuresList();//TODO zmienic na dostepne na mapie a nie wszystkie w grze xd
+        List<int> structuresId = MapManager.Instance.Options.ShopStructuresID;
+        List<StructureInfo> unlockedStructuresInfo = Player.Instance.PlayerBuild.GetStructures();
 
         Structures.ClearAndDestroy();
 
-        foreach (var info in structuresInfo)
+        foreach (var id in structuresId)
         {
+            StructureInfo info = StructureScriptableObject.Instance.GetStructureInfoById(id);
             StructureUnlock newStructureUnlock = Instantiate(template, content);
-            bool isUnlocked = PlayerInstance.PlayerBuild.UnlockStructureIds.Contains(info.Id);
+            bool isUnlocked = unlockedStructuresInfo.ContainsId(info.Id);
 
             newStructureUnlock.gameObject.SetActive(true);
             newStructureUnlock.Init(info);

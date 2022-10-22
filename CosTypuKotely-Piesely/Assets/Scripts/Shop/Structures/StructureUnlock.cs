@@ -56,7 +56,7 @@ public class StructureUnlock : MonoBehaviour
 
     private void Unlock()
     {
-        PlayerInstance.PlayerBuild.UnlockStructure(CacheInfo.Id);
+        Player.Instance.PlayerBuild.UnlockStructure(CacheInfo.Id);
         SetUnlockVisibility(false);
     }
 }

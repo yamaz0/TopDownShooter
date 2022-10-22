@@ -41,8 +41,9 @@ public class Player : Singleton<Player>, IDamageable
     public void Init()//TODO zmienic na initializacje przy wczytaniu mapy
     {
         List<int> startWeaponsID = MapManagerInstance.Options.StartWeaponsID;
+        List<int> startStructuresID = MapManagerInstance.Options.StartStructuresID;
         PlayerWeapons.Init(startWeaponsID);
-        PlayerBuild.Init();//TODO takie samo jak z weapons czyli startowe dostepne budynki
+        PlayerBuild.Init(startStructuresID);//TODO takie samo jak z weapons czyli startowe dostepne budynki
     }
 
     private void FixedUpdate()
