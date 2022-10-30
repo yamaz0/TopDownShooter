@@ -21,7 +21,7 @@ MonoBehaviour:
       type: {class: MapInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 0
-        name: mapa 1
+        name: mapa noc
         defaultMapOption:
           condition: 0
           startWeaponsID: 01000000
@@ -40,14 +40,14 @@ MonoBehaviour:
       type: {class: MapInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 1
-        name: taka sama
+        name: dzien
         defaultMapOption:
           condition: 0
           startWeaponsID: 00000000
           shopWeaponsID: 0100000000000000
           startStructuresID: 00000000
           shopStructuresID: 0000000001000000
-          isDay: 0
+          isDay: 1
         tilemap: {fileID: 0}
         description: Duis interdum lacus ac leo condimentum consequat. Cras pretium
           id mi quis luctus. Nullam in justo auctor, semper eros at, tincidunt ante.

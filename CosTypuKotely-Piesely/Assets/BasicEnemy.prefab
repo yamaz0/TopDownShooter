@@ -52,8 +52,8 @@ MonoBehaviour:
   rb: {fileID: 5695462797314544883}
   body: {fileID: 8300182890492162391}
   spriteRenderer: {fileID: 8300182890050998678}
-  speed: 300
-  maxSpeed: 300
+  speed: 200
+  maxSpeed: 200
 --- !u!212 &8300182890050998678
 SpriteRenderer:
   m_ObjectHideFlags: 0

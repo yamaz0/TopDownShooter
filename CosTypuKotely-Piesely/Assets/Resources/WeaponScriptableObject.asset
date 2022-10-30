@@ -23,7 +23,15 @@ MonoBehaviour:
         id: 0
         name: pifpaf
         icon: {fileID: 21300000, guid: 604a33afbe2140544a43ae2d43bb9616, type: 3}
-        unlockCost: 10
+        unlockCost:
+          value: 10
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
         magazineSize: 30
         fireRate: 300
         bullets:
@@ -36,7 +44,15 @@ MonoBehaviour:
         id: 1
         name: pewpew
         icon: {fileID: 21300000, guid: 192f6d5ab9157f7449f8266aa47e9618, type: 3}
-        unlockCost: 100
+        unlockCost:
+          value: 10
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
         magazineSize: 60
         fireRate: 600
         bullets:

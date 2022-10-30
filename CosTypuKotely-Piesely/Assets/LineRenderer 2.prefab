@@ -44,9 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3722b31ad8913804690c83505b875a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
   timeToDeactivate: 0.05
-  upgradeCost: 30
+  upgradeCost:
+    value: 5
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    level: 0
   lineRenderer: {fileID: 5286298281204168261}
   filtr:
     useTriggers: 0

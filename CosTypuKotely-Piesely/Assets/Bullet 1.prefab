@@ -101,7 +101,7 @@ MonoBehaviour:
   damage: 3
   timeToDeactivate: 2
   upgradeCost:
-    value: 0
+    value: 5
     curve:
       serializedVersion: 2
       m_Curve: []

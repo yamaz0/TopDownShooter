@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f3e8023920eed428904c14bf9fce9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 6
   timeToDeactivate: 2
   upgradeCost:
-    value: 0
+    value: 5
     curve:
       serializedVersion: 2
       m_Curve: []
