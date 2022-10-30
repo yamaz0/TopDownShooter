@@ -19,7 +19,7 @@ public class RayBullet : Bullet
         if (raycastHit2D.collider != null && raycastHit2D.collider.tag == "Enemy")
         {
             endpos = raycastHit2D.collider.transform.position;
-            raycastHit2D.collider.GetComponent<Enemy>().TakeDamage(1);
+            raycastHit2D.collider.GetComponentInParent<Enemy>().TakeDamage(1);
         }
         lineRenderer.SetPosition(1, endpos);
 

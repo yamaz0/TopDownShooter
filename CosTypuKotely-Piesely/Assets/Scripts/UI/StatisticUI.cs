@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class StatisticUI : MonoBehaviour
+public class StatisticUI : ValueUI
 {
     [SerializeField]
     private string statName;
-    [SerializeField]
-    private TMPro.TMP_Text text;
 
     [Inject]
     private Player PlayerInstance { get; set; }
@@ -24,8 +22,4 @@ public class StatisticUI : MonoBehaviour
         PlayerInstance.PlayerStats.GetStat(statName).OnValueChanged -= SetValue;
     }
 
-    public void SetValue(float value)
-    {
-        text.SetText(value.ToString());
-    }
 }

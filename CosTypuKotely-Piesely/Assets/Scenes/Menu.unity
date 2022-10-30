@@ -570,12 +570,18 @@ MonoBehaviour:
       condition: 0
       startWeaponsID: 
       shopWeaponsID: 
+      startStructuresID: 00000000
+      shopStructuresID: 0000000001000000
+      isDay: 0
     tilemap: {fileID: 0}
     description: 
   options:
     condition: 0
     startWeaponsID: 
     shopWeaponsID: 
+    startStructuresID: 00000000
+    shopStructuresID: 0000000001000000
+    isDay: 0
 --- !u!1 &358792127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2500,9 @@ MonoBehaviour:
       condition: 0
       startWeaponsID: 
       shopWeaponsID: 
+      startStructuresID: 00000000
+      shopStructuresID: 0000000001000000
+      isDay: 0
     tilemap: {fileID: 0}
     description: 
   Selected: 0
@@ -2866,6 +2875,9 @@ MonoBehaviour:
       condition: 0
       startWeaponsID: 
       shopWeaponsID: 
+      startStructuresID: 00000000
+      shopStructuresID: 0000000001000000
+      isDay: 0
     mapName: {fileID: 358792129}
     mapDescription: {fileID: 1849749682}
   content: {fileID: 1924617872}

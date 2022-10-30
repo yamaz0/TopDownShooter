@@ -11,6 +11,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private GameObject wheelStructuresUI;
     [SerializeField]
+    private DeathUIController DeathUIController;
+    [SerializeField]
     private GameObject canvas;
     [SerializeField]
     private CameraFollow cameraFollow;
@@ -36,6 +38,11 @@ public class WindowManager : Singleton<WindowManager>
     {
         InputManager.Instance.ActionMapSetActiv("Building", state);
         cameraFollow.enabled = state;
+    }
+
+    public void ShowDeathMenu(float endTime)
+    {
+        DeathUIController.Init(endTime);
     }
 
     public void ShowShop()

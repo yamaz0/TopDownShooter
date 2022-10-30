@@ -25,7 +25,7 @@ public class ProjectileBullet : Bullet
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<Enemy>().TakeDamage(Damage);
+            other.GetComponentInParent<Enemy>().TakeDamage(Damage);
             StopCoroutine(coroutine);
             Instantiate(puffEffect, transform.position, Quaternion.identity);
             gameObject.SetActive(false);

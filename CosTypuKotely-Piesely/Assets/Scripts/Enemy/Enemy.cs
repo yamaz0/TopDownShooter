@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
-    private BoxCollider2D boxCollider;
+    private GameObject body;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     [SerializeField]
@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
         Gold *= strenghtMultiplier;
         speed = maxSpeed;
         IsAlive = true;
+        body.SetActive(true);
     }
 
     public void TakeDamage(float damage)
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour
         WaveManager.Instance.EnemiesCounter.AddValue(-1);
         IsAlive = false;
         rb.velocity = Vector2.zero;
-        boxCollider.enabled = false;
+        body.SetActive(false);
         StartCoroutine(Dissolve());
     }
 

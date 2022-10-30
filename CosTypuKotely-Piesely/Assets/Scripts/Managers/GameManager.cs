@@ -35,6 +35,8 @@ public class GameManager : SingletonPersistence<GameManager>
     [Inject]
     private WaveManager WaveManagerInstance { get; set; }
 
+    public float StartTime { get; private set; }
+
     private void Start()
     {
         PlayerInstance.PlayerStats.Hp.OnValueChanged += CheckLose;
@@ -54,6 +56,7 @@ public class GameManager : SingletonPersistence<GameManager>
         WindowManager.Instance.ShowCanvas();
 
         WaveManagerInstance.StartWave();
+        StartTime = Time.fixedTime;
     }
 
     private void OnDisable()
@@ -61,10 +64,13 @@ public class GameManager : SingletonPersistence<GameManager>
         PlayerInstance.PlayerStats.Hp.OnValueChanged -= CheckLose;
     }
 
-    public void CheckLose(float hp)
+    public void CheckLose(float hp)//TODO zrobic z tego klase bo rozne warunki w zaleznosci od trybu np czas albo obrona hq a teraz standardowe takie tylko
     {
         if (hp <= 0)
         {
+            PlayerInstance.Deactive();
+            float endTime = Time.fixedTime - StartTime;
+            WindowManager.Instance.ShowDeathMenu(endTime);
             Debug.Log("YOU LOSE");
         }
     }

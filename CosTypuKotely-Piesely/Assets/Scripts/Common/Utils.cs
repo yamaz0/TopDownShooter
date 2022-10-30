@@ -8,6 +8,18 @@ public static class Utils
     static Camera mainCamera;
     static UnityEngine.InputSystem.Controls.Vector2Control mousePosition;
 
+    public static Camera MainCamera
+    {
+        get
+        {
+            if (!mainCamera)
+            {
+                mainCamera = Camera.main;
+            }
+            return mainCamera;
+        }
+    }
+
     static Utils()
     {
         mainCamera = Camera.main;
@@ -17,7 +29,7 @@ public static class Utils
     public static Vector3 MouseScreenToWorldPoint()
     {
         Vector2 currentMousePosition = mousePosition.ReadValue();
-        return mainCamera.ScreenToWorldPoint(currentMousePosition);
+        return MainCamera.ScreenToWorldPoint(currentMousePosition);
     }
     public static Texture2D GenerateTextureFromSprite(Sprite aSprite)
     {
