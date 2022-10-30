@@ -89,6 +89,6 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        CheckDamageable(other)?.TakeDamage(-Dmg);
+        CheckDamageable(other)?.TakeDamage(-Dmg);//TODO lepsze odbieranie zycia
     }
 }

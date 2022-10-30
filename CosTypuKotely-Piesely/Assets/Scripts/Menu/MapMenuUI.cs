@@ -23,6 +23,8 @@ public class MapMenuUI : SelectElementsUI
     {
         List<MapInfo> mapsInfos = MapsScriptableObjectInstance.GetMapsList();
 
+        Elements.ClearAndDestroy();
+
         foreach (MapInfo info in mapsInfos)
         {
             MapElementUI newElement = Instantiate(template, content);

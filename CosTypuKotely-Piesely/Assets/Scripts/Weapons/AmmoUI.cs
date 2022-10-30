@@ -12,7 +12,7 @@ public class AmmoUI : MonoBehaviour
     [Inject]
     private Player PlayerInstance { get; set; }
 
-    private void Start()
+    private void OnEnable()
     {
         CacheCurrentWeapon = PlayerInstance.PlayerWeapons.CurrentWeapon;
         SetWeaponUI(CacheCurrentWeapon);

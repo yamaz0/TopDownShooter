@@ -21,11 +21,13 @@ MonoBehaviour:
       type: {class: MapInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 0
-        name: Jeden ;p
+        name: mapa 1
         defaultMapOption:
           condition: 0
           startWeaponsID: 01000000
           shopWeaponsID: 0100000000000000
+          startStructuresID: 00000000
+          shopStructuresID: 0000000001000000
           isDay: 0
         tilemap: {fileID: 0}
         description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -33,18 +35,22 @@ MonoBehaviour:
           feugiat feugiat. Pellentesque laoreet bibendum ante at efficitur. Aenean
           lacinia mi at arcu volutpat finibus. Nulla sit amet posuere massa, convallis
           cursus lorem. Cras euismod nulla rutrum, tincidunt nisl a, fermentum dui
+        icon: {fileID: 21300000, guid: 675cb6411f36989469f42a1a69297d71, type: 3}
     00000001:
       type: {class: MapInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 1
-        name: dwa
+        name: taka sama
         defaultMapOption:
           condition: 0
           startWeaponsID: 00000000
           shopWeaponsID: 0100000000000000
+          startStructuresID: 00000000
+          shopStructuresID: 0000000001000000
           isDay: 0
         tilemap: {fileID: 0}
         description: Duis interdum lacus ac leo condimentum consequat. Cras pretium
           id mi quis luctus. Nullam in justo auctor, semper eros at, tincidunt ante.
           Etiam sit amet fermentum risus. Vivamus vel tristique urna. Praesent vestibulum
           maximus leo. Vestibulum pretium pretium consectetur.
+        icon: {fileID: 0}

@@ -29,6 +29,9 @@ public class MapOption
     public void Copy(MapOption option)
     {
         condition = option.condition;
+        StartWeaponsID.Clear();
+        ShopWeaponsID.Clear();
+
         StartWeaponsID.AddRange(option.StartWeaponsID);
         ShopWeaponsID.AddRange(option.ShopWeaponsID);
         IsDay = option.isDay;
@@ -49,6 +52,5 @@ public class MapManager : SingletonPersistence<MapManager>
     {
         SelectedMap = map;
         Options = option;
-
     }
 }

@@ -25,32 +25,25 @@ MonoBehaviour:
         id: 0
         name: barykada1
         icon: {fileID: 21300006, guid: 6af3d947474fc5e4faba11f046a39d24, type: 3}
-        cost:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 1
-          m_RotationOrder: 4
-        unlockCost: 1
-        hp: 80.8
+        buildCost:
+          value: 2
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        unlockCost:
+          value: 1
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        hp: 500
         type: 0
     00000001:
       type: {class: TowerInfo, ns: , asm: Assembly-CSharp}
@@ -58,34 +51,27 @@ MonoBehaviour:
         id: 1
         name: tower1
         icon: {fileID: 21300000, guid: 9e578035df2fdfc4c814a5678dbbb411, type: 3}
-        cost:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 2
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 2
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        unlockCost: 2
-        hp: 100
+        buildCost:
+          value: 0
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        unlockCost:
+          value: 1
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        hp: 200
         type: 1
-        dmg: 1
+        dmg: 5
         fireRate: 2
         range: 5
     00000002:
@@ -94,31 +80,24 @@ MonoBehaviour:
         id: 2
         name: towe2
         icon: {fileID: 21300000, guid: 6f1afce65949909419b0a70a51a7918b, type: 3}
-        cost:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        unlockCost: 3
+        buildCost:
+          value: 3
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        unlockCost:
+          value: 1
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
         hp: 500
         type: 1
         dmg: 10
@@ -130,30 +109,23 @@ MonoBehaviour:
         id: 3
         name: barykada2
         icon: {fileID: 21300000, guid: 1baac3f3438e2fb4daf2ced311a6db30, type: 3}
-        cost:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 3
-            inSlope: -2
-            outSlope: -2
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: -2
-            outSlope: -2
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        unlockCost: 4
+        buildCost:
+          value: 0
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
+        unlockCost:
+          value: 1
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          level: 0
         hp: 1000
         type: 0

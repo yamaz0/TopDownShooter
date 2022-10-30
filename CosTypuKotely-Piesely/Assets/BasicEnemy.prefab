@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  dmg: 1
+  dmg: 0.1
   gold: 1
   rb: {fileID: 5695462797314544883}
   body: {fileID: 8300182890492162391}

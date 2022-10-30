@@ -83,7 +83,7 @@ public class TowerStructure : StructureBase
     private void SearchEnemy()
     {
         Collider2D hitinfo = Physics2D.OverlapCircle(transform.position, ((TowerInfo)Info).Range, mask);
-        Enemy = hitinfo?.gameObject.GetComponent<Enemy>();
+        Enemy = hitinfo?.gameObject.GetComponentInParent<Enemy>();
     }
 
 }

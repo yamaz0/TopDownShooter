@@ -6,7 +6,9 @@ using Zenject;
 public class MapElementUI : SelectElementUI
 {
     [SerializeField]
-    private Image icon;
+    private Image iconImage;
+    [SerializeField]
+    private TMPro.TMP_Text nameText;
     [SerializeField]
     private Image ramka;
     [SerializeField]
@@ -22,6 +24,8 @@ public class MapElementUI : SelectElementUI
     public void Init(MapInfo slot)
     {
         Info = slot;
+        iconImage.sprite = slot.Icon;
+        nameText.SetText(slot.Name);
     }
 
     public override void OnPointerDown(PointerEventData eventData)

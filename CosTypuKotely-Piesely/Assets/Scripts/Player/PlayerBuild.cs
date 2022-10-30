@@ -70,7 +70,7 @@ public class PlayerBuild
     public void SetCurrentStructureSlot(int key)
     {
         StructureSlot slot = Selector.SetSlot(key);
-
+        if (slot == null) return;
         StructureTemplate.Init(slot.Info);
         OnStructureChanged(slot.Info);
     }
