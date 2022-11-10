@@ -3,7 +3,7 @@ public class WaveEndEnemyCountCondition : WaveEndConditionBase
 {
     public override bool CheckEndWave()
     {
-        if (WaveManager.Instance.EnemiesCounter.Value <= 0)
+        if (WaveManager.Instance.IsAllSpawn == true && WaveManager.Instance.EnemiesCounter.Value <= 0)
             return true;
         return false;
     }

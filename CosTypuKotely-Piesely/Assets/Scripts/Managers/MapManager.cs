@@ -7,6 +7,9 @@ public enum WinCodition { Time, BaseDefend, Survive, Infinity }
 [System.Serializable]
 public class MapOption
 {
+    //przehcowywanie info o fali. Jesli w menu bedize zmiana na inny typ fali to : przy infinity zapetla wszystko i zwieksza moc przeciwnikow/ w innym przypadku to co jets
+    [SerializeReference]
+    private WaveBase wave = new BasicWave();
     [SerializeField]
     private WinCodition condition;
     [SerializeField]

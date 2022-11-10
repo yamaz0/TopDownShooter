@@ -7,16 +7,15 @@ public class StatementTextUI : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text statementText;
 
-    public void ShowText(string text)
+    public void ShowText()
     {
         gameObject.SetActive(true);
-        statementText.SetText(text);
         statementText.alpha = 1f;
 
-        StartCoroutine(ShowText());
+        StartCoroutine(Show());
     }
 
-    private IEnumerator ShowText()
+    private IEnumerator Show()
     {
         while (statementText.alpha > 0.1f)
         {

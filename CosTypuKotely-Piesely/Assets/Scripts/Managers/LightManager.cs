@@ -27,10 +27,6 @@ public class LightManager : Singleton<LightManager>
     public void Init()
     {
         SetDayLight(MapManager.Instance.Options.IsDay);
-
-        Player.Instance.PlayerLight.AreaLightSize.OnValueChanged += Player.Instance.PlayerLight.SetAreaLightSize;
-        Player.Instance.PlayerLight.FlashlightStrenght.OnValueChanged += Player.Instance.PlayerLight.SetFlashlightStrenght;
-        Player.Instance.PlayerLight.FlashlightLenght.OnValueChanged += Player.Instance.PlayerLight.SetFlashlightLenght;
     }
 
     public void SetDayLight(bool state)

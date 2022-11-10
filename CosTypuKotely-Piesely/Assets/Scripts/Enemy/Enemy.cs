@@ -41,12 +41,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Init(int strenghtMultiplier)
+    public void Init(EnemyInfo info, int strenghtMultiplier = 1)
     {
-        Hp *= strenghtMultiplier;
-        Dmg *= strenghtMultiplier;
-        Gold *= strenghtMultiplier;
-        speed = maxSpeed;
+        Hp = info.Hp * strenghtMultiplier;
+        Dmg = info.Dmg * strenghtMultiplier;
+        Gold = info.Gold * strenghtMultiplier;
+        maxSpeed = info.Speed;
+        speed = info.Speed;
         IsAlive = true;
         body.SetActive(true);
     }

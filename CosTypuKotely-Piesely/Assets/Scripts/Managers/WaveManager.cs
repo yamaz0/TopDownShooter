@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -9,15 +10,21 @@ public class WaveManager : Singleton<WaveManager>
     private Spawn spawner;
     public bool IsWave { get => isWave; set => isWave = value; }
     [SerializeField]
-    private StatementTextUI statementTextUI;
+    private StatementTextUI startWaveText;
+    [SerializeField]
+    private StatementTextUI endWaveText;
     [SerializeReference]
     private WaveEndConditionBase x = new WaveEndEnemyCountCondition();
+
+    public List<Enemy> SpawnedEnemies { get; private set; }
+    public bool IsAllSpawn = false;
 
     public Float EnemiesCounter { get; set; } = new Float(0);
     public Spawn Spawner { get => spawner; set => spawner = value; }
 
     public event System.Action OnWaveStart = delegate { };
     public event System.Action OnWaveEnd = delegate { };
+
 
     [Inject]
     private Player PlayerInstance { get; set; }
@@ -46,7 +53,7 @@ public class WaveManager : Singleton<WaveManager>
         ChangeWaveState(true);
         InputManager.Instance.ActionMapSetActiv("Building", false);
         InputManager.Instance.ActionMapSetActiv("Shooting", true);
-        statementTextUI.ShowText("Wave Start");
+        startWaveText.ShowText();
         PlayerInstance.PlayerBuild.ShowTemplate(false);
         ResetWave();
         OnWaveStart();
@@ -61,9 +68,10 @@ public class WaveManager : Singleton<WaveManager>
 
     public void EndWave()
     {
+        IsAllSpawn = false;
         x.Detach();
         ChangeWaveState(false);
-        statementTextUI.ShowText("Wave End");
+        endWaveText.ShowText();
         OnWaveEnd();
     }
 }

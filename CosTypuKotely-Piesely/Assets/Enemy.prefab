@@ -98,7 +98,7 @@ MonoBehaviour:
   dmg: 1
   gold: 1
   rb: {fileID: 1648417105040539628}
-  boxCollider: {fileID: 1648417105040539631}
+  body: {fileID: 1648417106746859306}
   spriteRenderer: {fileID: 1648417106746859304}
   speed: 300
   maxSpeed: 300

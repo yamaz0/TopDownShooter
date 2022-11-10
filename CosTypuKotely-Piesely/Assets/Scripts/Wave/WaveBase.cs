@@ -6,16 +6,26 @@ using UnityEngine;
 public abstract class WaveBase
 {
     [SerializeField]
-    private List<Enemy> enemies;
+    private List<GroupEnemies> enemiesGroups;
     [SerializeField]
     private float range = 17f;
 
-    public WaitForSeconds WaitForSecond { get; set; } = new WaitForSeconds(1);
     public Transform CachedPlayerTransform { get; set; }
     public float Range { get => range; set => range = value; }
-    public List<Enemy> Enemies { get => enemies; set => enemies = value; }
+    public List<GroupEnemies> EnemiesGroups { get => enemiesGroups; set => enemiesGroups = value; }
     public abstract IEnumerator InitializeWave();
     public int EnemyCount { get; set; }
-    public abstract void AddEnemy();
     public event System.Action<float> OnEnemyCountChanged = delegate { };
+}
+
+[System.Serializable]
+public class GroupEnemies
+{
+    [SerializeField]
+    private List<int> enemiesID;//tu chyba najlepiej idki
+    [SerializeField]
+    private float timeToSpawn;
+
+    public List<int> EnemiesID { get => enemiesID; set => enemiesID = value; }
+    public float TimeToSpawn { get => timeToSpawn; set => timeToSpawn = value; }
 }

@@ -19,6 +19,28 @@ public class PlayerLight
     public Float FlashlightStrenght { get => flashlightStrenght; set => flashlightStrenght = value; }
     public Float FlashlightLenght { get => flashlightLenght; set => flashlightLenght = value; }
 
+    public void Init(bool isDay)
+    {
+        if (isDay == false)
+        {
+            AttachEvents();
+        }
+    }
+
+    public void AttachEvents()
+    {
+        AreaLightSize.OnValueChanged += SetAreaLightSize;
+        FlashlightStrenght.OnValueChanged += SetFlashlightStrenght;
+        FlashlightLenght.OnValueChanged += SetFlashlightLenght;
+    }
+
+    public void DetachEvents()
+    {
+        AreaLightSize.OnValueChanged -= SetAreaLightSize;
+        FlashlightStrenght.OnValueChanged -= SetFlashlightStrenght;
+        FlashlightLenght.OnValueChanged -= SetFlashlightLenght;
+    }
+
     public Float GetStat(string statName)
     {
         return statName switch

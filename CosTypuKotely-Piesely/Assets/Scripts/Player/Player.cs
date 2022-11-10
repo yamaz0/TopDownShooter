@@ -45,6 +45,7 @@ public class Player : Singleton<Player>, IDamageable
         List<int> startStructuresID = MapManagerInstance.Options.StartStructuresID;
         PlayerWeapons.Init(startWeaponsID);
         PlayerBuild.Init(startStructuresID);//TODO takie samo jak z weapons czyli startowe dostepne budynki
+        PlayerLight.Init(MapManagerInstance.Options.IsDay);//TODO takie samo jak z weapons czyli startowe dostepne budynki
     }
 
     public void Deactive()
@@ -59,6 +60,10 @@ public class Player : Singleton<Player>, IDamageable
     private void Update()
     {
         Rotation.Rotate(transform);
+    }
+    private void OnDisable()
+    {
+        
     }
 
 }
