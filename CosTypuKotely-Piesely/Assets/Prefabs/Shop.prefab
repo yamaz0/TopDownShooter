@@ -2944,7 +2944,6 @@ GameObject:
   - component: {fileID: 7428779984913773452}
   - component: {fileID: 854439730539654264}
   - component: {fileID: 5320516924929589777}
-  - component: {fileID: 5582490595854529078}
   m_Layer: 5
   m_Name: Lights
   m_TagString: Untagged
@@ -3016,56 +3015,6 @@ MonoBehaviour:
   - {fileID: 433649810473052008}
   - {fileID: 3377041838215031694}
   - {fileID: 1752735932736999972}
---- !u!114 &5582490595854529078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264452809992971877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjects:
-  - id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 5320516924929589777}
-        m_TrackedProperties:
-          items:
-          - id: 1
-          - id: 2
-        m_UpdateType: 1
-        m_Changed:
-          m_PersistentCalls:
-            m_Calls: []
-    00000001:
-      type: {class: ArraySizeTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: stats.Array.size
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: pl
-          value: 0
-        - localeIdentifier:
-            m_Code: en
-          value: 3
-    00000002:
-      type: {class: BoolTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: m_Enabled
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: pl
-          value: 1
-        - localeIdentifier:
-            m_Code: en
-          value: 1
 --- !u!1 &2354114651558475368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11386,7 +11335,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9133447000933399439}
   - component: {fileID: 8677343821517443980}
-  - component: {fileID: 5426366893360349193}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -11432,46 +11380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightTab: {fileID: 8148985829976252781}
---- !u!114 &5426366893360349193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9133447000933399436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjects:
-  - id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
-      data:
-        m_Target: {fileID: 8677343821517443980}
-        m_TrackedProperties:
-          items:
-          - id: 1
-        m_UpdateType: 0
-        m_Changed:
-          m_PersistentCalls:
-            m_Calls: []
-    00000001:
-      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
-      data:
-        m_PropertyPath: lightTab
-        m_TypeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        m_VariantData:
-        - localeIdentifier:
-            m_Code: pl
-          value: {fileID: 0}
-        - localeIdentifier:
-            m_Code: en
-          value: {fileID: 0}
 --- !u!1 &9133447001155426557
 GameObject:
   m_ObjectHideFlags: 0
