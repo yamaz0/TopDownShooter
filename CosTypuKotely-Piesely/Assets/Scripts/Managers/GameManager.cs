@@ -55,7 +55,7 @@ public class GameManager : SingletonPersistence<GameManager>
 
         WindowManager.Instance.ShowCanvas();
 
-        WaveManagerInstance.StartWave();
+        WaveManagerInstance.Init();
         StartTime = Time.fixedTime;
     }
 

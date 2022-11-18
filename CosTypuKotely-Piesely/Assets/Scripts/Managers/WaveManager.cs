@@ -5,10 +5,13 @@ using Zenject;
 public class WaveManager : Singleton<WaveManager>
 {
     [SerializeField]
-    private bool isWave = false;
+    private int currentWaveNumber;
     [SerializeField]
-    private Spawn spawner;
-    public bool IsWave { get => isWave; set => isWave = value; }
+    private int wavesCount;
+    [SerializeField]
+    private bool isWave = false;
+
+
     [SerializeField]
     private StatementTextUI startWaveText;
     [SerializeField]
@@ -16,18 +19,21 @@ public class WaveManager : Singleton<WaveManager>
     [SerializeReference]
     private WaveEndConditionBase x = new WaveEndEnemyCountCondition();
 
-    public List<Enemy> SpawnedEnemies { get; private set; }
+    public List<Enemy> SpawnedEnemies { get; private set; } = new List<Enemy>();
     public bool IsAllSpawn = false;
+    public bool IsWave { get => isWave; set => isWave = value; }
 
     public Float EnemiesCounter { get; set; } = new Float(0);
-    public Spawn Spawner { get => spawner; set => spawner = value; }
 
     public event System.Action OnWaveStart = delegate { };
-    public event System.Action OnWaveEnd = delegate { };
+    public event System.Action OnEnemyCountChanged = delegate { };
+    // public event System.Action OnWaveEnd = delegate { };
 
 
     [Inject]
     private Player PlayerInstance { get; set; }
+    public int CurrentWaveNumber { get => currentWaveNumber; set => currentWaveNumber = value; }
+    public int WavesCount { get => wavesCount; set => wavesCount = value; }
 
     private void OnDisable()
     {
@@ -41,6 +47,12 @@ public class WaveManager : Singleton<WaveManager>
     //         EndWave();
     //     }
     // }
+    public void Init()
+    {
+        //tutaj wszystkie poczatkowe wartosci przypisac
+        WavesCount = MapManager.Instance.SelectedMap.Waves.Count;
+        StartWave();
+    }
 
     public void ChangeWaveState(bool state)
     {
@@ -56,8 +68,9 @@ public class WaveManager : Singleton<WaveManager>
         startWaveText.ShowText();
         PlayerInstance.PlayerBuild.ShowTemplate(false);
         ResetWave();
+        CurrentWaveNumber++;
         OnWaveStart();
-        Spawner.StartWave();
+        StartCoroutine(MapManager.Instance.SelectedMap.Waves[CurrentWaveNumber - 1].InitializeWave());//todo przechowac referencje w wavemanagerze
         x.Attach();
     }
 
@@ -68,10 +81,33 @@ public class WaveManager : Singleton<WaveManager>
 
     public void EndWave()
     {
-        IsAllSpawn = false;
-        x.Detach();
-        ChangeWaveState(false);
-        endWaveText.ShowText();
-        OnWaveEnd();
+        if (CheckWavesEmpty())
+        {
+            //todo wygrana mapy i wyjscie do menu po kliknieciu
+            Debug.Log("wygranko");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+        else
+        {
+
+            IsAllSpawn = false;
+            x.Detach();
+            ChangeWaveState(false);
+            endWaveText.ShowText();
+            // OnWaveEnd();
+        }
     }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        SpawnedEnemies.Remove(enemy);
+        NotifyEnemyCountChanged();
+    }
+
+    public void NotifyEnemyCountChanged()
+    {
+        OnEnemyCountChanged();
+    }
+
+    private bool CheckWavesEmpty() => CurrentWaveNumber >= WavesCount;
 }

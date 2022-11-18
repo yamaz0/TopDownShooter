@@ -23,6 +23,8 @@ MonoBehaviour:
         id: 0
         name: mapa noc
         defaultMapOption:
+          wave:
+            id: 2
           condition: 0
           startWeaponsID: 01000000
           shopWeaponsID: 0100000000000000
@@ -36,12 +38,33 @@ MonoBehaviour:
           lacinia mi at arcu volutpat finibus. Nulla sit amet posuere massa, convallis
           cursus lorem. Cras euismod nulla rutrum, tincidunt nisl a, fermentum dui
         icon: {fileID: 21300000, guid: 675cb6411f36989469f42a1a69297d71, type: 3}
+        waves:
+        - enemiesGroups:
+          - enemiesID: 0000000000000000000000000000000000000000
+            timeToSpawn: 2
+          range: 17
+        - enemiesGroups:
+          - enemiesID: 00000000000000000000000000000000
+            timeToSpawn: 1
+          - enemiesID: 0000000000000000
+            timeToSpawn: 5
+          range: 17
+        - enemiesGroups:
+          - enemiesID: 000000000000000000000000
+            timeToSpawn: 1
+          - enemiesID: 000000000000000000000000
+            timeToSpawn: 5
+          - enemiesID: 0000000000000000000000000000000000000000
+            timeToSpawn: 10
+          range: 17
     00000001:
       type: {class: MapInfo, ns: , asm: Assembly-CSharp}
       data:
         id: 1
         name: dzien
         defaultMapOption:
+          wave:
+            id: 3
           condition: 0
           startWeaponsID: 00000000
           shopWeaponsID: 0100000000000000
@@ -54,3 +77,32 @@ MonoBehaviour:
           Etiam sit amet fermentum risus. Vivamus vel tristique urna. Praesent vestibulum
           maximus leo. Vestibulum pretium pretium consectetur.
         icon: {fileID: 0}
+        waves:
+        - enemiesGroups:
+          - enemiesID: 0000000000000000000000000000000000000000
+            timeToSpawn: 1
+          range: 17
+        - enemiesGroups:
+          - enemiesID: 000000000000000000000000
+            timeToSpawn: 1
+          - enemiesID: 000000000000000000000000
+            timeToSpawn: 5
+          range: 17
+        - enemiesGroups:
+          - enemiesID: 00000000
+            timeToSpawn: 1
+          - enemiesID: 0000000000000000
+            timeToSpawn: 5
+          - enemiesID: 000000000000000000000000
+            timeToSpawn: 10
+          range: 17
+    00000002:
+      type: {class: BasicWave, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesGroups: []
+        range: 17
+    00000003:
+      type: {class: BasicWave, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesGroups: []
+        range: 17

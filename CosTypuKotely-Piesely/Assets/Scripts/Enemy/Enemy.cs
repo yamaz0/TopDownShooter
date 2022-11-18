@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour
         IsAlive = false;
         rb.velocity = Vector2.zero;
         body.SetActive(false);
+        WaveManager.Instance.RemoveEnemy(this);
         StartCoroutine(Dissolve());
     }
 

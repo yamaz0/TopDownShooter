@@ -10,7 +10,6 @@ public abstract class WaveBase
     [SerializeField]
     private float range = 17f;
 
-    public Transform CachedPlayerTransform { get; set; }
     public float Range { get => range; set => range = value; }
     public List<GroupEnemies> EnemiesGroups { get => enemiesGroups; set => enemiesGroups = value; }
     public abstract IEnumerator InitializeWave();

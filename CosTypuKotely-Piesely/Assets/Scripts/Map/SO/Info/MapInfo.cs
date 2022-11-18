@@ -14,11 +14,14 @@ public class MapInfo : BaseInfo
     private string description;
     [SerializeField]
     private Sprite icon;
+    [SerializeField]
+    private List<BasicWave> waves;
 
     public MapOption DefaultMapOption { get => defaultMapOption; set => defaultMapOption = value; }
     public Tilemap Tilemap { get => tilemap; set => tilemap = value; }
     public string Description { get => description; set => description = value; }
     public Sprite Icon { get => icon; set => icon = value; }
+    public List<BasicWave> Waves { get => waves; set => waves = value; }
 
     public MapInfo()
     {
