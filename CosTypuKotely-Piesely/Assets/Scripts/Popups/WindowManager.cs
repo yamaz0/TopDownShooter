@@ -13,6 +13,8 @@ public class WindowManager : Singleton<WindowManager>
     [SerializeField]
     private DeathUIController DeathUIController;
     [SerializeField]
+    private WinCanvasUIController WinCanvasController;
+    [SerializeField]
     private GameObject canvas;
     [SerializeField]
     private CameraFollow cameraFollow;
@@ -26,6 +28,12 @@ public class WindowManager : Singleton<WindowManager>
     public void ShowCanvas()
     {
         canvas.SetActive(!canvas.activeSelf);
+    }
+
+    public void ShowWinCanvas()
+    {
+        SetCharacterControl(false);
+        WinCanvasController.Init();
     }
 
     private void SetCharacterShooting(bool state)

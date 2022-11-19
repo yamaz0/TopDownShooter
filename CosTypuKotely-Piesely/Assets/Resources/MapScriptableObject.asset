@@ -85,16 +85,10 @@ MonoBehaviour:
         - enemiesGroups:
           - enemiesID: 000000000000000000000000
             timeToSpawn: 1
-          - enemiesID: 000000000000000000000000
-            timeToSpawn: 5
           range: 17
         - enemiesGroups:
           - enemiesID: 00000000
             timeToSpawn: 1
-          - enemiesID: 0000000000000000
-            timeToSpawn: 5
-          - enemiesID: 000000000000000000000000
-            timeToSpawn: 10
           range: 17
     00000002:
       type: {class: BasicWave, ns: , asm: Assembly-CSharp}

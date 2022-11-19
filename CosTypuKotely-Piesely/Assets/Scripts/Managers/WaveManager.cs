@@ -84,8 +84,9 @@ public class WaveManager : Singleton<WaveManager>
         if (CheckWavesEmpty())
         {
             //todo wygrana mapy i wyjscie do menu po kliknieciu
-            Debug.Log("wygranko");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            WindowManager.Instance.ShowWinCanvas();
+            // Debug.Log("wygranko");
+            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         else
         {

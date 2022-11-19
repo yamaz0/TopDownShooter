@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class DeathUIController : MonoBehaviour
 {
     [SerializeField]
     private ValueUI timeUI;
-[SerializeField]
-private GameObject mainCanvas;
+    [SerializeField]
+    private GameObject mainCanvas;
     public void Init(float time)
     {
         gameObject.SetActive(true);
