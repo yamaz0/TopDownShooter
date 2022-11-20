@@ -9,10 +9,13 @@ abstract public class Bullet : MonoBehaviour
     private float timeToDeactivate = 2;
     [SerializeField]
     private Cost upgradeCost = new Cost();
+    [SerializeField]
+    private AudioClip clip;
 
     public float Damage { get => damage; set => damage = value; }
     public float TimeToDeactivate { get => timeToDeactivate; set => timeToDeactivate = value; }
     public Cost UpgradeCost { get => upgradeCost; set => upgradeCost = value; }
+    public AudioClip Clip { get => clip; set => clip = value; }
 
     abstract public void Init(Vector2 direction);
 

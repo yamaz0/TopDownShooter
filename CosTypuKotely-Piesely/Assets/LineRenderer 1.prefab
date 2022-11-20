@@ -55,6 +55,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     level: 0
+  clip: {fileID: 8300000, guid: 8f64be8661ef5e8439359af1625274f9, type: 3}
   lineRenderer: {fileID: 5286298281204168261}
   filtr:
     useTriggers: 0

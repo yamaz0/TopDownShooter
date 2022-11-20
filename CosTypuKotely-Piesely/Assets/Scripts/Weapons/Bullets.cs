@@ -69,5 +69,6 @@ public class Bullets
         pooledBullet.transform.position = transform.position;
         pooledBullet.gameObject.SetActive(true);
         pooledBullet.Init(direction);
+        SoundManager.Instance.PlaySound(pooledBullet.Clip);
     }
 }

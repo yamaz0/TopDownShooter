@@ -109,6 +109,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     level: 0
+  clip: {fileID: 8300000, guid: ca7000b350eb4764abb864cefd37ad76, type: 3}
   rb: {fileID: 1823818033918589085}
   puffEffect: {fileID: 2070501061166836861, guid: fec426f53ebd7b44b8a4e18d5709ce4e, type: 3}
   trailRenderer: {fileID: -943762769380097228}
