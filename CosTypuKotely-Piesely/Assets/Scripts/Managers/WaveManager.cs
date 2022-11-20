@@ -11,11 +11,6 @@ public class WaveManager : Singleton<WaveManager>
     [SerializeField]
     private bool isWave = false;
 
-
-    [SerializeField]
-    private StatementTextUI startWaveText;
-    [SerializeField]
-    private StatementTextUI endWaveText;
     [SerializeReference]
     private WaveEndConditionBase x = new WaveEndEnemyCountCondition();
 
@@ -65,8 +60,8 @@ public class WaveManager : Singleton<WaveManager>
         ChangeWaveState(true);
         InputManager.Instance.ActionMapSetActiv("Building", false);
         InputManager.Instance.ActionMapSetActiv("Shooting", true);
-        startWaveText.ShowText();
         PlayerInstance.PlayerBuild.ShowTemplate(false);
+        WindowManager.Instance.ShowFadedText("Start Wave");
         ResetWave();
         CurrentWaveNumber++;
         OnWaveStart();
@@ -83,18 +78,15 @@ public class WaveManager : Singleton<WaveManager>
     {
         if (CheckWavesEmpty())
         {
-            //todo wygrana mapy i wyjscie do menu po kliknieciu
             WindowManager.Instance.ShowWinCanvas();
-            // Debug.Log("wygranko");
-            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         else
         {
-
             IsAllSpawn = false;
             x.Detach();
             ChangeWaveState(false);
-            endWaveText.ShowText();
+            WindowManager.Instance.ShowFadedText("End Wave");
+
             // OnWaveEnd();
         }
     }

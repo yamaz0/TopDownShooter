@@ -24,6 +24,6 @@ MonoBehaviour:
         name: test1
         hp: 3
         dmg: 1
-        gold: 1
+        gold: 5
         icon: {fileID: 21300032, guid: 6af3d947474fc5e4faba11f046a39d24, type: 3}
         speed: 300

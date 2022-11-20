@@ -18,6 +18,14 @@ public class WindowManager : Singleton<WindowManager>
     private GameObject canvas;
     [SerializeField]
     private CameraFollow cameraFollow;
+    [SerializeField]
+    private FadedTextUI fadedTextUITemplate;
+
+    public void ShowFadedText(string text, float time = 0.1f, float subtractiveValue = 0.05f)
+    {
+        FadedTextUI newText = Instantiate(fadedTextUITemplate, canvas.transform);
+        newText.ShowText(text, time, subtractiveValue);
+    }
 
     private void SetCharacterControl(bool state)
     {
