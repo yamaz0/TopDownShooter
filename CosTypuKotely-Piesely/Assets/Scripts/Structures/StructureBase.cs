@@ -19,6 +19,8 @@ public class StructureBase : MonoBehaviour, IDamageable
     public float HealthPoints { get => healthPoints; set => healthPoints = value; }
     public StructureType Type { get => type; set => type = value; }
 
+    public event System.Action OnDestroyed = delegate { };
+
     public void Build(StructureInfo info)
     {
         Info = info;
@@ -26,6 +28,7 @@ public class StructureBase : MonoBehaviour, IDamageable
         spriteRenderer.sprite = Info.Icon;
         HealthPoints = info.Hp;
         spriteRenderer.sprite = info.Icon;
+        transform.localScale = new Vector3(Info.Width, Info.Height, 1);
         // boxcollider.size = Info.UndamagedIcon.rect.size / Info.UndamagedIcon.pixelsPerUnit;
     }
 
@@ -39,6 +42,7 @@ public class StructureBase : MonoBehaviour, IDamageable
     {
         if (healthPoints <= 0)
         {
+            OnDestroyed();
             Destroy(gameObject);
         }
     }

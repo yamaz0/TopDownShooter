@@ -44,6 +44,8 @@ MonoBehaviour:
             m_RotationOrder: 4
           level: 0
         hp: 500
+        width: 1
+        height: 1
         type: 0
     00000001:
       type: {class: TowerInfo, ns: , asm: Assembly-CSharp}
@@ -70,6 +72,8 @@ MonoBehaviour:
             m_RotationOrder: 4
           level: 0
         hp: 200
+        width: 2
+        height: 2
         type: 1
         dmg: 5
         fireRate: 2
@@ -99,6 +103,8 @@ MonoBehaviour:
             m_RotationOrder: 4
           level: 0
         hp: 500
+        width: 2
+        height: 2
         type: 1
         dmg: 10
         fireRate: 1
@@ -128,4 +134,6 @@ MonoBehaviour:
             m_RotationOrder: 4
           level: 0
         hp: 1000
+        width: 1
+        height: 1
         type: 0

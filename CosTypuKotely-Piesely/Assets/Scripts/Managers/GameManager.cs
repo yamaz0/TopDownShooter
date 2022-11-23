@@ -26,7 +26,8 @@ public class GameManager : SingletonPersistence<GameManager>
 {
     [SerializeField]
     private PlayerInput input;
-
+    [SerializeField]
+    private EnvironmentController environmentController;
     [Inject]
     private InputManager InputManagerInstance { get; set; }
     [Inject]
@@ -45,6 +46,7 @@ public class GameManager : SingletonPersistence<GameManager>
     public void StartGame()
     {
         Debug.Log("Start game!");
+        environmentController.Init();
         PlayerInstance.Init();
         LightManager.Instance.Init();
 

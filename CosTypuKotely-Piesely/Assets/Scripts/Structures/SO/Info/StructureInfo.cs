@@ -11,6 +11,10 @@ public class StructureInfo : BaseInfo
     [SerializeField]
     private float hp;
     [SerializeField]
+    private int width = 1;
+    [SerializeField]
+    private int height = 1;
+    [SerializeField]
     private StructureType type;
 
     public Sprite Icon { get => icon; private set => icon = value; }
@@ -18,6 +22,8 @@ public class StructureInfo : BaseInfo
     public float Hp { get => hp; private set => hp = value; }
     public StructureType Type { get => type; set => type = value; }
     public Cost UnlockCost { get => unlockCost; set => unlockCost = value; }
+    public int Width { get => width; set => width = value; }
+    public int Height { get => height; set => height = value; }
 
     public StructureInfo()
     {

@@ -15,6 +15,7 @@ MonoBehaviour:
   objects:
   - id: 0
   - id: 1
+  - id: 2
   references:
     version: 1
     00000000:
@@ -24,13 +25,13 @@ MonoBehaviour:
         name: mapa noc
         defaultMapOption:
           wave:
-            id: 2
+            id: 3
           condition: 0
           startWeaponsID: 01000000
           shopWeaponsID: 0100000000000000
           startStructuresID: 00000000
           shopStructuresID: 0000000001000000
-          isDay: 0
+          isDay: 1
         tilemap: {fileID: 0}
         description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
           eleifend quam id lectus maximus elementum. Nullam viverra eros et velit
@@ -64,38 +65,62 @@ MonoBehaviour:
         name: dzien
         defaultMapOption:
           wave:
-            id: 3
+            id: 4
           condition: 0
           startWeaponsID: 00000000
-          shopWeaponsID: 0100000000000000
+          shopWeaponsID: 0000000001000000
           startStructuresID: 00000000
           shopStructuresID: 0000000001000000
           isDay: 1
         tilemap: {fileID: 0}
-        description: Duis interdum lacus ac leo condimentum consequat. Cras pretium
-          id mi quis luctus. Nullam in justo auctor, semper eros at, tincidunt ante.
-          Etiam sit amet fermentum risus. Vivamus vel tristique urna. Praesent vestibulum
-          maximus leo. Vestibulum pretium pretium consectetur.
-        icon: {fileID: 0}
+        description: sadasdasd
+        icon: {fileID: 21300000, guid: 2f1151f3b40e6524781ab276955c84f7, type: 3}
         waves:
         - enemiesGroups:
-          - enemiesID: 0000000000000000000000000000000000000000
+          - enemiesID: 
+            timeToSpawn: 1
+          - enemiesID: 
             timeToSpawn: 1
           range: 17
         - enemiesGroups:
-          - enemiesID: 000000000000000000000000
+          - enemiesID: 
             timeToSpawn: 1
-          range: 17
-        - enemiesGroups:
-          - enemiesID: 00000000
+          - enemiesID: 
             timeToSpawn: 1
           range: 17
     00000002:
+      type: {class: MapInfo, ns: , asm: Assembly-CSharp}
+      data:
+        id: 2
+        name: sadasdsad
+        defaultMapOption:
+          wave:
+            id: 5
+          condition: 0
+          startWeaponsID: 00000000
+          shopWeaponsID: 0000000001000000
+          startStructuresID: 00000000
+          shopStructuresID: 0000000001000000
+          isDay: 1
+        tilemap: {fileID: 0}
+        description: dsad
+        icon: {fileID: 21300000, guid: 89908998cfc903740a07c4086787eb3d, type: 3}
+        waves:
+        - enemiesGroups:
+          - enemiesID: 
+            timeToSpawn: 0
+          range: 18
+    00000003:
       type: {class: BasicWave, ns: , asm: Assembly-CSharp}
       data:
         enemiesGroups: []
         range: 17
-    00000003:
+    00000004:
+      type: {class: BasicWave, ns: , asm: Assembly-CSharp}
+      data:
+        enemiesGroups: []
+        range: 17
+    00000005:
       type: {class: BasicWave, ns: , asm: Assembly-CSharp}
       data:
         enemiesGroups: []

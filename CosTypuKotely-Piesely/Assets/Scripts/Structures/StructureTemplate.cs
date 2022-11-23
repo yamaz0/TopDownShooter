@@ -27,7 +27,10 @@ public class StructureTemplate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = PlaceTransform.position;
+        Grid grid = BuildManager.Instance.Grid;
+        Vector2Int vector2Int = grid.GetGridXYByPosition(PlaceTransform.position);
+        Vector3 position = grid.GetGlobalPosition(vector2Int.x, vector2Int.y);
+        transform.position = position;
     }
 
     public void Init(StructureInfo infoBase)
@@ -40,7 +43,8 @@ public class StructureTemplate : MonoBehaviour
 
         Info = infoBase;
         spriteRenderer.sprite = Info.Icon;
-        colider.size = Info.Icon.rect.size / Info.Icon.pixelsPerUnit;
+        spriteRenderer.size = new Vector2(Info.Width, Info.Height);
+        // colider.size = Info.Icon.rect.size / Info.Icon.pixelsPerUnit;
     }
 
     public bool CheckConditions()
