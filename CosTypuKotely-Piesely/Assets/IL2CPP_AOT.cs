@@ -3,7 +3,7 @@
 //---------- ----------------------------- ----------
 
 //Runtime Monitoring
-//File generated: 2022-11-20 18:01:11Z
+//File generated: 2022-11-24 19:32:11Z
 //Please dont change the contents of this file. Otherwise IL2CPP runtime may not work with runtime monitoring!
 //Ensure that this file is located in Assembly-CSharp. Otherwise this file may not compile.
 //https://github.com/JohnBaracuda/Runtime-Monitoring
