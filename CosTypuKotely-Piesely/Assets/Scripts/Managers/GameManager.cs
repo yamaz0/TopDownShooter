@@ -34,7 +34,8 @@ public class GameManager : SingletonPersistence<GameManager>
     private Player PlayerInstance { get; set; }
     [Inject]
     private WaveManager WaveManagerInstance { get; set; }
-
+    [SerializeField]
+    private AudioClip music;
     public float StartTime { get; private set; }
 
     private void Start()
@@ -58,6 +59,8 @@ public class GameManager : SingletonPersistence<GameManager>
 
         WaveManagerInstance.Init();
         StartTime = Time.fixedTime;
+
+        SoundManager.Instance.PlayMusic(music);
     }
 
     private void OnDisable()

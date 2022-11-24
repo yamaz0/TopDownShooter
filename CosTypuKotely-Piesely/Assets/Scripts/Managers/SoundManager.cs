@@ -7,8 +7,15 @@ public class SoundManager : SingletonPersistence<SoundManager>
     [SerializeField]
     private AudioSource effectSource;
 
+
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.Stop();
+        musicSource.PlayOneShot(clip);
     }
 }

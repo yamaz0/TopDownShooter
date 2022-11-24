@@ -77,15 +77,13 @@ MonoBehaviour:
         icon: {fileID: 21300000, guid: 2f1151f3b40e6524781ab276955c84f7, type: 3}
         waves:
         - enemiesGroups:
-          - enemiesID: 
+          - enemiesID: 000000000000000000000000
             timeToSpawn: 1
-          - enemiesID: 
+          - enemiesID: 000000000000000000000000
             timeToSpawn: 1
           range: 17
         - enemiesGroups:
-          - enemiesID: 
-            timeToSpawn: 1
-          - enemiesID: 
+          - enemiesID: 00000000
             timeToSpawn: 1
           range: 17
     00000002:
@@ -107,21 +105,15 @@ MonoBehaviour:
         icon: {fileID: 21300000, guid: 9239c8293dd3b934fac10d73b2683471, type: 3}
         waves:
         - enemiesGroups:
-          - enemiesID: 
+          - enemiesID: 0000000000000000
             timeToSpawn: 1
-          - enemiesID: 
-            timeToSpawn: 2
           range: 18
         - enemiesGroups:
-          - enemiesID: 
+          - enemiesID: 0000000000000000
             timeToSpawn: 1
-          - enemiesID: 
-            timeToSpawn: 2
           range: 18
         - enemiesGroups:
-          - enemiesID: 
-            timeToSpawn: 0
-          - enemiesID: 
+          - enemiesID: 0000000000000000
             timeToSpawn: 0
           range: 18
     00000003:

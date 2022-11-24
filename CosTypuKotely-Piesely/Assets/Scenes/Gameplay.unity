@@ -70402,6 +70402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 209584028}
   environmentController: {fileID: 1921382354}
+  music: {fileID: 8300000, guid: 5ecacb1d89ff2e940969b46fb071cdda, type: 3}
 --- !u!1 &2014648921
 GameObject:
   m_ObjectHideFlags: 0
