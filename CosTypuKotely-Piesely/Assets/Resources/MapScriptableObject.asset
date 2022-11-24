@@ -104,9 +104,23 @@ MonoBehaviour:
           isDay: 1
         tilemap: {fileID: 0}
         description: dsad
-        icon: {fileID: 21300000, guid: 89908998cfc903740a07c4086787eb3d, type: 3}
+        icon: {fileID: 21300000, guid: 9239c8293dd3b934fac10d73b2683471, type: 3}
         waves:
         - enemiesGroups:
+          - enemiesID: 
+            timeToSpawn: 1
+          - enemiesID: 
+            timeToSpawn: 2
+          range: 18
+        - enemiesGroups:
+          - enemiesID: 
+            timeToSpawn: 1
+          - enemiesID: 
+            timeToSpawn: 2
+          range: 18
+        - enemiesGroups:
+          - enemiesID: 
+            timeToSpawn: 0
           - enemiesID: 
             timeToSpawn: 0
           range: 18
